@@ -27,9 +27,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/catalogue', function () {
+    return view('catalogue');
+})->middleware(['auth', 'verified'])->name('catalogue');
 
 Route::get('lang/{lang}',['as'=> 'lang.change', 'uses'=>'App\Http\Controllers\LangageController@changeLang']);
 
