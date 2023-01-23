@@ -11,8 +11,6 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-       /* TODO Ajouter where id_usager dans where
-        ex: $celliers = Cellier::where('id_usager', $id_usager)->get();*/
      
         $users = User::get();
       
