@@ -2,31 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\CelliersBouteillesController as ControllersCelliersBouteillesController;
 use App\Models\Bouteille;
 use App\Models\BouteillePersonalize;
-use App\Models\CelliersBouteilles;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 //use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 
 
 class BouteilleController extends Controller
 {
     //
-    public function index(Request $request, $id)
+    public function index()
     {
-
-        Auth::check();
-        $id_usager = Auth::id();
-
-        $bouteilles = CelliersBouteilles::where('vino__cellier_id', $id)->get();
-
         return view('bouteille.liste', [
-            'data' => $bouteilles,
+            'data' => Bouteille::get(),
             'msg'=> NULL
         ]);
     }
@@ -34,28 +25,21 @@ class BouteilleController extends Controller
     /*
      Retourne la vue pour ajouter une bouteille
     */
-    public function nouveau(Request $request, $id)
+    public function nouveau(Request $request)
     {
         //dd('nouvelleBouteille');
-
-        Auth::check();
-        $id_usager = Auth::id();
        
         //Liste des bouteille au besoins ... 
         // TODO selon le id de l'usager pas encore implementer
-         $bouteillesSAQ = DB::table('vino__bouteille')
+         $bouteilles = DB::table('vino__bouteille')
          ->get();
 
-        
-
-        
        
 
         //vue ajout d'une bouteille 
         return view('bouteille.nouveau', [
-            'bouteillesSAQ' => $bouteillesSAQ, //pour la rechercher
-            'id_cellier' => $id
-            
+            'bouteilles' => $bouteilles
+           
         ]);
     }
 
