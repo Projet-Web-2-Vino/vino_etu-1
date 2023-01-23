@@ -11,7 +11,7 @@ use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\RechercheController;
 use App\Http\Controllers\EmployeeController;
-
+use App\Http\Controllers\LangageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +31,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('lang/{lang}',['as'=> 'lang.change', 'uses'=>'App\Http\Controllers\LangageController@changeLang']);
 
 //aller login apres register 
 Route::get('/utilisateur/login', function () {

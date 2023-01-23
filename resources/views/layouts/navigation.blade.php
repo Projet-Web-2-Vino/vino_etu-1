@@ -54,9 +54,13 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        
                     </x-slot>
                 </x-dropdown>
             </div>
+            
+
+
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
