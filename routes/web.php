@@ -23,15 +23,15 @@ use App\Http\Controllers\LangageController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+    Route::get('/', function () {
+        return redirect(app()->getLocale());
+    });
+    
+    Route::get('/catalogue', function () {
+        return view('catalogue');
+    })->middleware(['auth', 'verified'])->name('catalogue');
 
-Route::get('/catalogue', function () {
-    return view('catalogue');
-})->middleware(['auth', 'verified'])->name('catalogue');
-
-Route::get('lang/{lang}',['as'=> 'lang.change', 'uses'=>'App\Http\Controllers\LangageController@changeLang']);
+    
 
 //aller login apres register 
 Route::get('/utilisateur/login', function () {
