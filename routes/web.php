@@ -11,7 +11,7 @@ use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\RechercheController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\LangageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,14 +24,12 @@ use App\Http\Controllers\LangageController;
 */
 
     Route::get('/', function () {
-        return redirect(app()->getLocale());
+        return view('home');;
     });
     
     Route::get('/catalogue', function () {
         return view('catalogue');
     })->middleware(['auth', 'verified'])->name('catalogue');
-
-    
 
 //aller login apres register 
 Route::get('/utilisateur/login', function () {
