@@ -22,4 +22,18 @@ class AdminController extends Controller
         ]);
         return view('admin.index');
     }
+
+    /**
+     * Supprime
+     */
+    public function supprime(Request $request, $id)
+    {
+        //dd($id);
+        $user = User::findOrFail($id);
+        $user->delete();
+        
+        return "Vous avez supprimer le user {$user->name} !";
+
+    }
+
 }

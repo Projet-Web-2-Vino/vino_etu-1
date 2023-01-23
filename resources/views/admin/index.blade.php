@@ -22,10 +22,9 @@
                 @foreach ($users as  $info)
                     <div>
                     </span>  {{$info->name}} </span>
-                    <!-- zone edit cellier-->
-                    <a href="{{--{{ route('user.edit', ['id' => $info->id ]) }}--}}">Éditer</a>
-                    <!-- zone delete cellier-->
-                    <form action="{{--{{ route('user.supprime', ['id' => $info->id]) }}--}}" method="POST">
+                   
+                    <!-- zone delete usager-->
+                    <form action="{{ route('user.supprime', ['id' => $info->id]) }}" method="POST">
                         @csrf
                         <button>Supprimer</button>
                     </form>
