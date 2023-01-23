@@ -2,11 +2,8 @@
 <!-- Pour tester des routes -->
 <a href="/SAQ">Importer le catalogue</a>
 <a href="/cellier">Espace cellier</a>
-<a href="/bouteille/nouveau">Ajouter une bouteille</a>
 
-
-
-    
+ 
 <x-slot name="header">
   
 @if ($msg)
@@ -14,7 +11,7 @@
 @endif
 
 
-<h1>Vue : Liste Bouteilles du catalogue</h1>
+<h1>Vue : Liste Bouteilles du cellier : </h1>
 @if (session('success'))
 <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 
@@ -52,7 +49,7 @@
                                 
                                
                                    
-                                    <button class='btnAjouter'>Ajouter</button>
+                                    <button class='btnAjouter'>Boire</button>
                                 
                                
             

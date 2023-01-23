@@ -1,16 +1,20 @@
 <?php
 
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SAQController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
+
 use App\Http\Controllers\RechercheController;
-use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AcceuilController;
+use App\Http\Controllers\FallbackController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,17 +28,36 @@ use App\Http\Controllers\EmployeeController;
 */
 
     Route::get('/', function () {
-        return view('home');;
+        return view('home');
     });
     
     Route::get('/catalogue', function () {
         return view('catalogue');
     })->middleware(['auth', 'verified'])->name('catalogue');
 
-//aller login apres register 
-Route::get('/utilisateur/login', function () {
+
+//Section page d'accueil
+Route::get('/', AcceuilController::class)->name('acceuil');
+
+
+Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create'])
+                ->name('register');
+
+
+/*
+    Section fait par Fabio DASHBOARD
+*/
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+
+
+//aller login apres register
+Route::get('/utilisateur/connnexion', function () {
     return view('auth.login');
 });
+
 
 
 Route::middleware('auth')->group(function () {
@@ -44,9 +67,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-
-
 
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
@@ -59,18 +79,20 @@ Route::get('/testDB', function () {
 // Importe le catalogue de la SAQ*/
 Route::get('/SAQ', [SAQController::class, 'import'])
     ->name('bouteille.updateSAQ');
-    
-/****************CELLIER *********/    
+
+
+/****************CELLIER *********/
+
 
 /* CELLIER */
 Route::get('/cellier', [CellierController::class, 'index'])
-    ->name('cellier.index'); 
+    ->name('cellier.index');
 
 // Ajout d'un cellier
 Route::get('/cellier/nouveau', [CellierController::class, 'nouveau'])
-    ->name('cellier.nouveau'); 
+    ->name('cellier.nouveau');
 Route::post('/cellier/creer', [CellierController::class, 'creer'])
-->name('cellier.creer'); 
+->name('cellier.creer');
 
 
 // Édition d'un cellier
@@ -81,19 +103,19 @@ Route::post('/cellier/update/{id}', [CellierController::class, 'update'])
 
 // Suppression d'un cellier
 Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
-->name('cellier.supprime'); 
+->name('cellier.supprime');
 
 
 
 
-/****************BOUTEILLE *********/    
+/****************BOUTEILLE *********/
 
-// Route pour Liste bouteille
-Route::get('/bouteille', [BouteilleController::class, 'index'])
+// Route pour Liste bouteille d'un cellier
+Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
-// Ajout d'une bouteille
-Route::get('/bouteille/nouveau', [BouteilleController::class, 'nouveau'])
+// Ajout d'une bouteille dans un cellier
+Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
     ->name('bouteille.nouveau');
 
 Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
@@ -101,7 +123,7 @@ Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
 
 
 Route::post('/bouteille/creer', [BouteilleController::class, 'creer'])
-->name('bouteille.creer'); 
+->name('bouteille.creer');
 
 // Édition d'une bouteille
 Route::get('/bouteille/edit/{id}', [BouteilleController::class, 'edit'])
@@ -112,4 +134,8 @@ Route::post('/bouteille/update/{id}', [BouteilleController::class, 'update'])
 
 // Suppression d'un bouteille
 Route::post('/bouteille/supprime/{id}', [BouteilleController::class, 'bouteille'])
-->name('bouteille.supprime'); 
+->name('bouteille.supprime');
+
+
+// Route Fallback pour les routes non existantes Page Erreur 404
+Route::fallback(FallbackController::class);
