@@ -61,10 +61,7 @@ Route::get('/testDB', function () {
 // Importe le catalogue de la SAQ*/
 Route::get('/SAQ', [SAQController::class, 'import'])
     ->name('bouteille.updateSAQ');
-
-
-
-
+    
 /****************CELLIER *********/    
 
 /* CELLIER */

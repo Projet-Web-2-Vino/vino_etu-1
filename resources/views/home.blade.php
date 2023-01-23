@@ -35,14 +35,15 @@
                     @endauth
                 </div>
             @endif
+             <!-- option langue
             <div>
-                <a>{{ Config::get('langages')[App::getLocale()]}}</a>
+                <a>{{--{{ Config::get('langages')[App::getLocale()]}}--}}</a>
                 @foreach (Config::get('langages') as $lang =>$langage)
                     @if($lang!=App::getLocale())
                     <a href="{{ route('lang.change', $lang)}}">{{$langage}}</a>
                     @endif
                 @endforeach
-            </div>
+            </div>-->
 
 
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">

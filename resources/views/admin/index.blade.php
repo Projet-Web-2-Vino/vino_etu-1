@@ -12,6 +12,27 @@
                     {{ __("You're logged in!") }} 
                     <p>{{ Auth::user()->name }}</p>
                 </div>
+                <div>
+                @if (session()->has('success'))
+                <span style="color:green">{{ session('success') }}</span>
+                @endif
+
+                @if ($users)
+                <h3>Vos usagers</h3>
+                @foreach ($users as  $info)
+                    <div>
+                    </span>  {{$info->name}} </span>
+                    <!-- zone edit cellier-->
+                    <a href="{{--{{ route('user.edit', ['id' => $info->id ]) }}--}}">Éditer</a>
+                    <!-- zone delete cellier-->
+                    <form action="{{--{{ route('user.supprime', ['id' => $info->id]) }}--}}" method="POST">
+                        @csrf
+                        <button>Supprimer</button>
+                    </form>
+                    </div>
+                @endforeach
+                @endif
+                </div>
             </div>
         </div>
     </div>
