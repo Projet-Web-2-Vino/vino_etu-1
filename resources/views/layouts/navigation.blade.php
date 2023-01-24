@@ -5,31 +5,21 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-<<<<<<< HEAD
                     <a href="{{ route('catalogue') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-=======
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
->>>>>>> 72a4cf126b47edab8bb5e4eebb19186cb09c82fe
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('catalogue')" :active="request()->routeIs('catalogue')">
                         {{ __('Catalogue') }}
                     </x-nav-link>
-<<<<<<< HEAD
                     <!-- admin seulement -->
-                   
                     @if(Auth::user()->is_admin == 1)
                     <x-nav-link :href="route('admin.tableau')" :active="request()->routeIs('admin.tableau')">
                         {{ __('Admin Tableau') }}
                     </x-nav-link>
                     @endif
-=======
->>>>>>> 72a4cf126b47edab8bb5e4eebb19186cb09c82fe
                 </div>
             </div>
 

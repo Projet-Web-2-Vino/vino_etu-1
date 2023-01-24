@@ -3,10 +3,13 @@
 <a href="/cellier">Espace cellier</a>
 <a href="{{ route('bouteille.nouveau', ['id' => $id_cellier ]) }}">Ajouter une bouteille</a>
 
- 
 <x-slot name="header">
   
 
+
+ 
+<x-slot name="header">
+  
 
 @if ($msg)
 <p>{{ $msg }}</p>

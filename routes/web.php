@@ -26,18 +26,10 @@ use App\Http\Controllers\FallbackController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-    Route::get('/', function () {
-        return view('home');
-    });
     
-    Route::get('/catalogue', function () {
-        return view('catalogue');
-    })->middleware(['auth', 'verified'])->name('catalogue');
-
-
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
+
 
 
 //redirige vers login
@@ -58,6 +50,17 @@ Route::get('/login', function () {
 
 
 
+=======
+Route::get('/cellier', function () {
+    return view('cellier.index');
+})->middleware(['auth', 'verified'])->name('cellier.index');
+
+/*
+    Section fait par Fabio DASHBOARD
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});*/
+
 
 
 Route::middleware('auth')->group(function () {
@@ -67,6 +70,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
 
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
@@ -82,7 +86,6 @@ Route::get('/SAQ', [SAQController::class, 'import'])
 
 
 /****************CELLIER *********/
-
 
 /* CELLIER */
 Route::get('/cellier', [CellierController::class, 'index'])
@@ -104,8 +107,6 @@ Route::post('/cellier/update/{id}', [CellierController::class, 'update'])
 // Suppression d'un cellier
 Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 ->name('cellier.supprime');
-
-
 
 
 /****************BOUTEILLE *********/
