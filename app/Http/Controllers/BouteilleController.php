@@ -115,11 +115,11 @@ class BouteilleController extends Controller
 
         //$bouteilles = CelliersBouteilles::where('vino__cellier_id', $id_cellier)->get();
       
-        /*$bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+        $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
             ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
             ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
             ->where('vino__cellier_id', $id_cellier)
-            ->get();*/
+            ->get();
 
        // dd($bouteilles);
 
