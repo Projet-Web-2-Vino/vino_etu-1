@@ -10,9 +10,13 @@ idUsager = {{$id_usager}}
 <h3>Vos celliers</h3>
 @foreach ($celliers as  $info)
     <div>
-    </span>  {{$info->nom_cellier}} </span>
+
+       
+    <h3>  {{$info->nom_cellier}} </h3> 
+    <p> nombre de bouteille :   {{$info->bouteilles_count}} </p>
      <!-- zone edit cellier-->
      <a href="{{ route('cellier.edit', ['id' => $info->id ]) }}">Éditer</a>
+     <a href="{{ route('bouteille.nouveau', ['id' => $info->id ]) }}">Ajouter une bouteille</a>
      <!-- zone delete cellier-->
      <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
          @csrf

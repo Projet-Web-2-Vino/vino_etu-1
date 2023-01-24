@@ -47,7 +47,12 @@ class User extends Authenticatable
    /* relation avec Cellier */
    public function celliers()
    {
-       return $this->hasMany(Cellier::class);
+    return $this->belongsToMany (
+        Cellier::class, // related
+        'vino__cellier', // table
+        'id_usager', // foreign pivot key
+        'id' // related pivot key
+      );
    }
 
 
