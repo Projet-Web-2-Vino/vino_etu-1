@@ -42,7 +42,8 @@ id_cellier = {{$id_cellier}} <br>
                    <!-- <img src="{{$info->image}}"> -->
                     <img src="https://www.saq.com/media/catalog/product/">
                 </div>
-                <h5>{{$info->nom}}</h5>
+                <a href="{{ route('bouteille.edit', ['id' => $info->id ]) }}">Éditer</a>
+                <h3>{{$info->nom}}</h3>
                 <div class="description">
                     <p class="quantite">Quantité : {{$info->quantite}}</p>
                     <p class="pays">Pays : {{$info->pays}}</p>
