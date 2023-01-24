@@ -113,7 +113,7 @@ Route::get('/bouteille', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
 // Ajout d'une bouteille
-Route::get('/bouteille/nouveau', [BouteilleController::class, 'nouveau'])
+Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
     ->name('bouteille.nouveau');
 
 Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
