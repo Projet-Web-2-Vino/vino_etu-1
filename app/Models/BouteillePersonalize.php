@@ -25,7 +25,7 @@ class BouteillePersonalize extends Model
    /* relation avec Cellier */
    public function celliers()
     {
-        return $this->hasMany(Cellier::class);
+        return $this->belongsToMany(Cellier::class);
     }
 
    /* relation avec Type */

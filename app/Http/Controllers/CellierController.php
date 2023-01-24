@@ -18,11 +18,12 @@ class CellierController extends Controller
        
        Auth::check();
        $id_usager = Auth::id();
+       //dd($id_usager);
        $celliers = Cellier::where('id_usager', $id_usager)->get();
       
         return view('cellier.index', [
-            'celliers' => $celliers
-           
+            'celliers' => $celliers,
+            'id_usager' => $id_usager
         ]);
     }
 
@@ -60,7 +61,7 @@ class CellierController extends Controller
     
         //Redirect avec message de succès
         return redirect()
-        ->route('cellier.nouveau')
+        ->route('cellier.index')
         ->withSuccess('Vous avez créé le cellier '.$cellier->nom_cellier.'!');
     }
 

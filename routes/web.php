@@ -59,6 +59,8 @@ Route::get('/dashboard', function () {
 
 
 
+
+
 //aller login apres register
 Route::get('/utilisateur/connnexion', function () {
     return view('auth.login');
