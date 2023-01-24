@@ -41,16 +41,6 @@ Route::get('/', AcceuilController::class)->name('acceuil');
 
 
 
-Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create'])
-                ->name('register');
-
-
-//route connexion
-Route::get('/login', function () {
-    return view('auth.login');
-});
-
-
 
 
 /*

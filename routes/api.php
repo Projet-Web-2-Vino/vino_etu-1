@@ -32,10 +32,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-//aller login apres register
-Route::get('/utilisateur/login', function () {
-    return view('auth.login');
-});
 
 
 Route::middleware('auth')->group(function () {
