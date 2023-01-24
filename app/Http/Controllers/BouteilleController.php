@@ -25,6 +25,7 @@ class BouteilleController extends Controller
         $id_usager = Auth::id();
 
         $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+            ->select('*')
             ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
             ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
             ->where('vino__cellier_id', $id)
@@ -53,7 +54,7 @@ class BouteilleController extends Controller
     /*
      Retourne la vue pour catalogue
     */
-    public function catalogue(Request $request, $id)
+    public function nouveau(Request $request, $id)
     {
         Auth::check();
         $id_usager = Auth::id();
@@ -62,10 +63,13 @@ class BouteilleController extends Controller
          $bouteillesSAQ = DB::table('vino__bouteille')
          ->get();
 
+        //cellier impliquer
+        $cellier = Cellier::find($id);
         
         //vue des bouteille du catalogue
-        return view('bouteille.catalogue', [
+        return view('bouteille.nouveau', [
             'bouteillesSAQ' => $bouteillesSAQ, //pour la rechercher
+            'cellier' => $cellier
         ]);
     }
 
@@ -82,6 +86,8 @@ class BouteilleController extends Controller
 
         $quantite = Request::get('quantite');
         $id_cellier = Request::get('id_cellier');
+
+        //dd($quantite);
 
         //Ajout de la bouteille dans vin personalize
         //TODO check duplication//
@@ -132,41 +138,31 @@ class BouteilleController extends Controller
     /**
      * Edit bouteille
     */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, $idVin, $idCellier)
     {
       
         
-       
+       //dd($id);
 
-        $bouteille = BouteillePersonalize::findOrFail($id);
-
-       
-       
-        return view('bouteille.edit', [
-            'bouteille' => $bouteille
-        ]);
-    }
-
-
-     /**
-     * Update
-     */
-    public function update(Request $request, $id)
-    {
-        //dd($id);
-        $this->validateBouteille($request);
-
+        $bouteille = BouteillePersonalize::findOrFail($idVin)
+                                            ->select('*')
+                                            ->join('vino__cellier_has_vino__bouteille', 'vino__bouteille_personalize.id', '=', 'vino__cellier_has_vino__bouteille.vino__bouteille_id')
+                                            ->where('id', $idVin)
+                                            ->first();
+        //$nbBouteille =  CelliersBouteilles::where('vino__bouteille_id', $idVin)
+                                           // ->where('vino__cellier_id', $idCellier);
         
-        // TODO lier usager à ses bouteille...
-        //$bouteille = BouteillePersonalize::findOrFail($id)->update(Request::all());
-        $bouteille = Bouteille::findOrFail($id)->update(Request::all());
-        
+       // $quantite = $nbBouteille->quantite;
 
+       $cellier = Cellier::find($idCellier);
+       
+        //dd($bouteille);
 
-        // Retourne a la liste du cellier --TODO
-        return redirect()
-            ->route('bouteille.edit')
-            ->withSuccess('La modification a réussi!');
+            return view('bouteille.edit', [
+                'bouteille' => $bouteille,
+                'cellier' => $cellier
+                
+            ]);
     }
 
 

@@ -1,16 +1,9 @@
 <!-- Pour tester des routes -->
-<a href="/SAQ">Importer le catalogue</a>
+
 <a href="/cellier">Espace cellier</a>
 <a href="{{ route('bouteille.nouveau', ['id' => $id_cellier ]) }}">Ajouter une bouteille</a>
 
-<x-slot name="header">
   
-
-
- 
-<x-slot name="header">
-  
-
 @if ($msg)
 <p>{{ $msg }}</p>
 @endif
@@ -45,8 +38,8 @@ id_cellier = {{$id_cellier}} <br>
                    <!-- <img src="{{$info->image}}"> -->
                     <img src="https://www.saq.com/media/catalog/product/">
                 </div>
-                <a href="{{ route('bouteille.edit', ['id' => $info->id ]) }}">Éditer</a>
-                <h3>{{$info->nom}}</h3>
+                <a href="{{ route('bouteille.edit', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id  ]) }}">Éditer</a>
+                <h3>{{$info->nom}}</h3>                                                       
                 <div class="description">
                     <p class="quantite">Quantité : {{$info->quantite}}</p>
                     <p class="pays">Pays : {{$info->pays}}</p>
