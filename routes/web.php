@@ -40,6 +40,7 @@ use App\Http\Controllers\FallbackController;
 Route::get('/', AcceuilController::class)->name('acceuil');
 
 
+
 Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -48,6 +49,7 @@ Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create
 Route::get('/login', function () {
     return view('auth.login');
 });
+
 
 
 /*

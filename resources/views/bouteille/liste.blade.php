@@ -2,8 +2,15 @@
 <a href="/SAQ">Importer le catalogue</a>
 <a href="/cellier">Espace cellier</a>
 
+
 <x-slot name="header">
   
+
+
+ 
+<x-slot name="header">
+  
+
 @if ($msg)
 <p>{{ $msg }}</p>
 @endif
