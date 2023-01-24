@@ -18,10 +18,6 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
 
-    //public const HOME = '/catalogue';
-
-   /* public const HOME = '/dashboard';*/
-
    // redirige par defaut vers route cellier... 
    //TODO detect if is_admin
     public const HOME = '/login';
