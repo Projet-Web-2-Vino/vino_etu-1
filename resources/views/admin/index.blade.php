@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
+            {{ __('Admin Tableau') }}
         </h2>
     </x-slot>
 
@@ -11,6 +11,26 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }} 
                     <p>{{ Auth::user()->name }}</p>
+                </div>
+                <div>
+                @if (session()->has('success'))
+                <span style="color:green">{{ session('success') }}</span>
+                @endif
+
+                @if ($users)
+                <h3>Vos usagers</h3>
+                @foreach ($users as  $info)
+                    <div>
+                    </span>  {{$info->name}} </span>
+                   
+                    <!-- zone delete usager-->
+                    <form action="{{ route('user.supprime', ['id' => $info->id]) }}" method="POST">
+                        @csrf
+                        <button>Supprimer</button>
+                    </form>
+                    </div>
+                @endforeach
+                @endif
                 </div>
             </div>
         </div>
