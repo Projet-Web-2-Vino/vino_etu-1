@@ -94,7 +94,7 @@ class BouteilleController extends Controller
 
 
 
-        dd($id_cellier);
+        //dd($id_cellier);
 
         //Ajout de la bouteille dans vin personalize
         //TODO check duplication//
