@@ -35,9 +35,15 @@ use App\Http\Controllers\FallbackController;
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
+//route inscription
+Route::get('/utilisateur/inscription', function () {
+    return view('auth.register');
+});
 
-
-
+//route connexion
+Route::get('/utilisateur/connexion', function () {
+    return view('auth.login');
+});
 
 
 
@@ -56,10 +62,7 @@ Route::get('/dashboard', function () {
 
 
 
-//aller login apres register
-Route::get('/utilisateur/login', function () {
-    return view('auth.login');
-});
+
 
 
 
