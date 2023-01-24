@@ -30,6 +30,27 @@ use App\Http\Controllers\FallbackController;
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
+
+
+//redirige vers login
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+/*
+    Section fait par Fabio DASHBOARD
+*/
+/*Route::get('/dashboard', function () {
+    return view('dashboard');
+});*/
+
+
+
+
+
+
+
+=======
 Route::get('/cellier', function () {
     return view('cellier.index');
 })->middleware(['auth', 'verified'])->name('cellier.index');
@@ -39,6 +60,7 @@ Route::get('/cellier', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });*/
+
 
 
 Route::middleware('auth')->group(function () {
