@@ -15,8 +15,13 @@
 <p>{{ $msg }}</p>
 @endif
 
+<!-- pour information seulement pour tester -->
+<div>
+id_usager = {{$id_usager}} <br>
+id_cellier = {{$id_cellier}} <br>
+</div>
 
-<h1>Vue : Liste Bouteilles du cellier : </h1>
+<h1>Liste bouteilles du cellier <em>{{$cellier->nom_cellier}}</em> </h1>
 @if (session('success'))
 <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 @endif

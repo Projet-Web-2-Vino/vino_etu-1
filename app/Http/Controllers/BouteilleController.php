@@ -27,11 +27,12 @@ class BouteilleController extends Controller
         $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
             ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
             ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+            ->where('vino__cellier_id', $id)
             ->get();
 
         //dd($bouteilles);
 
-       
+       $cellier = Cellier::find($id);
 
        
         
@@ -42,6 +43,9 @@ class BouteilleController extends Controller
 
         return view('bouteille.liste', [
             'bouteilles' => $bouteilles,
+            'id_usager' => $id_usager,
+            'id_cellier' => $id,
+            'cellier' => $cellier,
             'msg'=> NULL
         ]);
     }
@@ -90,7 +94,7 @@ class BouteilleController extends Controller
 
 
 
-        //dd($request);
+        dd($id_cellier);
 
         //Ajout de la bouteille dans vin personalize
         //TODO check duplication//

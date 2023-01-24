@@ -22,34 +22,11 @@ class CellierController extends Controller
        Auth::check();
        $id_usager = Auth::id();
 
-       $idUsager = 12;
-       //dd($id_usager);
-       //$celliers = Cellier::where('id_usager', $id_usager)->get();
+       $celliers = Cellier::where('id_usager' , $id_usager)->withCount('bouteilles')->get();
 
-       $celliers = Cellier::where('id_usager' , $idUsager)->withCount('bouteilles')->get();
-
-     /*$celliers = Cellier::where('id_usager' , $idUsager)->get();*/
-       
-
-
-     
-       //dd($celliers);
-/*
-    
-       $discussPosts = DB::table('vino__cellier')
-                ->join('vino__cellier_has_vino__bouteille', 'vino__cellier_has_vino__bouteille.vino__cellier_id', '=', 'vino__cellier.id') //you used Did, I am not sure which one is a foreign key, but it seems that PostId is a foreign key after checking your table structure. Adjust your foreign key if it is not working.
-                ->select('post.*', DB::raw('count(postConversation.*) as postConversationCount'))
-                ->where('post.mentorid', Auth::user()->id)
-                ->where('post.menteeid', $userid)
-                ->where('postConversation.seen', '!=', 1)
-                ->get(); 
-       
-       dd($celliers);
-    
-       //dd($count);*/
       
         return view('cellier.index', [
-            'celliers' => $celliers,
+            'celliers' => $celliers,   //to get nbBouteille in view = {{$info->bouteilles_count}}
             'id_usager' => $id_usager
         ]);
     }
