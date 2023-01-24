@@ -25,7 +25,7 @@ class BouteillePersonalize extends Model
    /* relation avec Cellier */
    public function celliers()
     {
-        return $this->belongsToMany(Cellier::class);
+        return $this->belongsToMany(Cellier::class, 'vino__cellier_has_vino__bouteille', 'vino__cellier_id', 'vino__bouteille_id');
     }
 
    /* relation avec Type */
