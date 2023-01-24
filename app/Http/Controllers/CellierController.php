@@ -20,6 +20,8 @@ class CellierController extends Controller
        $id_usager = Auth::id();
        //dd($id_usager);
        $celliers = Cellier::where('id_usager', $id_usager)->get();
+
+       $x =0;
       
         return view('cellier.index', [
             'celliers' => $celliers,
