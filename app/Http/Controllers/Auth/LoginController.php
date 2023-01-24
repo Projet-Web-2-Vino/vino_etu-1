@@ -27,6 +27,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = '/cellier';
 
     /**
      * Create a new controller instance.

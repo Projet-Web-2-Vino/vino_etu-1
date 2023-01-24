@@ -50,7 +50,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 
-
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
 
 // Permet de tester rapidement la connection*/

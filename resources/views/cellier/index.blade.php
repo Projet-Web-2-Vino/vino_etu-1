@@ -1,6 +1,6 @@
 idUsager = {{$id_usager}}
 <a href="/SAQ">Importer le catalogue</a>
-<h1>Espace cellier</h1>
+<h1>Espace cellier {{ __('cellier.index') }}</h1>
 
 @if (session()->has('success'))
 <span style="color:green">{{ session('success') }}</span>
