@@ -25,8 +25,12 @@
 <div id="nouvelleBouteille">
 	<form id="formAjoutBouteille" action="{{ route('bouteille.creer')}}" method="POST">
 		@csrf
+
+		<!-- Caché essentiel -->
+		<input id="id_cellier" name="id_cellier" type="hidden" value="{{$id_cellier}}">
 	
 		 <!-- Obligatoire -->
+
 		  <label for="nom"> * Nom  :</label>
 		  <input id="nom" name="nom" type="text" value="" required>
 		  <br>

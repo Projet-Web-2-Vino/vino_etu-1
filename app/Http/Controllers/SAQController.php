@@ -28,7 +28,7 @@ class SAQController extends Controller
         ]);*/
 
         return redirect()
-        ->route('bouteille.liste')
-        ->withSuccess('La modification a réussi!');
+        ->route('cellier.index')
+        ->withSuccess('Importation réussi!');
     }
 }
