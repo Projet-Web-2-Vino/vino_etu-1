@@ -40,7 +40,6 @@ use App\Http\Controllers\FallbackController;
 Route::get('/', AcceuilController::class)->name('acceuil');
 
 
-
 Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
@@ -51,21 +50,12 @@ Route::get('/login', function () {
 });
 
 
-
-
 /*
     Section fait par Fabio DASHBOARD
 */
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-
-
-
-
-
-
-
 
 
 Route::middleware('auth')->group(function () {
@@ -75,6 +65,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
 
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
@@ -90,7 +81,6 @@ Route::get('/SAQ', [SAQController::class, 'import'])
 
 
 /****************CELLIER *********/
-
 
 /* CELLIER */
 Route::get('/cellier', [CellierController::class, 'index'])
@@ -112,8 +102,6 @@ Route::post('/cellier/update/{id}', [CellierController::class, 'update'])
 // Suppression d'un cellier
 Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 ->name('cellier.supprime');
-
-
 
 
 /****************BOUTEILLE *********/
