@@ -3,10 +3,13 @@
 <a href="/cellier">Espace cellier</a>
 
 
- 
 <x-slot name="header">
   
 
+
+ 
+<x-slot name="header">
+  
 
 @if ($msg)
 <p>{{ $msg }}</p>
