@@ -20,6 +20,10 @@
 
 .background.a {
     background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2909085/pexels-photo-2909085.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-size: cover;
+    height: 844px;
+    width: auto;
+
   }
 
 

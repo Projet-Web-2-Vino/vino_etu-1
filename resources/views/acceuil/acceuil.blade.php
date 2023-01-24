@@ -14,11 +14,9 @@
 <body>
 
 
-        <div id="myCarousel" class="carousel carousel-fade slide" data-ride="carousel" data-interval="3000">
-          <div class="carousel-inner" role="listbox">
+        <div>
+          <div>
             <div class="item active background a"></div>
-            <div class="item background b"></div>
-            <div class="item background c"></div>
           </div>
         </div>
 
@@ -28,22 +26,15 @@
 
           </div>
           <div class="col-xs-12 explore">
-            <a href=""><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+            <a href="/register"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
                 Inscrivez-vous
               </button></a>
           </div>
           <div class="col-xs-12 explore">
-            <a href="#"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+            <a href="/login"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
                 Connexion
               </button></a>
           </div>
-          <div class=" py-12 col-xs-12 explore">
-            <button class="w-80 bg-transparent hover:bg-red-300 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded">
-                EXPLORER LES CELLIERS
-              </button>
-        </div>
-
-
 
 </body>
 </html>
