@@ -17,6 +17,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
+
+    //public const HOME = '/catalogue';
+
    /* public const HOME = '/dashboard';*/
 
    // redirige par defaut vers route cellier... 
@@ -26,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
 
 
     public const HOME = '/cellier';
+
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

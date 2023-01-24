@@ -27,14 +27,22 @@ use App\Http\Controllers\FallbackController;
 |
 */
 
+    Route::get('/', function () {
+        return view('home');
+    });
+    
+    Route::get('/catalogue', function () {
+        return view('catalogue');
+    })->middleware(['auth', 'verified'])->name('catalogue');
 
-// Route::get('/', function () {
-//     return view('home');
-// });
 
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
+
+
+Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create'])
+                ->name('register');
 
 
 //route connexion
@@ -44,9 +52,6 @@ Route::get('/login', function () {
 
 
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
     Section fait par Fabio DASHBOARD
@@ -84,9 +89,8 @@ Route::get('/SAQ', [SAQController::class, 'import'])
     ->name('bouteille.updateSAQ');
 
 
-
-
 /****************CELLIER *********/
+
 
 /* CELLIER */
 Route::get('/cellier', [CellierController::class, 'index'])
