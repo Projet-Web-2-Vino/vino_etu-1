@@ -38,12 +38,7 @@ Route::get('/', AcceuilController::class)->name('acceuil');
 
 
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
-Route::get('/', [RegisteredUserController::class, 'create'])
-                ->name('register');
 
 
 // Route::get('/dashboard', function () {
