@@ -39,7 +39,8 @@ id_cellier = {{$id_cellier}} <br>
             <div class="bouteille" data-quantite="{{$info->quantite}}">
                
                 <div class="img">
-                    <img src="{{$info->image}}">
+                   <!-- <img src="{{$info->image}}"> -->
+                    <img src="https://www.saq.com/media/catalog/product/">
                 </div>
                 <h5>{{$info->nom}}</h5>
                 <div class="description">
