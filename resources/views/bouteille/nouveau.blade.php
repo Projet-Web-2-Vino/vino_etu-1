@@ -1,9 +1,8 @@
 
-<a href="/cellier">Voir mes celliers</a>
-<a href="{{ route('bouteille.liste', ['id' => $id_cellier ]) }}">Voir bouteilles du cellier</a>
+<a href="/cellier">Espace cellier</a>
+<a href="/bouteille">Liste bouteille du catalogue</a>
 
-
-<h1>Ajout d'une bouteille à mon cellier</h1>
+<h1>Ajout d'une bouteille à un cellier</h1>
 @if (session()->has('success'))
 <span style="color:green">{{ session('success') }}</span>
 @endif
@@ -24,10 +23,14 @@
 <br><br>
 <!-- Début form ajout -->
 <div id="nouvelleBouteille">
-	<form id="formAjoutBouteille" action="{{ route('bouteille.creer', ['id' => $id_cellier ])}}" method="POST">
+	<form id="formAjoutBouteille" action="{{ route('bouteille.creer')}}" method="POST">
 		@csrf
+
+		<!-- Caché essentiel -->
+		<input id="id_cellier" name="id_cellier" type="hidden" value="{{$id_cellier}}">
 	
 		 <!-- Obligatoire -->
+
 		  <label for="nom"> * Nom  :</label>
 		  <input id="nom" name="nom" type="text" value="" required>
 		  <br>
@@ -39,9 +42,6 @@
 		  <label for="blanc">Blanc</label>
 		  <input type="radio" name="type" id="rose" value="3">
 		  <label for="rose">Rosé</label>
-		  <br>
-		  <label for="quantite">Quantité :</label>
-		  <input id="quantite" name="quantite" type="text" value="" required>
 		  <br>
 		  <!-- Pas obligatoire -->
 		  <label for="pays">Pays :</label>
@@ -64,7 +64,6 @@
 		  <input id="url_img" name="url_img" type="hidden" value="">
 	
 		  <button>Ajouter</button>
-		  
 
 		</form>
 
@@ -126,8 +125,6 @@
 						//console.log(evt.target.dataset.id)
 						if(evt.target.tagName == "TD"){
 						
-						
-						console.log(bouteille)	
 						injectBouteilleInfo(bouteille)
 
 						//console.log(liste);
@@ -170,7 +167,7 @@
 			 // console.log(prop);
 			 // console.log(value);
 
-			 // radio bouton type de vin
+			 // radio bouton
 			  if (prop == 'type'){
 				console.log(typeof value)
 				valueBte = value
@@ -189,9 +186,6 @@
 			  }else{
 				form[prop].value = value;
 			  }  
-
-			  //ajout d'une quantite par defaut
-			  form.quantite.value = 1;
 		}
 		
 	}
