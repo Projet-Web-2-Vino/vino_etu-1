@@ -24,13 +24,7 @@ class RouteServiceProvider extends ServiceProvider
 
    // redirige par defaut vers route cellier... 
    //TODO detect if is_admin
-
-   
-
-
-    public const HOME = '/cellier';
-
-
+    public const HOME = '/login';
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
