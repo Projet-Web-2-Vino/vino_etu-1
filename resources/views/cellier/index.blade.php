@@ -17,6 +17,7 @@ idUsager = {{$id_usager}}
      <!-- zone edit cellier-->
      <a href="{{ route('cellier.edit', ['id' => $info->id ]) }}">Éditer</a>
      <a href="{{ route('bouteille.nouveau', ['id' => $info->id ]) }}">Ajouter une bouteille</a>
+     <a href="{{ route('bouteille.liste', ['id' => $info->id ]) }}">Voir mes bouteilles</a>
      <!-- zone delete cellier-->
      <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
          @csrf
