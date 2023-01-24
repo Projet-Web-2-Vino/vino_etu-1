@@ -23,10 +23,10 @@ class Cellier extends Model
 
     public $incrementing = true;
 
-   /* relation avec Bouteille */
+   /* relation avec Bouteille peut avoir de 0 è n Bouteille */
    public function bouteilles()
    {
-       return $this->hasMany(BouteillePersonalize::class);
+       return $this->belongsToMany(BouteillePersonalize::class);
    }
 
    /* relation avec User */

@@ -40,8 +40,17 @@ use App\Http\Controllers\FallbackController;
 Route::get('/', AcceuilController::class)->name('acceuil');
 
 
+
 Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create'])
                 ->name('register');
+
+
+//route connexion
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+
 
 
 /*
@@ -53,10 +62,9 @@ Route::get('/dashboard', function () {
 
 
 
-//aller login apres register
-Route::get('/utilisateur/connnexion', function () {
-    return view('auth.login');
-});
+
+
+
 
 
 
@@ -110,12 +118,12 @@ Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 
 /****************BOUTEILLE *********/
 
-// Route pour Liste bouteille d'un cellier
-Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
+// Route pour Liste bouteille
+Route::get('/bouteille', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
-// Ajout d'une bouteille dans un cellier
-Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
+// Ajout d'une bouteille
+Route::get('/bouteille/nouveau', [BouteilleController::class, 'nouveau'])
     ->name('bouteille.nouveau');
 
 Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
