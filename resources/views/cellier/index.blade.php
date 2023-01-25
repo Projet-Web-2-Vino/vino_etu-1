@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- <a href="/SAQ">Importer le catalogue</a><br> -->
-idUsager = {{$id_usager}} <br>
+<!-- idUsager = {{$id_usager}} <br> -->
 
 
 
@@ -15,22 +15,24 @@ idUsager = {{$id_usager}} <br>
   <h1>Espace cellier</h1>
 </div>
 
-@if (!$celliers)
+
+  <div class="px-2 py-4   m-2 mx-auto bg-white rounded-lg text-center">
+      <a class="inline-block bg-red-800 rounded px-3 py-1 text-sm font-semibold text-white mr-2" href='cellier/nouveau'>Ajouter un cellier</a>
+  </div>
+
+  @if (count($celliers) == 0)
   <div class="py-3 font-bold text-2xl text-center">
       <h3>Veuillez ajouter votre cellier</h3>
   </div>
   @else
   <div class="py-3 font-bold text-2xl text-center">
-    <h3>Vos celliers</h3>
+    <h3 class="uppercase">Vos celliers</h3>
 </div>
   @endif
-  <div class="px-2 py-4  m-2 mx-auto bg-white rounded-lg ">
-      <a class="inline-block bg-red-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2" href='cellier/nouveau'>Ajouter un cellier</a>
-  </div>
 
 
-<div class='max-w-md mx-auto'>
-    <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+<div class='max-w-md'>
+    <div class="relative flex items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
        <!--
       <div class="grid place-items-center h-full w-12 text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -48,26 +50,31 @@ idUsager = {{$id_usager}} <br>
     @if ($celliers)
     @foreach ($celliers as  $info)
 
-      <div class="px-2 m-2 mx-auto max-w-3xl bg-white rounded-lg shadow-xl">
+      <div class="px-2 m-2 mx-auto  max-w-3xl bg-white rounded-lg shadow-xl">
+        <div class="text-right">
+           <!-- zone edit cellier-->
+           <span class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700 mr-2"><a href="{{ route('cellier.edit', ['id' => $info->id ]) }}"><i class="far fa-edit"></i></a></span>
+           <!-- zone delete cellier-->
+         <span class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700">
+             <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
+                 @csrf
+                 <button><i class="fa-solid fa-trash"></i></button>
+             </form>
+
+         </span>
+        </div>
         <div class="p-4 flex flex-col justify-between leading-normal">
           <div class="mb-3">
             {{-- Nom Cellier --}}
-            <div class="">{{$info->nom_cellier}} </div>
-            <small class="inline-block   py-1 pb-2 mt-1 text-sm font-semibold  mr-2"><p>Description :</p></small>
-            <p class="py-1 text-gray-700 text-base">Manque Description</p>
+            <h2 class="text-xl uppercase font-bold">{{$info->nom_cellier}} </h2>
+            
+            <small class="inline-block   py-1 pb-2 mt-1 text-sm font-semibold  mr-2"><p>Nombre de bouteille : {{$info->bouteilles_count}}</p></small><br>
+            <a class="inline-block bg-red-800 rounded px-3 py-1 text-sm font-semibold text-white mr-2" href='{{ route('bouteille.nouveau', ['id' => $info->id ]) }}'>Ajouter une bouteille</a>
+            
           </div>
           <div>
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Détail</span>
-            <!-- zone edit cellier-->
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"><a href=""{{ route('cellier.edit', ['id' => $info->id ]) }}">Modifier</a></span>
-              <!-- zone delete cellier-->
-            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-                <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
-                    @csrf
-                    <button>Supprimer</button>
-                </form>
-
-            </span>
+            
+         
           </div>
         </div>
       </div>
