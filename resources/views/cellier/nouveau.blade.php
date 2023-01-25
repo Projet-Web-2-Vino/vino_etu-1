@@ -7,8 +7,8 @@
 <form action="{{ route('cellier.creer')}}" method="POST">
     {{-- Token pour la securiter du formulaire --}}
     @csrf
-
-    <div class=" min-h-screen bg-gray-100  flex flex-col justify-center ">
+    <h1></h1>
+    <div class="bg-gray-100  flex flex-col justify-center ">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
                 <div class="max-w-md mx-auto">
