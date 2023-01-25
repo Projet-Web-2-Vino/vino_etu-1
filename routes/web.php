@@ -27,25 +27,25 @@ use App\Http\Controllers\FallbackController;
 |
 */
 
-    /*Route::get('/', function () {
+    Route::get('/', function () {
         return view('home');
     });
     
     Route::get('/catalogue', function () {
         return view('catalogue');
-    })->middleware(['auth', 'verified'])->name('catalogue');*/
+    })->middleware(['auth', 'verified'])->name('catalogue');
 
 
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
+//route catalogue
+Route::get('/catalogue', function () {
+    return view('catalogue');
+})->middleware(['auth', 'verified'])->name('catalogue');
 
 
 
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
 // remettre apres avoir fini
 // Route::get('/', [RegisteredUserController::class, 'create'])->name('register');
@@ -55,11 +55,12 @@ Route::get('/', AcceuilController::class)->name('acceuil');
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 //redirige vers login
-Route::get('/login', function () {
+/*Route::get('/login', function () {
     return view('auth.login');
 });
-
+*/
 
 /*
     Section fait par Fabio DASHBOARD
