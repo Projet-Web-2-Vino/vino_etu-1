@@ -1,4 +1,5 @@
-
+@extends('layouts.master')
+@section('content')
 <!-- Pour tester des routes -->
 <a href="/SAQ">Importer le catalogue</a>
 <a href="/cellier">Espace cellier</a>
@@ -49,169 +50,65 @@
 
                                     <button class='btnAjouter'>Ajouter</button>
 
-
-
-
                                     <button class='btnAjouter'>Ajouter</button>
-
-
-
                             </div>
 
                 <?php
-
-
-                }
-
+                    }
                 ?>
-            </div>
 
-            </div>
+
+
+    <x-slot name="header">
+
+    @if ($msg)
+    <p>{{ $msg }}</p>
+    @endif
+
+
+    <h1>Vue : Liste Bouteilles du catalogue</h1>
+    @if (session('success'))
+    <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
+
+    @endif
+    </x-slot>
+
+
+{{-- Section pour carte des vins --}}
+
+    <div class="container mx-auto">
+    <div class="flex flex-wrap -mx-4">
+      <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+        <a href="" class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+        <div class="relative pb-48 overflow-hidden">
+          <img class="absolute inset-0 h-full w-full object-cover" src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="">
         </div>
+        <div class="p-4">
+          <span class="inline-block px-2 py-1 leading-none bg-orange-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">Highlight</span>
+          <h2 class="mt-2 mb-2  font-bold">Purus Ullamcorper Inceptos Nibh</h2>
+          <p class="text-sm">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.</p>
+          <div class="mt-3 flex items-center">
+            <span class="text-sm font-semibold">ab</span>&nbsp;<span class="font-bold text-xl">45,00</span>&nbsp;<span class="text-sm font-semibold">€</span>
+          </div>
+        </div>
+        <div class="p-4 border-t border-b text-xs text-gray-700">
+          <span class="flex items-center mb-1">
+            <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> 3 Tage
+          </span>
+          <span class="flex items-center">
+            <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i> Ermäßigung mit Karte
+          </span>
+        </div>
+        <div class="p-4 flex items-center text-sm text-gray-600"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-yellow-500"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-current text-gray-400"><path d="M8.128 19.825a1.586 1.586 0 0 1-1.643-.117 1.543 1.543 0 0 1-.53-.662 1.515 1.515 0 0 1-.096-.837l.736-4.247-3.13-3a1.514 1.514 0 0 1-.39-1.569c.09-.271.254-.513.475-.698.22-.185.49-.306.776-.35L8.66 7.73l1.925-3.862c.128-.26.328-.48.577-.633a1.584 1.584 0 0 1 1.662 0c.25.153.45.373.577.633l1.925 3.847 4.334.615c.29.042.562.162.785.348.224.186.39.43.48.704a1.514 1.514 0 0 1-.404 1.58l-3.13 3 .736 4.247c.047.282.014.572-.096.837-.111.265-.294.494-.53.662a1.582 1.582 0 0 1-1.643.117l-3.865-2-3.865 2z"></path></svg><span class="ml-2">34 Bewertungen</span></div>
+      </a>
+      </div>
+
+
+
+
+
+
     </div>
+  </div>
 
-</div>
-</div>
-
-
-
-
-<!-- component -->
-<link
-	href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
-	rel="stylesheet">
-<div class="flex items-center justify-center min-h-screen bg-gray-900">
-	<div class="col-span-12">
-		<div class="overflow-auto lg:overflow-visible ">
-			<table class="table text-gray-400 border-separate space-y-6 text-sm">
-				<thead class="bg-gray-800 text-gray-500">
-					<tr>
-						<th class="p-3">Brand</th>
-						<th class="p-3 text-left">Category</th>
-						<th class="p-3 text-left">Price</th>
-						<th class="p-3 text-left">Status</th>
-						<th class="p-3 text-left">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="bg-gray-800">
-						<td class="p-3">
-							<div class="flex align-items-center">
-								<img class="rounded-full h-12 w-12  object-cover" src="https://images.unsplash.com/photo-1613588718956-c2e80305bf61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80" alt="unsplash image">
-								<div class="ml-3">
-									<div class="">Appple</div>
-									<div class="text-gray-500">mail@rgmail.com</div>
-								</div>
-							</div>
-						</td>
-						<td class="p-3">
-							Technology
-						</td>
-						<td class="p-3 font-bold">
-							200.00$
-						</td>
-						<td class="p-3">
-							<span class="bg-green-400 text-gray-50 rounded-md px-2">available</span>
-						</td>
-						<td class="p-3 ">
-							<a href="#" class="text-gray-400 hover:text-gray-100 mr-2">
-								<i class="material-icons-outlined text-base">visibility</i>
-							</a>
-							<a href="#" class="text-gray-400 hover:text-gray-100  mx-2">
-								<i class="material-icons-outlined text-base">edit</i>
-							</a>
-							<a href="#" class="text-gray-400 hover:text-gray-100  ml-2">
-								<i class="material-icons-round text-base">delete_outline</i>
-							</a>
-						</td>
-					</tr>
-					<tr class="bg-gray-800">
-						<td class="p-3">
-							<div class="flex align-items-center">
-								<img class="rounded-full h-12 w-12   object-cover" src="https://images.unsplash.com/photo-1423784346385-c1d4dac9893a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="unsplash image">
-								<div class="ml-3">
-									<div class="">Realme</div>
-									<div class="text-gray-500">mail@rgmail.com</div>
-								</div>
-							</div>
-						</td>
-						<td class="p-3">
-							Technology
-						</td>
-						<td class="p-3 font-bold">
-							200.00$
-						</td>
-						<td class="p-3">
-							<span class="bg-red-400 text-gray-50 rounded-md px-2">no stock</span>
-						</td>
-						<td class="p-3">
-							<a href="#" class="text-gray-400 hover:text-gray-100  mr-2">
-								<i class="material-icons-outlined text-base">visibility</i>
-							</a>
-							<a href="#" class="text-gray-400 hover:text-gray-100 mx-2">
-								<i class="material-icons-outlined text-base">edit</i>
-							</a>
-							<a href="#" class="text-gray-400 hover:text-gray-100 ml-2">
-								<i class="material-icons-round text-base">delete_outline</i>
-							</a>
-						</td>
-					</tr>
-					<tr class="bg-gray-800">
-						<td class="p-3">
-							<div class="flex align-items-center">
-								<img class="rounded-full h-12 w-12   object-cover" src="https://images.unsplash.com/photo-1600856209923-34372e319a5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2135&q=80" alt="unsplash image">
-								<div class="ml-3">
-									<div class="">Samsung</div>
-									<div class="text-gray-500">mail@rgmail.com</div>
-								</div>
-							</div>
-						</td>
-						<td class="p-3">
-							Technology
-						</td>
-						<td class="p-3 font-bold">
-							200.00$
-						</td>
-						<td class="p-3">
-							<span class="bg-yellow-400 text-gray-50  rounded-md px-2">start sale</span>
-						</td>
-						<td class="p-3">
-							<a href="#" class="text-gray-400 hover:text-gray-100 mr-2">
-								<i class="material-icons-outlined text-base">visibility</i>
-							</a>
-							<a href="#" class="text-gray-400 hover:text-gray-100 mx-2">
-								<i class="material-icons-outlined text-base">edit</i>
-							</a>
-							<a href="#" class="text-gray-400 hover:text-gray-100 ml-2">
-								<i class="material-icons-round text-base">delete_outline</i>
-							</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
-<style>
-	.table {
-		border-spacing: 0 15px;
-	}
-
-	i {
-		font-size: 1rem !important;
-	}
-
-	.table tr {
-		border-radius: 20px;
-	}
-
-	tr td:nth-child(n+5),
-	tr th:nth-child(n+5) {
-		border-radius: 0 .625rem .625rem 0;
-	}
-
-	tr td:nth-child(1),
-	tr th:nth-child(1) {
-		border-radius: .625rem 0 0 .625rem;
-	}
-</style>
+  @endsection
