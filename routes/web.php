@@ -40,10 +40,26 @@ use App\Http\Controllers\FallbackController;
 Route::get('/', AcceuilController::class)->name('acceuil');
 
 
+
+
+
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
+
+// remettre apres avoir fini
+// Route::get('/', [RegisteredUserController::class, 'create'])->name('register');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 //redirige vers login
 Route::get('/login', function () {
     return view('auth.login');
 });
+
 
 /*
     Section fait par Fabio DASHBOARD
@@ -119,7 +135,7 @@ Route::post('/bouteille/creer', [BouteilleController::class, 'creer'])
 ->name('bouteille.creer');
 
 // Édition d'une bouteille
-Route::get('/bouteille/edit/{id}', [BouteilleController::class, 'edit'])
+Route::get('/bouteille/edit/{idVin}/{idCellier}', [BouteilleController::class, 'edit'])
 ->name('bouteille.edit');
 Route::post('/bouteille/update/{id}', [BouteilleController::class, 'update'])
 ->name('bouteille.update');

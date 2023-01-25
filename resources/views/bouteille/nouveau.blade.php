@@ -1,8 +1,10 @@
 
+@extends('layouts.master')
+@section('content')
 <a href="/cellier">Espace cellier</a>
-<a href="/bouteille">Liste bouteille du catalogue</a>
 
-<h1>Ajout d'une bouteille à un cellier</h1>
+
+<h1>Ajout d'une bouteille au cellier <em>{{$cellier->nom_cellier}}</em></h1>
 @if (session()->has('success'))
 <span style="color:green">{{ session('success') }}</span>
 @endif
@@ -13,7 +15,7 @@
 
 </form>
 <table id="listeAutoComplete">
-    
+
     <tbody id="tbodyfordata">
         <!-- Data will be appened here -->
     </tbody>
@@ -26,9 +28,10 @@
 	<form id="formAjoutBouteille" action="{{ route('bouteille.creer')}}" method="POST">
 		@csrf
 
+
 		<!-- Caché essentiel -->
-		<input id="id_cellier" name="id_cellier" type="hidden" value="{{$id_cellier}}">
-	
+		<input id="id_cellier" name="id_cellier" type="hidden" value="{{$cellier->id}}">
+
 		 <!-- Obligatoire -->
 
 		  <label for="nom"> * Nom  :</label>
@@ -42,6 +45,9 @@
 		  <label for="blanc">Blanc</label>
 		  <input type="radio" name="type" id="rose" value="3">
 		  <label for="rose">Rosé</label>
+		  <br>
+		  <label for="quantite">Quantité :</label>
+		  <input id="quantite" name="quantite" type="text" value="" required>
 		  <br>
 		  <!-- Pas obligatoire -->
 		  <label for="pays">Pays :</label>
@@ -62,18 +68,37 @@
 		  <input id="image" name="image" type="hidden" value="">
 		  <input id="prix_saq" name="prix_saq" type="hidden" value="">
 		  <input id="url_img" name="url_img" type="hidden" value="">
-	
+
 		  <button>Ajouter</button>
 
 		</form>
 
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
 </div>
+<!-- Fin form ajout -->
+@endsection
 
 <!-- SCRIPT-->
 <script>
     function fetchData()
 	{
-       
+
 		//recherche Value
 		let elRecheche = document.getElementById('recherche').value;
 
@@ -102,7 +127,7 @@
 		fetch(url, options)
 		.then((resp) => resp.json()) //Transforme  data en json
 		.then(function(data){
-			
+
 
 			var tbodyref  = document.getElementById('tbodyfordata');
 			tbodyref.innerHTML = '';
@@ -118,13 +143,13 @@
 					append(tbodyref,tr);
 
 					/*
-      					* Gestionnaire d'évènement clique sur l'élément tr ( nom de la bouteille ) 
+      					* Gestionnaire d'évènement clique sur l'élément tr ( nom de la bouteille )
      					  qui permet de faire la sélection parmi les choix de la liste
     				*/
 					tr.addEventListener("click", function(evt){
 						//console.log(evt.target.dataset.id)
 						if(evt.target.tagName == "TD"){
-						
+
 						injectBouteilleInfo(bouteille)
 
 						//console.log(liste);
@@ -134,7 +159,7 @@
 						}
 					});
 
-				});			
+				});
 		})
 		.catch(function(error){
 			console.log(error);
@@ -159,7 +184,7 @@
 
 		//console.log(bte)
 		var form = document.getElementById('formAjoutBouteille')
-		
+
 		//Injecter les info de la bouteille dans le formulaire si vient de la recherche
 		for (const property in bte) {
 			  prop = `${property}`;
@@ -185,9 +210,16 @@
 				}
 			  }else{
 				form[prop].value = value;
-			  }  
+
+			  }
+
+			  } 
+			  
+			   //ajout d'une quantite par defaut
+			   form.quantite.value = 1;
+
 		}
-		
+
 	}
 
 </script>

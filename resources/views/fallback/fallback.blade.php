@@ -22,7 +22,7 @@
             <h3>Vous semblez aussi perdu que moi ?</h3>
             <br>
             <button class="button_fallback">
-                <a href="{{ route('acceuil') }}">Retourner à l'accueil</a>
+                <a href="/">Retourner à l'accueil</a>
             </button>
         </div>
 
