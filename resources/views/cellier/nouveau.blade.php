@@ -8,7 +8,7 @@
     {{-- Token pour la securiter du formulaire --}}
     @csrf
 
-    <div class="min-h-screen bg-gray-100  flex flex-col justify-center ">
+    <div class=" min-h-screen bg-gray-100  flex flex-col justify-center ">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
             <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
                 <div class="max-w-md mx-auto">
@@ -20,7 +20,11 @@
                         <h2 class="leading-relaxed">Ajouter votre cellier</h2>
                         <p class="text-sm text-gray-500 font-normal leading-relaxed">Veuillez entrer vos informations</p>
                         </div>
+
                     </div>
+                    @if (session()->has('success'))
+                    <span style="color:green">{{ session('success') }}</span>
+                    @endif
                     <div class="divide-y divide-gray-200">
                         <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                         <div class="flex flex-col">
@@ -53,5 +57,8 @@
             </div>
         </div>
     </div>
+    @if (session()->has('success'))
+    <span style="color:green">{{ session('success') }}</span>
+    @endif
 </form>
 @endsection
