@@ -21,7 +21,7 @@
 .background.a {
     background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2909085/pexels-photo-2909085.jpeg?auto=compress&cs=tinysrgb&w=600");
     background-size: cover;
-    height: 844px;
+    height: 100vh;
     width: auto;
 
   }
@@ -125,3 +125,14 @@
 
 
 
+/*Ajout Annabelle */ 
+
+.title{
+  font-size:8vw;
+  margin-bottom:5vh;
+}
+
+
+.appbtn{
+  max-width: 80%;
+}
