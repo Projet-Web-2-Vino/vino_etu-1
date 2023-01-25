@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,14 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <title>L'Atelier a Vin</title>
 
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
   {{-- Section AlpineJS --}}
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/cdn.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/cdn.js"></script>
+
+  
+
 </head>
 <body class="font-poppins">
     <div class="w-full bg-red-900 ">
@@ -42,7 +48,6 @@
                 <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="text-red-200 mt-1 ml-1 inline h-4 w-4 transform transition-transform duration-200 md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
               </button>
             </div> -->
-            @include('layouts.navigation')
           </nav>
          
         </div>

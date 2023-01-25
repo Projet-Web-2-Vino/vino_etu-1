@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 use Illuminate\Support\Facades\App;
@@ -27,6 +28,7 @@ use App\Http\Controllers\FallbackController;
 |
 */
 
+
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
@@ -34,6 +36,8 @@ Route::get('/', AcceuilController::class)->name('acceuil');
 Route::get('/catalogue', function () {
     return view('catalogue');
 })->middleware(['auth', 'verified'])->name('catalogue');
+
+
 
 
 // remettre apres avoir fini
@@ -46,10 +50,10 @@ Route::get('/catalogue', function () {
 
 
 //redirige vers login
-Route::get('/login', function () {
+/*Route::get('/login', function () {
     return view('auth.login');
 });
-
+*/
 
 /*
     Section fait par Fabio DASHBOARD
@@ -57,6 +61,13 @@ Route::get('/login', function () {
 /*Route::get('/dashboard', function () {
     return view('dashboard');
 });*/
+
+
+
+
+
+
+
 
 
 Route::middleware('auth')->group(function () {
@@ -108,6 +119,8 @@ Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 // Route pour Liste bouteille
 Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
+
+
 
 // Ajout d'une bouteille
 Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
