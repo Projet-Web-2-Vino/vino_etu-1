@@ -20,7 +20,7 @@
 
   @if (count($celliers) == 0)
   <div class="py-3 font-bold text-2xl text-center">
-      <h3>Veuillez ajouter votre cellier</h3>
+      <h3>Veuillez ajouter un cellier</h3>
   </div>
   @else
   <div class="py-3 font-bold text-2xl text-center">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 use Illuminate\Support\Facades\App;
@@ -28,6 +29,10 @@ use App\Http\Controllers\FallbackController;
 */
 
 
+//route auth
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
@@ -35,38 +40,6 @@ Route::get('/', AcceuilController::class)->name('acceuil');
 Route::get('/catalogue', function () {
     return view('catalogue');
 })->middleware(['auth', 'verified'])->name('catalogue');
-
-
-
-
-// remettre apres avoir fini
-// Route::get('/', [RegisteredUserController::class, 'create'])->name('register');
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-//redirige vers login
-/*Route::get('/login', function () {
-    return view('auth.login');
-});
-*/
-
-/*
-    Section fait par Fabio DASHBOARD
-*/
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-});*/
-
-
-
-
-
-
-
 
 
 Route::middleware('auth')->group(function () {

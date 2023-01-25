@@ -1,7 +1,7 @@
 
 @extends('layouts.master')
 @section('content')
-<a href="/cellier">Espace cellier</a>
+
 
 
 <h1>Ajout d'une bouteille au cellier <em>{{$cellier->nom_cellier}}</em></h1>
