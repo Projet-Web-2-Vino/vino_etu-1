@@ -154,6 +154,29 @@
 }
 
 
+
+/*ajout bouteille*/
+
+form[name="recherche"]{
+  margin-bottom:0;
+  z-index:10;
+}
+
+#listeAutoComplete{
+  position: relative;
+  margin-top:-8px;
+  width:100%;
+  text-align:center;
+  z-index:0;
+}
+
+#tbodyfordata td{
+  cursor:pointer;
+  padding: 10px;
+  width:100%;
+  /*border-bottom:1px solid rgb(223, 220, 220)*/
+}
+
 /*mediaqueries*/
 
 

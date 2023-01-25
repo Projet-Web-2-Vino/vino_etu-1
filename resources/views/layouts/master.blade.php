@@ -8,11 +8,14 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <title>L'Atelier a Vin</title>
 
- <!-- FontAwesome -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
   {{-- Section AlpineJS --}}
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/cdn.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/cdn.js"></script>
+
+  
+
 </head>
 <body class="font-poppins">
     <div class="w-full bg-red-900 ">

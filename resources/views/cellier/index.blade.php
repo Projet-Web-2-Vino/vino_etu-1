@@ -33,7 +33,7 @@
   @endif
 
 <div class='max-w-full p-10'>
-    <div class="relative gap-5 flex flex-wrap items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+    <div class="relative gap-5  items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
        <!--
       <div class="grid place-items-center h-full w-12 text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
