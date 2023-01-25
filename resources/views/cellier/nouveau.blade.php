@@ -37,10 +37,12 @@
                             <!--TODO ajout de l'id de l'usager -->
                             <input name="id_usager" type="hidden" value="{{Auth::id()}}" />
                         </div>
+                        <!--
                         <div class="flex flex-col">
                             <label class="leading-loose">Description</label>
                             <input type="text" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" >
                         </div>
+                    -->
                         </div>
                         <div class="pt-4 flex items-center space-x-4">
                             <button class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" href='/cellier'>

@@ -2,53 +2,46 @@
 @extends('layouts.master')
 @section('content')
 
-idUsager = {{$id_usager}}
-<a href="/SAQ">Importer le catalogue</a>
-<h1>Espace cellier</h1>
+<!-- <a href="/SAQ">Importer le catalogue</a><br> -->
+idUsager = {{$id_usager}} <br>
+
 
 
 @if (session()->has('success'))
 <span style="color:green">{{ session('success') }}</span>
 @endif
 
-
-<div class="py-5 font-bold text-xl text-center">
-    <h1>Veuillez ajouter votre cellier</h1>
+<div class="py-5 font-bold text-5xl text-center">
+  <h1>Espace cellier</h1>
 </div>
 
-<div class="px-2 py-4  m-2 mx-auto bg-white rounded-lg ">
-    <a class="inline-block bg-red-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2" href='cellier/nouveau'>Ajouter un cellier</a>
+@if (!$celliers)
+  <div class="py-3 font-bold text-2xl text-center">
+      <h3>Veuillez ajouter votre cellier</h3>
+  </div>
+  @else
+  <div class="py-3 font-bold text-2xl text-center">
+    <h3>Vos celliers</h3>
 </div>
+  @endif
+  <div class="px-2 py-4  m-2 mx-auto bg-white rounded-lg ">
+      <a class="inline-block bg-red-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2" href='cellier/nouveau'>Ajouter un cellier</a>
+  </div>
+
+
 <div class='max-w-md mx-auto'>
     <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-        <div class="grid place-items-center h-full w-12 text-gray-300">
+       <!--
+      <div class="grid place-items-center h-full w-12 text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
         </div>
 
-        <input class="peer h-full w-full border-none text-sm text-gray-700 pr-2" type="text" placeholder="Recherche Cellier.." />
 
-@if ($celliers)
-<h3>Vos celliers</h3>
-@foreach ($celliers as  $info)
-    <div>
-
-       
-    <h3>  {{$info->nom_cellier}} </h3> 
-    <p> nombre de bouteille :   {{$info->bouteilles_count}} </p>
-     <!-- zone edit cellier-->
-     <a href="{{ route('cellier.edit', ['id' => $info->id ]) }}">Éditer</a>
-     <a href="{{ route('bouteille.nouveau', ['id' => $info->id ]) }}">Ajouter une bouteille</a>
-     <a href="{{ route('bouteille.liste', ['id' => $info->id ]) }}">Voir mes bouteilles</a>
-     <!-- zone delete cellier-->
-     <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
-         @csrf
-         <button>Supprimer</button>
-     </form>
-
-    </div>
-</div>
+ Recherche de cellier TODO if TIME
+<input class="peer h-full w-full border-none text-sm text-gray-700 pr-2" type="text" placeholder="Recherche Cellier.." />
+-->
 
 
     {{-- Section Carte Cellier --}}
@@ -80,7 +73,8 @@ idUsager = {{$id_usager}}
       </div>
     @endforeach
     @endif
-
+  </div>
+</div>
 
 
 @endsection

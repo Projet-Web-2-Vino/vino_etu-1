@@ -1,9 +1,10 @@
 @extends('layouts.master')
 @section('content')
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+ 
 
 <x-guest-layout>
+       <!-- Session Status -->
+       
 {{-- Section Front-End refait avec TailwindCSS --}}
 
     <div class="logZone w-9/12   flex rounded-lg shadow-xl" >
@@ -12,7 +13,7 @@
         </div>
         <div class="w-full lg:w-1/2 bg-white rounded-lg lg:rounded-l-none py-24 px-12">
             <h3 class="titleLog font-bold text-3xl text-red-600 text-center tracking-widest uppercase mb-4">Connexion</h3>
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="mb-4">
 

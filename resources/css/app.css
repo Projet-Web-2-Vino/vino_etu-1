@@ -137,6 +137,7 @@
 
 
 .appbtn{
+  display: inline-block;
   max-width: 80%;
 }
 

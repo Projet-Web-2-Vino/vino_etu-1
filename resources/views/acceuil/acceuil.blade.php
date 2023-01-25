@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html>
+<html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
  
   <title>L'Atelier a Vin</title>
 
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+ 
 
  
 
@@ -38,17 +38,16 @@
           <div class="col-xs-12 explore">
 
             
-            <a href="register">
-              <button class=" appbtn w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
-
+            <a href="register" class="appbtn w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
                 Inscrivez-vous
-              </button></a>
+              </a>
           </div>
           <div class="col-xs-12 explore">
 
-            <a href="/login"><button class="appbtn w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+            <a href="/login" class="appbtn w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+
                 Connexion
-              </button></a>
+              </a>
           </div>
 
             
