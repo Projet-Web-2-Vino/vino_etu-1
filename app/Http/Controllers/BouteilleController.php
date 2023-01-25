@@ -165,6 +165,24 @@ class BouteilleController extends Controller
             ]);
     }
 
+    /**
+     * Update
+     */
+    public function update(Request $request, $id)
+    {
+        //dd($id);
+        $this->validateBouteille($request);
+
+
+        $bouteille = BouteillePersonalize::findOrFail($id)->update($request->all());
+
+
+        // Retourne au formulaire
+        return redirect()
+            ->route('bouteille.liste', [ 'id' => $id_cellier] )
+            ->withSuccess('La modification a réussi!');
+    }
+
 
     /**
      * Supprime
