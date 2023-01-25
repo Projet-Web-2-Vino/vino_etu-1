@@ -7,9 +7,7 @@
 
 
 
-@if (session()->has('success'))
-<span style="color:green">{{ session('success') }}</span>
-@endif
+
 
 <div class="py-5 font-bold text-5xl text-center">
   <h1>Espace cellier</h1>
@@ -30,9 +28,12 @@
 </div>
   @endif
 
+  @if (session()->has('success'))
+  <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
+  @endif
 
-<div class='max-w-md'>
-    <div class="relative flex items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+<div class='max-w-full p-10'>
+    <div class="relative gap-5 flex flex-wrap items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
        <!--
       <div class="grid place-items-center h-full w-12 text-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,7 +51,7 @@
     @if ($celliers)
     @foreach ($celliers as  $info)
 
-      <div class="px-2 m-2 mx-auto  max-w-3xl bg-white rounded-lg shadow-xl">
+      <div class=" px-5 my-10 grow bg-white rounded-lg shadow-xl">
         <div class="text-right">
            <!-- zone edit cellier-->
            <span class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700 mr-2"><a href="{{ route('cellier.edit', ['id' => $info->id ]) }}"><i class="far fa-edit"></i></a></span>

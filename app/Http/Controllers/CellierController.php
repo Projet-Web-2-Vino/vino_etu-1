@@ -110,11 +110,16 @@ class CellierController extends Controller
      */
     public function supprime(Request $request, $id)
     {
-        //dd($id);
-        $cellier = Cellier::findOrFail($id);
-        $cellier->delete();
         
-        return "Vous avez supprimer le cellier {$cellier->name} !";
+        $cellier = Cellier::find($id);
+        $nomCellier = $cellier->nom_cellier;
+        $cellier->delete();
+
+        // Retourne au formulaire
+        return redirect()
+            ->route('cellier.index')
+            ->withSuccess("Vous avez supprimer le cellier  {$nomCellier}  !");
+ 
 
     }
 
