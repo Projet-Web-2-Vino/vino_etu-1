@@ -1,11 +1,14 @@
-@extends ('layouts.master')
 
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Catalogue') }}
+        </h2>
+    </x-slot>
 @section('content')
 
 
 <div class="container  my-12 mx-auto px-4 md:px-12">
-
-
     <h1>ADMIN DASHBOARD</h1>
 	<div class="flex flex-wrap -mx-1 lg:-mx-4 cursor-pointer mx-auto">
 		<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
@@ -21,7 +24,6 @@
 					</div>
 				</div>
 				<div class="px-6 py-4">
-
 				</div>
 			</div>
 		</div>
@@ -354,10 +356,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-
-
-
-
   @endsection
+
+</x-app-layout>

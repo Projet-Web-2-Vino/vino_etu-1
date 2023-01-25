@@ -27,13 +27,18 @@ use App\Http\Controllers\FallbackController;
 |
 */
 
+    Route::get('/', function () {
+        return view('home');
+    });
+    
+    Route::get('/catalogue', function () {
+        return view('catalogue');
+    })->middleware(['auth', 'verified'])->name('catalogue');
 
-// Route::get('/', function () {
-//     return view('home');
-// });
 
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
+
 
 
 
@@ -50,19 +55,24 @@ Route::get('/', AcceuilController::class)->name('acceuil');
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+//redirige vers login
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
+
 /*
     Section fait par Fabio DASHBOARD
 */
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
-});
+});*/
 
 
 
-//aller login apres register
-Route::get('/utilisateur/login', function () {
-    return view('auth.login');
-});
+
+
+
 
 
 
@@ -87,9 +97,8 @@ Route::get('/SAQ', [SAQController::class, 'import'])
     ->name('bouteille.updateSAQ');
 
 
-
-
 /****************CELLIER *********/
+
 
 /* CELLIER */
 Route::get('/cellier', [CellierController::class, 'index'])
@@ -118,11 +127,11 @@ Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 /****************BOUTEILLE *********/
 
 // Route pour Liste bouteille
-Route::get('/bouteille', [BouteilleController::class, 'index'])
+Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
 // Ajout d'une bouteille
-Route::get('/bouteille/nouveau', [BouteilleController::class, 'nouveau'])
+Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
     ->name('bouteille.nouveau');
 
 Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
@@ -133,7 +142,7 @@ Route::post('/bouteille/creer', [BouteilleController::class, 'creer'])
 ->name('bouteille.creer');
 
 // Édition d'une bouteille
-Route::get('/bouteille/edit/{id}', [BouteilleController::class, 'edit'])
+Route::get('/bouteille/edit/{idVin}/{idCellier}', [BouteilleController::class, 'edit'])
 ->name('bouteille.edit');
 Route::post('/bouteille/update/{id}', [BouteilleController::class, 'update'])
 ->name('bouteille.update');
