@@ -4,11 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  @vite('resources/css/app.css')
+  <!-- Scripts -->
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
   <title>L'Atelier a Vin</title>
 
   {{-- Section AlpineJS --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/cdn.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/cdn.js"></script>
 </head>
 <body class="font-poppins">
     <div class="w-full bg-red-900 ">
