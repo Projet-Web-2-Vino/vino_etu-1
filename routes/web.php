@@ -49,10 +49,10 @@ Route::get('/catalogue', function () {
 
 
 //redirige vers login
-Route::get('/login', function () {
+/*Route::get('/login', function () {
     return view('auth.login');
 });
-
+*/
 
 /*
     Section fait par Fabio DASHBOARD
