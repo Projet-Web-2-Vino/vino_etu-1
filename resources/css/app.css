@@ -125,7 +125,10 @@
 
 
 
-/*Ajout Annabelle */ 
+/******Ajout Annabelle ******/ 
+
+
+/* vue accueil-login-register*/
 
 .title{
   font-size:8vw;
@@ -135,4 +138,35 @@
 
 .appbtn{
   max-width: 80%;
+}
+
+.appbtn:hover{
+  color:#000;
+}
+
+
+
+/*titre h3 login/register*/
+.titleLog{
+  font-size:7vw;
+  margin-bottom:5vh;
+}
+
+
+/*mediaqueries*/
+
+
+/* Si écran < 500px  */
+@media screen and (max-width: 500px) {
+  .logZone{
+   width:90%
+  }
+}
+
+
+/* Si écran > 1020px  */
+@media screen and (min-width: 1020px) {
+  .titleLog{
+    font-size:4vw;
+  }
 }
