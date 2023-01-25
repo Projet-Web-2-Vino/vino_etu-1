@@ -1,65 +1,60 @@
-<h1>Espace cellier</h1>
+@extends('layouts.master')
+@section('content')
 
 @if (session()->has('success'))
 <span style="color:green">{{ session('success') }}</span>
 @endif
 
-@if ($celliers)
-<h3>Vos celliers</h3>
-@foreach ($celliers as  $info)
-    <div>
-    </span>  {{$info->nom_cellier}} </span>
-     <!-- zone edit cellier-->
-     <a href="{{ route('cellier.edit', ['id' => $info->id ]) }}">Éditer</a>
-     <!-- zone delete cellier-->
-     <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
-         @csrf
-         <button>Supprimer</button>
-     </form>
-    </div>
-@endforeach
-@endif
+<div class="py-5 font-bold text-xl text-center">
+    <h1>Veuillez ajouter votre cellier</h1>
+</div>
 
-<div class="container mx-auto my-12 p-12 bg-gray-100">
-    <div class="mb-4 w-full md:w-1/4 border-t-4 border-red-400 rounded-b-lg rounded-t shadow-lg bg-white overflow-hidden">
-      <div class="mt-4 mb-8 px-6 py-4">
-        <div class="py-4 text-lg text-gray-700 tracking-wide">一级菜单</div>
-        <div class="px-4 py-2 border-l-4 border-red-400 bg-red-100 cursor-pointer text-gray-800 flex items-center">
-          <i class="fa fa-home"></i>
-          <span class="pl-2">系统设置</span>
+<div class="px-2 py-4  m-2 mx-auto bg-white rounded-lg ">
+    <a class="inline-block bg-red-800 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2" href='cellier/nouveau'>Ajouter un cellier</a>
+</div>
+<div class='max-w-md mx-auto'>
+    <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+        <div class="grid place-items-center h-full w-12 text-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
         </div>
-        <div class="px-4 py-2 border-l-4 border-transparent cursor-pointer text-gray-800 flex items-center">
-          <i class="fa fa-user"></i>
-          <span class="pl-2">用户管理</span>
-        </div>
-        <div class="py-4 text-lg text-gray-700 tracking-wide">一级菜单</div>
-        <div class="px-4 py-2 border-l-4 border-transparent cursor-pointer text-gray-800 flex items-center">
-          <i class="fa fa-home"></i>
-          <span class="pl-2">系统设置</span>
-        </div>
-        <div class="px-4 py-2 border-l-4 border-transparent cursor-pointer text-gray-800 flex items-center">
-          <i class="fa fa-user"></i>
-          <span class="pl-2">用户管理</span>
+
+        <input class="peer h-full w-full border-none text-sm text-gray-700 pr-2" type="text" placeholder="Recherche Cellier.." />
+    </div>
+</div>
+
+
+    {{-- Section Carte Cellier --}}
+    @if ($celliers)
+    @foreach ($celliers as  $info)
+
+      <div class="px-2 m-2 mx-auto max-w-3xl bg-white rounded-lg shadow-xl">
+        <div class="p-4 flex flex-col justify-between leading-normal">
+          <div class="mb-3">
+            {{-- Nom Cellier --}}
+            <div class="">{{$info->nom_cellier}} </div>
+            <small class="inline-block   py-1 pb-2 mt-1 text-sm font-semibold  mr-2"><p>Description :</p></small>
+            <p class="py-1 text-gray-700 text-base">Manque Description</p>
+          </div>
+          <div>
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Détail</span>
+            <!-- zone edit cellier-->
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"><a href=""{{ route('cellier.edit', ['id' => $info->id ]) }}">Modifier</a></span>
+              <!-- zone delete cellier-->
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
+                    @csrf
+                    <button>Supprimer</button>
+                </form>
+
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    @endforeach
+    @endif
 
-    <div class="mb-4 w-full md:w-1/4 shadow">
-      <ul class="list-reset">
-        <li>
-          <a href="" class="block p-4 border-r-4 border-purple-400 text-base text-gray-gray-400 font-bold hover:border-purple-500 hover:bg-purple-100">商品管理</a>
-        </li>
-        <li>
-          <a href="" class="block p-4 border-r-4 border-transparent text-base text-gray-gray-400 font-bold hover:border-purple-500 hover:bg-purple-100">系统管理</a>
-        </li>
-        <li>
-          <a href="" class="block p-4 border-r-4 border-transparent text-base text-gray-gray-400 font-bold hover:border-purple-500 hover:bg-purple-100">分类管理</a>
-        </li>
-        <li>
-          <a href="" class="block p-4 border-r-4 border-transparent text-base text-gray-gray-400 font-bold hover:border-purple-500 hover:bg-purple-100">联系我们</a>
-        </li>
-      </ul>
-    </div>
-  </div>
 
-<a href='cellier/nouveau'>Ajouter un cellier</a>
+
+@endsection
