@@ -155,6 +155,19 @@
 
 
 
+/*page liste bouteille*/
+.titleBouteille{
+  font-size:6vw;
+  transition: all ease-in-out 0.3s
+}
+
+/*titre carte nom bouteille*/
+.titreBouteille{
+  max-width: 30ch;
+  line-height: 1.25em;
+}
+
+
 /*ajout bouteille*/
 
 form[name="recherche"]{
@@ -180,6 +193,26 @@ form[name="recherche"]{
 /*mediaqueries*/
 
 
+/**nav for sprint1**/
+
+
+  .log{
+    display:block;
+    padding-top:8px;
+    line-height: 0.8em;
+  
+  }
+  .log a{
+    
+    font-size:12px;
+  }
+
+
+
+
+
+
+
 /* Si écran < 500px  */
 @media screen and (max-width: 500px) {
   .logZone{
@@ -191,6 +224,9 @@ form[name="recherche"]{
 /* Si écran > 1020px  */
 @media screen and (min-width: 1020px) {
   .titleLog{
+    font-size:4vw;
+  }
+  .titleBouteille{
     font-size:4vw;
   }
 }
