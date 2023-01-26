@@ -8,6 +8,9 @@
 @endif
 
 
+
+
+
  <div class="relative gap-5 items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
 	<!-- Début form ajout -->
 	<div id="nouvelleBouteille" class=" p-5 bg-gray-100  flex flex-col justify-center ">
@@ -39,6 +42,7 @@
 				<input type="search" name="recherche" id="recherche" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche d'une bouteille par nom" required>
 			</div>
 		</form>
+
 
 		<!-- Output catalogue -->
 		<table class="pl-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50" id="listeAutoComplete">
