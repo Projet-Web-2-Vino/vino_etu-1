@@ -4,18 +4,17 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                {{--<div class="shrink-0 flex items-center">
                     <a href="{{ route('catalogue') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
-                </div>
+                </div>--}}
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('catalogue')" :active="request()->routeIs('catalogue')">
+                    {{--<x-nav-link :href="route('catalogue')" :active="request()->routeIs('catalogue')">
                         {{ __('Catalogue') }}
-                    </x-nav-link>
+                    </x-nav-link>--}}
                     <!-- admin seulement -->
-                    @if(Auth::user()->is_admin == 1)
+                    @if(auth()->check() && auth()->user()->is_admin == 1)
                     <x-nav-link :href="route('admin.tableau')" :active="request()->routeIs('admin.tableau')">
                         {{ __('Admin Tableau') }}
                     </x-nav-link>
@@ -28,11 +27,11 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
 
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            {{-- <div>{{ Auth::user()->name }}</div> --}}
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md text-gray-500 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            {{--<div>{{ Auth::user()->name }}</div>--}}
 
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            {{--<div>{{ Auth::user()->email }}</div>--}}
 
 
                             <div class="ml-1">

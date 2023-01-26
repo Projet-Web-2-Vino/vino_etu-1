@@ -2,11 +2,22 @@
 @extends('layouts.master')
 @section('content')
 
+
+idUsager = {{$id_usager}}
+<a href="/SAQ">Importer le catalogue</a>
+<h1>Espace cellier {{ __('cellier.index') }}</h1>
+
 <!-- <a href="/SAQ">Importer le catalogue</a><br> -->
 <!-- idUsager = {{$id_usager}} <br> -->
 
 
 
+
+
+
+@if (session()->has('success'))
+<span style="color:green">{{ session('success') }}</span>
+@endif
 
 
 <div class="py-5 font-bold text-5xl text-center">
@@ -15,7 +26,10 @@
 
 
   <div class="px-2 py-4   m-2 mx-auto bg-white rounded-lg text-center">
-      <a class="inline-block bg-red-800 rounded px-3 py-1 text-sm font-semibold text-white mr-2" href='cellier/nouveau'>Ajouter un cellier</a>
+      <a class=" uppercase bg-red-800 rounded px-3 py-1 text-lg font-semibold text-white text-center mr-2" href='cellier/nouveau'>
+        <i class="fa-solid fa-plus text-3lg"></i> Ajouter un cellier
+       
+      </a>
   </div>
 
   @if (count($celliers) == 0)
@@ -26,6 +40,7 @@
   <div class="py-3 font-bold text-2xl text-center">
     <h3 class="uppercase">Vos celliers</h3>
 </div>
+<hr>
   @endif
 
   @if (session()->has('success'))
@@ -69,8 +84,29 @@
             {{-- Nom Cellier --}}
             <h2 class="text-xl uppercase font-bold">{{$info->nom_cellier}} </h2>
             
-            <small class="inline-block   py-1 pb-2 mt-1 text-sm font-semibold  mr-2"><p>Nombre de bouteille : {{$info->bouteilles_count}}</p></small><br>
-            <a class="inline-block bg-red-800 rounded px-3 py-1 text-sm font-semibold text-white mr-2" href='{{ route('bouteille.nouveau', ['id' => $info->id ]) }}'>Ajouter une bouteille</a>
+            <small class="inline-block   py-1 pb-2 mt-1 text-sm font-semibold  mr-2">
+              <span>
+                @if($info->bouteilles_count != 0)
+                <a class="inline-block bg-red-800 rounded px-3 py-1 text-md font-semibold text-white mr-2" href='{{ route('bouteille.liste', ['id' => $info->id ]) }}'>
+                 
+                  <i class="fa-solid fa-wine-bottle"></i> 
+
+                  @if($info->bouteilles_count == 1) 
+                 {{$info->bouteilles_count}}   bouteille
+                 @else
+                 {{$info->bouteilles_count}}    bouteilles
+                  @endif 
+                
+                </a>
+                  
+                 
+                @endif
+              </span>
+            </small>
+            <br>
+
+
+            <a class="inline-block bg-red-800 rounded px-3 py-1 text-sm font-semibold text-white mr-2" href='{{ route('bouteille.nouveau', ['id' => $info->id ]) }}'><i class="fa-solid fa-plus"></i> Ajouter une bouteille</a>
             
           </div>
           <div>
