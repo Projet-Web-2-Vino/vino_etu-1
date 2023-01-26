@@ -55,21 +55,7 @@
             @if ($celliers)
                 @foreach ($celliers as $info)
                     <div class=" px-5 my-10 grow bg-white rounded-lg shadow-xl">
-                        <div class="text-right">
-                            <!-- zone edit cellier-->
-                            <span
-                                class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700 mr-2"><a
-                                    href="{{ route('cellier.edit', ['id' => $info->id]) }}"><i
-                                        class="far fa-edit"></i></a></span>
-                            <!-- zone delete cellier-->
-                            <span class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700">
-                                <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
-                                    @csrf
-                                    <button><i class="fa-solid fa-trash"></i></button>
-                                </form>
-
-                            </span>
-                        </div>
+                        
                         <div class="p-4 flex flex-col justify-between leading-normal">
                             <div class="mb-3">
                                 {{-- Nom Cellier --}}
@@ -97,6 +83,21 @@
                                 <a class="inline-block bg-red-800 rounded px-3 py-1 text-sm font-semibold text-white mr-2" href='{{ route('bouteille.nouveau', ['id' => $info->id]) }}'><i
                                         class="fa-solid fa-plus"></i> Ajouter une bouteille
                                 </a>
+                                <div class="mt-5">
+                                  <!-- zone edit cellier-->
+                                  <span
+                                      class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700 mr-1"><a
+                                          href="{{ route('cellier.edit', ['id' => $info->id]) }}"><i
+                                              class="far fa-edit"></i></a></span>
+                                  <!-- zone delete cellier-->
+                                  <span class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700">
+                                      <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
+                                          @csrf
+                                          <button><i class="fa-solid fa-trash"></i></button>
+                                      </form>
+      
+                                  </span>
+                              </div>
                             </div>
                             <div>
                             </div>

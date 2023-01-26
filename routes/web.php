@@ -112,12 +112,12 @@ Route::post('/bouteille/creer', [BouteilleController::class, 'creer'])
 // Édition d'une bouteille
 Route::get('/bouteille/edit/{idVin}/{idCellier}', [BouteilleController::class, 'edit'])
 ->name('bouteille.edit');
-Route::post('/bouteille/update/{id}', [BouteilleController::class, 'update'])
+Route::post('/bouteille/update/{idVin}/{idCellier}', [BouteilleController::class, 'update'])
 ->name('bouteille.update');
 
 
 // Suppression d'un bouteille
-Route::post('/bouteille/supprime/{id}', [BouteilleController::class, 'bouteille'])
+Route::post('/bouteille/supprime/{idVin}/{idCellier}', [BouteilleController::class, 'supprime'])
 ->name('bouteille.supprime');
 
 

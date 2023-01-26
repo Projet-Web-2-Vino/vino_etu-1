@@ -1,108 +1,27 @@
 @extends ('layouts.master')
 @section('content')
 
-
-
-<a href="/cellier">Espace cellier</a>
-
-<!-- pour information seulement pour tester -->
-<div>
-	id_vin = {{$bouteille->vino__bouteille_id}} <br>
-	id_cellier = {{$bouteille->vino__cellier_id}} <br>
-	</div>
-
-<h1>
-	Modification de la bouteille <br>
-	<em>{{$bouteille->nom}}</em> <br>
-	provenant du cellier <br>
-	<em>{{$cellier->nom_cellier}}</em>
-</h1>
-
-@if (session()->has('success'))
-<span style="color:green">{{ session('success') }}</span>
-@endif
-
-
-
-	{{-- <form id="formAjoutBouteille" action="{{ route('bouteille.update', ['id' => $bouteille->id])}}" method="POST">
-
-	<form id="formEditBouteille" action="{{ route('bouteille.update', ['id' => $bouteille->id])}}" method="POST">
-
-		@csrf
-
-		  <label for="nom"> * Nom  :</label>
-		  <input id="nom" name="nom" type="text" value="{{ old('nom', $bouteille->nom)}}" required>
-		  <br>
-
-
-		  <span>* Type :</span>
-		  <br>
-		  <input type="radio" name="type" id="rouge" value="1" required @if($bouteille->type == "1") checked @endif >
-		  <label for="rouge">Rouge</label>
-		  <input type="radio" name="type" id="blanc" value="2" @if($bouteille->type == "2") checked @endif>
-		  <label for="blanc">Blanc</label>
-		  <input type="radio" name="type" id="rose" value="3" @if($bouteille->type == "3") checked @endif>
-		  <label for="rose">Rosé</label>
-		  <br>
-
-
-
-		  <label for="quantite">Quantité :</label>
-		  <input id="quantite" name="quantite" type="text" value="{{ old('quantite', $bouteille->quantite)}}" required>
-		  <br>
-		  <!-- Pas obligatoire -->
-
-		  <label for="pays">Pays :</label>
-		  <input id="pays" name="pays" type="text" value="{{ old('pays', $bouteille->pays)}}">
-		  <br>
-		  <label for="format">Format :</label>
-		  <input id="format" name="format" type="text" value="{{ old('format', $bouteille->format)}}">
-		  <br>
-		  <label for="millesime">Millesime :</label>
-		  <input id="millesime" name="millesime" type="text" value="{{ old('millesime', $bouteille->millesime)}}">
-		  <br>
-		  <label for="description">Description</label>
-		  <textarea id="description" name="description">{{ old('description', $bouteille->description)}}</textarea>
-		  <br>
-
-		  <input id="url_saq" name="url_saq" type="hidden" value="{{ old('url_saq', $bouteille->url_saq)}}">
-		  <input id="code_saq" name="code_saq" type="hidden" value="{{ old('code_saq', $bouteille->code_saq)}}">
-		  <input id="image" name="image" type="hidden" value="{{ old('image', $bouteille->image)}}">
-		  <input id="prix_saq" name="prix_saq" type="hidden" value="{{ old('prix_saq', $bouteille->prix_saq)}}">
-		  <input id="url_img" name="url_img" type="hidden" value="{{ old('url_img', $bouteille->url_img)}}">
-
-		  <button>Modifier</button>
-
-		</form>
-
-        <form action="{{ route('bouteille.supprime', ['id' => $bouteille->id]) }}" method="POST">
-            @csrf
-
-            <button>Supprimer</button>
-        </form> --}}
-
-
-
 <!-- Début form modif -->
 
-<form id="formAjoutBouteille" action="{{ route('bouteille.update', ['id' => $bouteille->id])}}" method="POST">
-    @csrf
+
 
         {{-- Section Formulaire Modification de bouteil --}}
         <div class="bg-gray-100  flex flex-col justify-center ">
-            <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-                <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
-                    <div class="max-w-md mx-auto">
+            <div class="relative py-3  m-5">
+                <div class="relative px-4 py-10 bg-white md:mx-8 shadow rounded-3xl sm:p-10">
+                    <div class=" mx-auto">
                         <div class="flex items-center space-x-5">
                             <div class="h-11 w-11 rounded-full justify-center items-center text-yellow-500 text-2xl font-mono">
                                 <img src="https://media.istockphoto.com/id/913518238/vector/silhouette-of-a-glass-wine-bottle.jpg?s=612x612&w=0&k=20&c=RYRdVJK8i4-M6oBVTDjnnNMFgFEua7uYVSSJI3LtpkM=" alt="">
                             </div>
                             <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
                             <h2 class="leading-relaxed">Modification d'une bouteille</h2>
-                            <p class="text-sm text-gray-500 font-normal leading-relaxed">Veuillez entrer vos informations</p>
+                            <p class="text-sm text-gray-500 font-normal leading-relaxed">Cellier : {{$cellier->nom_cellier}}</p>
                             </div>
-
                         </div>
+
+						<form id="formAjoutBouteille" action="{{ route('bouteille.update', ['idVin' => $bouteille->vino__bouteille_id, 'idCellier' => $bouteille->vino__cellier_id ])}}" method="POST">
+							@csrf
                         {{-- Section Nom de la bouteille --}}
                         <div class="divide-y divide-gray-200">
                             <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
@@ -128,35 +47,44 @@
                                     <input class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" id="pays" name="pays" type="text" value="{{ old('pays', $bouteille->pays)}}">
                                     <label class="leading-loose">Format</label>
                                     <input class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" id="format" name="format" type="text" value="{{ old('format', $bouteille->format)}}">
-                                    <label class="leading-loose">Millesime</label>
-                                    <input class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" id="millesime" name="millesime" type="text" value="{{ old('millesime', $bouteille->millesime)}}">
+									
+
+								<?php $years = range(1900, strftime("%Y", time())); ?>
+								<label class="leading-loose" for="millesime">Millesime :</label>
+								<select id="millesime" name="millesime" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+									<option value="{{$bouteille->millesime}}">{{$bouteille->millesime}}</option>
+									<?php foreach($years as $year) : ?>
+									  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+									<?php endforeach; ?>
+								  </select>
+
+
+
+
                                     <label class="leading-loose">Description</label>
                                     <textarea class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" id="description" name="description">{{ old('description', $bouteille->description)}}</textarea>
                                 </div>
                             </div>
                         </div>
-
+						<button class="bg-red-800 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none">Sauvegarder</button>
+						</form>
+					
                         {{-- Section pour le bouton ajouter et supprimer --}}
-                            <div class="pt-4 flex items-center space-x-4">
-                                <button class="bg-red-800 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Sauvegarder</button>
-                                <form action="{{ route('bouteille.supprime', ['id' => $bouteille->id]) }}" method="POST">
+                            <div class="pt-4 flex flex-wrap items-center space-x-4">
+                                
+                                <form action="{{ route('bouteille.supprime', ['idVin' => $bouteille->id, 'idCellier' => $cellier->id ]) }}" method="POST">
                                     @csrf
-                                    <button class="bg-red-800 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Supprimer</button>
+                                    <button class="bg-red-800 flex justify-center items-center  text-white px-3 py-3 rounded-md focus:outline-none">Supprimer</button>
                                 </form>
-                                {{-- Section pour le bouton ajouter --}}
-                                <form action="{{ route('bouteille.creer')}}" method="POST">
-                                    @csrf
-                                </form>
-                                <button class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" href='/cellier'>
+                               
+                                <a class="flex justify-center items-center  text-gray-900 px-4 py-3 rounded-md focus:outline-none" href='{{ route('bouteille.liste', ['id' => $bouteille->vino__cellier_id]) }}'>
                                     <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Canceler
-                                </button>
+								</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <a href="/cellier">Espace cellier</a>
-<a href="/bouteille">Liste bouteille du catalogue</a>
-
+  
 
 @endsection
