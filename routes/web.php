@@ -29,6 +29,10 @@ use App\Http\Controllers\FallbackController;
 */
 
 
+//route auth
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
@@ -38,38 +42,6 @@ Route::get('/catalogue', function () {
 })->middleware(['auth', 'verified'])->name('catalogue');
 
 
-
-
-// remettre apres avoir fini
-// Route::get('/', [RegisteredUserController::class, 'create'])->name('register');
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-//redirige vers login
-/*Route::get('/login', function () {
-    return view('auth.login');
-});
-*/
-
-/*
-    Section fait par Fabio DASHBOARD
-*/
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-});*/
-
-
-
-
-
-
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -77,7 +49,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
 
@@ -104,6 +76,7 @@ Route::get('/cellier/nouveau', [CellierController::class, 'nouveau'])
 Route::post('/cellier/creer', [CellierController::class, 'creer'])
 ->name('cellier.creer');
 
+
 // Édition d'un cellier
 Route::get('/cellier/edit/{id}', [CellierController::class, 'edit'])
 ->name('cellier.edit');
@@ -113,6 +86,9 @@ Route::post('/cellier/update/{id}', [CellierController::class, 'update'])
 // Suppression d'un cellier
 Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 ->name('cellier.supprime');
+
+
+
 
 /****************BOUTEILLE *********/
 
