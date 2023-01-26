@@ -24,9 +24,9 @@ id_cellier = {{$id_cellier}} <br>
 <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 @endif
 
-</x-slot>
 
-    <x-slot name="header">
+
+  
 
     @if ($msg)
     <p>{{ $msg }}</p>
@@ -37,7 +37,7 @@ id_cellier = {{$id_cellier}} <br>
     <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 
     @endif
-    </x-slot>
+  
     {{-- Section Boutton pour Importer et Cellier --}}
     <div class="py-8  grid place-items-center ">
         <h1 class="text-5xl  font-extrabold">L'atelier à vin</h1>
