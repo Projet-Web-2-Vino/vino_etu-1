@@ -101,7 +101,7 @@
 								<?php $years = range(1900, strftime("%Y", time())); ?>
 								<label class="leading-loose" for="millesime">Millesime :</label>
 								<select id="millesime" name="millesime" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-									<option>Année</option>
+									<option value="">Année</option>
 									<?php foreach($years as $year) : ?>
 									  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
 									<?php endforeach; ?>

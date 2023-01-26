@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\CelliersBouteillesController as ControllersCelliersBouteillesController;
+
 use App\Models\Bouteille;
 use App\Models\BouteillePersonalize;
 use App\Models\Cellier;
@@ -10,6 +10,7 @@ use App\Models\CelliersBouteilles;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+//use Illuminate\Http\Request;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -172,10 +173,12 @@ class BouteilleController extends Controller
     {
         //dd($id);
         $this->validateBouteille($request);
+        $request = Request::all();
 
+        $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
+        //dd($bouteille);
 
-        $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request->all());
-
+        
 
         // Retourne au formulaire
         return redirect()
@@ -187,12 +190,14 @@ class BouteilleController extends Controller
     /**
      * Supprime
      */
-    public function supprime(Request $request, $id)
+    public function supprime(Request $request, $idVin, $idCellier)
     {
-        //dd($id);
+        //dd($idVin);
+        $id =(int)$idVin;
         // TODO lier usager à ses bouteille...
-        //$bouteille = BouteillePersonalize::findOrFail($id);
-        $bouteille = Bouteille::findOrFail($id);
+        $bouteille = BouteillePersonalize::findOrFail($id);
+        
+        
         $bouteille->delete();
 
         //--------TODO 
@@ -202,8 +207,13 @@ class BouteilleController extends Controller
 
         --------------*/
 
+        // Retourne au formulaire
+        return redirect()
+            ->route('bouteille.liste', [ 'id' => $idCellier] )
+            ->withSuccess("Vous avez supprimer la bouteille  {$bouteille->nom}  !");
+
         
-        return "Vous avez supprimer le cellier {$bouteille->nom} !";
+       
 
     }
 
