@@ -168,18 +168,18 @@ class BouteilleController extends Controller
     /**
      * Update
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idVin, $idCellier)
     {
         //dd($id);
         $this->validateBouteille($request);
 
 
-        $bouteille = BouteillePersonalize::findOrFail($id)->update($request->all());
+        $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request->all());
 
 
         // Retourne au formulaire
         return redirect()
-            ->route('bouteille.liste', [ 'id' => $id_cellier] )
+            ->route('bouteille.liste', [ 'id' => $idCellier] )
             ->withSuccess('La modification a réussi!');
     }
 
