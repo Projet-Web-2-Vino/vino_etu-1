@@ -8,7 +8,6 @@
 @endif
 
 
-<h1>Vue : Liste Bouteilles du catalogue</h1>
 @if (session('success'))
 <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 
@@ -22,37 +21,53 @@
     @endif
 
 
-    <h1>Vue : Liste Bouteilles du catalogue</h1>
     @if (session('success'))
     <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 
     @endif
     </x-slot>
     {{-- Section Boutton pour Importer et Cellier --}}
-    <div class="py-8  grid place-items-center  border-b border-gray-200 dark:border-gray-700">
-        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+    <div class="py-8  grid place-items-center ">
+        <h1 class="text-5xl  font-extrabold">L'atelier à vin</h1>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Bienvenue dans votre espace de gestion de vos bouteilles de vin.</p>
+        <ul class="py-6 flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
             <li class="mr-2">
                 {{-- Section pour Importer les produits de la saq --}}
-                <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-red-600 ">
+                <button class="inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg text-white rounded-md hover:bg-red-600 ">
                     <span> <a class="btnModifier" href='/SAQ'>Importer le catalogue</a></span>
                 </button>
             </li>
 
             <li class="mr-2">
                 {{-- Section Espace Cellier--}}
-                <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-red-600 ">
+                <button class=" inline-flex items-center text-sm font-medium mb-2  bg-red-800 px-3 py-2 hover:shadow-lg  text-white rounded-md hover:bg-red-600 ">
                     <span> <a class="btnModifier" href='/cellier'>Cellier</a></span>
                 </button>
             </li>
         </ul>
     </div>
-
+     {{-- Section input pour rechercher une bouteille --}}
+     <div class="px-3">
+    <form class="flex items-center">
+        <label for="simple-search" class="sr-only">Search</label>
+        <div class="relative w-full">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            </div>
+            <input type="text" id="simple-search" class="bg-gray-50 border border-red-800 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5  dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-800 " placeholder="Rechercher" required>
+        </div>
+        <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-red-800 rounded-lg border border-red-300 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-blue-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            <span class="sr-only">Search</span>
+        </button>
+    </form>
+</div>
 {{-- Section pour carte des vins --}}
     <?php
         foreach ($data as $cle => $bouteille) {
     ?>
 
-  <div class=" py-3 mt-6 m-2 flex items-center bg-white shadow-md hover:shadow-xl rounded-lg">
+  <div class=" py-3 mt-3 m-2 flex items-center bg-white shadow-md hover:shadow-xl rounded-lg">
     <img class="h-300 w-300" src="https://www.saq.com/media/catalog/product/1/2/12728904-1_1649076332.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166">
     <div>
         <div class="px-3">
@@ -84,16 +99,16 @@
 
     <div class="flex py-4 space-x-2 text-sm font-medium justify-start">
         {{-- Section pour Ajouter Vin au cellier --}}
-        <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-6 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-red-600 ">
+        <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-6 py-2 hover:shadow-lg tracking-wider text-white rounded-md hover:bg-red-600 ">
             <span><a href="/bouteille/nouveau">Ajouter</a></span>
         </button>
         {{-- Section pour Modifier --}}
-        <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-red-600 ">
+        <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-md hover:bg-red-600 ">
             <span> <a class="btnModifier" href='{{ route('bouteille.edit', ['id' => $bouteille->id ]) }}'>Modifier</a></span>
         </button>
 
         {{-- Section pour inserer URL SAQ --}}
-        <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-full hover:bg-red-600 ">
+        <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-md hover:bg-red-600 ">
           <span><a href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a></span>
         </button>
         <div class="options" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>" data-id-vin="<?php echo $bouteille['id_bouteille'] ?>">
