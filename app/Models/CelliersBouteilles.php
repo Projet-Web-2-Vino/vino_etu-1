@@ -28,18 +28,22 @@ class CelliersBouteilles extends Model
     /**
      * Get all bouteille for the cellier
      */
-    public function bouteilles()
+   /* public function bouteilles()
     {
         return $this->hasManyThrough(BouteillePersonalize::class, Cellier::class);
-    }
+    }*/
 
 
      /**
      * Get all cellier for the bouteille  --pas nécessaire
      */
-    public function celliers()
+    /*public function celliers()
     {
         return $this->hasManyThrough(Cellier::class, BouteillePersonalize::class);
-    }
+    }*/
+
+
+
+  
    
 }

@@ -14,14 +14,14 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 700px;
+    height: 100vh;
   }
 
 
 .background.a {
     background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2909085/pexels-photo-2909085.jpeg?auto=compress&cs=tinysrgb&w=600");
     background-size: cover;
-    height: 844px;
+    height: 100vh;
     width: auto;
 
   }
@@ -125,3 +125,72 @@
 
 
 
+/******Ajout Annabelle ******/ 
+
+
+/* vue accueil-login-register*/
+
+.title{
+  font-size:8vw;
+  margin-bottom:5vh;
+}
+
+
+.appbtn{
+  display: inline-block;
+  max-width: 80%;
+}
+
+.appbtn:hover{
+  color:#000;
+}
+
+
+
+/*titre h3 login/register*/
+.titleLog{
+  font-size:7vw;
+  margin-bottom:5vh;
+}
+
+
+
+/*ajout bouteille*/
+
+form[name="recherche"]{
+  margin-bottom:0;
+  z-index:10;
+}
+
+#listeAutoComplete{
+  position: relative;
+  margin-top:-8px;
+  width:100%;
+  text-align:center;
+  z-index:0;
+}
+
+#tbodyfordata td{
+  cursor:pointer;
+  padding: 10px;
+  width:100%;
+  /*border-bottom:1px solid rgb(223, 220, 220)*/
+}
+
+/*mediaqueries*/
+
+
+/* Si écran < 500px  */
+@media screen and (max-width: 500px) {
+  .logZone{
+   width:90%
+  }
+}
+
+
+/* Si écran > 1020px  */
+@media screen and (min-width: 1020px) {
+  .titleLog{
+    font-size:4vw;
+  }
+}

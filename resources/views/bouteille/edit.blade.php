@@ -1,12 +1,33 @@
 @extends ('layouts.master')
 @section('content')
 
+
+
+<a href="/cellier">Espace cellier</a>
+
+<!-- pour information seulement pour tester -->
+<div>
+	id_vin = {{$bouteille->vino__bouteille_id}} <br>
+	id_cellier = {{$bouteille->vino__cellier_id}} <br>
+	</div>
+
+<h1>
+	Modification de la bouteille <br>
+	<em>{{$bouteille->nom}}</em> <br>
+	provenant du cellier <br>
+	<em>{{$cellier->nom_cellier}}</em>
+</h1>
+
 @if (session()->has('success'))
 <span style="color:green">{{ session('success') }}</span>
 @endif
 
 
+
 	{{-- <form id="formAjoutBouteille" action="{{ route('bouteille.update', ['id' => $bouteille->id])}}" method="POST">
+
+	<form id="formEditBouteille" action="{{ route('bouteille.update', ['id' => $bouteille->id])}}" method="POST">
+
 		@csrf
 
 		  <label for="nom"> * Nom  :</label>
@@ -23,6 +44,13 @@
 		  <input type="radio" name="type" id="rose" value="3" @if($bouteille->type == "3") checked @endif>
 		  <label for="rose">Rosé</label>
 		  <br>
+
+
+
+		  <label for="quantite">Quantité :</label>
+		  <input id="quantite" name="quantite" type="text" value="{{ old('quantite', $bouteille->quantite)}}" required>
+		  <br>
+		  <!-- Pas obligatoire -->
 
 		  <label for="pays">Pays :</label>
 		  <input id="pays" name="pays" type="text" value="{{ old('pays', $bouteille->pays)}}">
