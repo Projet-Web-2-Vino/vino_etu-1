@@ -2,11 +2,22 @@
 @extends('layouts.master')
 @section('content')
 
+
+idUsager = {{$id_usager}}
+<a href="/SAQ">Importer le catalogue</a>
+<h1>Espace cellier {{ __('cellier.index') }}</h1>
+
 <!-- <a href="/SAQ">Importer le catalogue</a><br> -->
 <!-- idUsager = {{$id_usager}} <br> -->
 
 
 
+
+
+
+@if (session()->has('success'))
+<span style="color:green">{{ session('success') }}</span>
+@endif
 
 
 <div class="py-5 font-bold text-5xl text-center">
