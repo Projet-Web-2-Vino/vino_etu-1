@@ -42,10 +42,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+       // dd($user);
+
         event(new Registered($user));
 
-        Auth::login($user);
+        //Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        /* return redirect(RouteServiceProvider::HOME); */
+        
+        return redirect("/login");
     }
 }

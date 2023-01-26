@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\CelliersBouteillesController;
+use App\Models\BouteillePersonalize;
 use App\Models\Cellier;
+use App\Models\CelliersBouteilles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +21,13 @@ class CellierController extends Controller
        
        Auth::check();
        $id_usager = Auth::id();
-       $celliers = Cellier::where('id_usager', $id_usager)->get();
+
+       $celliers = Cellier::where('id_usager' , $id_usager)->withCount('bouteilles')->get();
+
       
         return view('cellier.index', [
-            'celliers' => $celliers
-           
+            'celliers' => $celliers,   //to get nbBouteille in view = {{$info->bouteilles_count}}
+            'id_usager' => $id_usager
         ]);
     }
 
@@ -60,7 +65,7 @@ class CellierController extends Controller
     
         //Redirect avec message de succès
         return redirect()
-        ->route('cellier.nouveau')
+        ->route('cellier.index')
         ->withSuccess('Vous avez créé le cellier '.$cellier->nom_cellier.'!');
     }
 
@@ -105,11 +110,16 @@ class CellierController extends Controller
      */
     public function supprime(Request $request, $id)
     {
-        //dd($id);
-        $cellier = Cellier::findOrFail($id);
-        $cellier->delete();
         
-        return "Vous avez supprimer le cellier {$cellier->name} !";
+        $cellier = Cellier::find($id);
+        $nomCellier = $cellier->nom_cellier;
+        $cellier->delete();
+
+        // Retourne au formulaire
+        return redirect()
+            ->route('cellier.index')
+            ->withSuccess("Vous avez supprimer le cellier  {$nomCellier}  !");
+ 
 
     }
 
