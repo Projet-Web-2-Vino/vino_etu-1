@@ -1,5 +1,5 @@
 import './bootstrap';
-import './ajoutBoire';
+/*import './ajoutBoire';*/
 
 
 import Alpine from 'alpinejs';
