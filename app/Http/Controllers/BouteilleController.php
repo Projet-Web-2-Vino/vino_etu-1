@@ -117,24 +117,6 @@ class BouteilleController extends Controller
 
     }
 
-    public function recherche(Request $request)
-    {
-            
-            $data = '';
-            $recherche = Request::get('recherche');
-
-         //Requete sur la recherche , limit de 10
-            if($recherche != '')
-            {
-                $data = DB::table('vino__bouteille')
-                ->where('nom','like','%' .$recherche. '%')
-                ->take(10)
-                ->get();
-            }
-
-            return json_encode($data);
-    }
-
 
     /**
      * Edit bouteille
@@ -150,10 +132,7 @@ class BouteilleController extends Controller
                                             ->join('vino__cellier_has_vino__bouteille', 'vino__bouteille_personalize.id', '=', 'vino__cellier_has_vino__bouteille.vino__bouteille_id')
                                             ->where('id', $idVin)
                                             ->first();
-        //$nbBouteille =  CelliersBouteilles::where('vino__bouteille_id', $idVin)
-                                           // ->where('vino__cellier_id', $idCellier);
-        
-       // $quantite = $nbBouteille->quantite;
+ 
 
        $cellier = Cellier::find($idCellier);
        
@@ -217,6 +196,59 @@ class BouteilleController extends Controller
 
     }
 
+   /**
+    * Fonction qui recherche des bouteilles du catalogue
+    */
+    public function recherche(Request $request)
+    {
+            
+            $data = '';
+            $recherche = Request::get('recherche');
+           // dd($recherche);
+         //Requete sur la recherche , limit de 10
+            if($recherche != '')
+            {
+                $data = DB::table('vino__bouteille')
+                ->where('nom','like','%' .$recherche. '%')
+                ->take(10)
+                ->get();
+            }
+
+            //dd('routerecherche');
+            return json_encode($data);
+    }
+
+
+
+    /**
+     * Fonction qui modifie la quantité de bouteille
+     */
+    public function quantite(Request $request)
+    {
+        
+       
+        $idVin = intval(Request::get('idVin'));
+       //dd($idVin);
+        $idCellier = Request::get('idCellier');
+        $quantite = Request::get('quantite');
+    dd($idCellier, $idVin, $quantite);
+
+        $updated = CelliersBouteilles::where('vino__bouteille_id', $idVin)
+                                        ->limit(1)
+                                        ->update(['quantite' => $quantite]); 
+
+        
+        dd($updated);
+
+
+       // return json_encode($quantite);
+
+        // Redirect
+        return redirect()
+            ->route('bouteille.liste', [ 'id' => $idCellier] );
+          
+    }
+
 
     /**
      * Fonction qui permet de valider les données de l'usager 
@@ -230,34 +262,7 @@ class BouteilleController extends Controller
     }
 
     
-    /**
-     * Fonction qui modifie la quantité de bouteille
-     */
-    public function quantite(Request $request)
-    {
-        
-       
-        $idVin = intval(Request::get('idVin'));
-       //dd($idVin);
-        $idCellier = Request::get('idCellier');
-        $quantite = Request::get('quantite');
-    //dd($idCellier, $idVin, $quantite);
-
-        $updated = CelliersBouteilles::where('vino__bouteille_id', $idVin)
-                                        ->limit(1)
-                                        ->update(['quantite' => $quantite]); 
-
-        
-        //dd($updated);
-
-
-        return json_encode($quantite);
-
-        // Redirect
-        return redirect()
-            ->route('bouteille.liste', [ 'id' => $idCellier] );
-          
-    }
+    
 
 
     

@@ -48,7 +48,7 @@ window.addEventListener("load",function(){
 
                //recherche Url
                 const url = window.location.href
-               // console.log(url);
+                console.log(url);
 
                 const options = {
                         headers: {
