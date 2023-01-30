@@ -28,8 +28,13 @@ use App\Http\Controllers\FallbackController;
 |
 */
 
+
 Route::group(['middleware' => 'prevent-back-history'],function(){
     
+//route auth
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
@@ -61,12 +66,12 @@ Route::get('/catalogue', function () {
     return view('dashboard');
 });*/
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
 
@@ -91,6 +96,7 @@ Route::get('/cellier/nouveau', [CellierController::class, 'nouveau'])
 Route::post('/cellier/creer', [CellierController::class, 'creer'])
 ->name('cellier.creer');
 
+
 // Édition d'un cellier
 Route::get('/cellier/edit/{id}', [CellierController::class, 'edit'])
 ->name('cellier.edit');
@@ -107,6 +113,10 @@ Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
+
+Route::post('/bouteille/{id}', [BouteilleController::class, 'quantite'])
+->name('bouteille.quantite');
+
 // Ajout d'une bouteille
 Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
     ->name('bouteille.nouveau');
@@ -121,12 +131,12 @@ Route::post('/bouteille/creer', [BouteilleController::class, 'creer'])
 // Édition d'une bouteille
 Route::get('/bouteille/edit/{idVin}/{idCellier}', [BouteilleController::class, 'edit'])
 ->name('bouteille.edit');
-Route::post('/bouteille/update/{id}', [BouteilleController::class, 'update'])
+Route::post('/bouteille/update/{idVin}/{idCellier}', [BouteilleController::class, 'update'])
 ->name('bouteille.update');
 
 
 // Suppression d'un bouteille
-Route::post('/bouteille/supprime/{id}', [BouteilleController::class, 'bouteille'])
+Route::post('/bouteille/supprime/{idVin}/{idCellier}', [BouteilleController::class, 'supprime'])
 ->name('bouteille.supprime');
 
 

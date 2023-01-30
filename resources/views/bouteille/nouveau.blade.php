@@ -8,6 +8,9 @@
 @endif
 
 
+
+
+
  <div class="relative gap-5 items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
 	<!-- Début form ajout -->
 	<div id="nouvelleBouteille" class=" p-5 bg-gray-100  flex flex-col justify-center ">
@@ -39,6 +42,7 @@
 				<input type="search" name="recherche" id="recherche" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche d'une bouteille par nom" required>
 			</div>
 		</form>
+
 
 		<!-- Output catalogue -->
 		<table class="pl-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50" id="listeAutoComplete">
@@ -97,7 +101,7 @@
 								<?php $years = range(1900, strftime("%Y", time())); ?>
 								<label class="leading-loose" for="millesime">Millesime :</label>
 								<select id="millesime" name="millesime" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-									<option>Année</option>
+									<option value="">Année</option>
 									<?php foreach($years as $year) : ?>
 									  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
 									<?php endforeach; ?>
@@ -150,7 +154,7 @@
 
 		//Liste recherche
 		let liste = document.getElementById('listeAutoComplete');
-		console.log(liste)
+		//console.log(liste)
 
 		//recherche Url
         const url = "{{route('bouteille.recherche')}}";

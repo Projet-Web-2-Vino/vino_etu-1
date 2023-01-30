@@ -115,7 +115,7 @@ class CellierController extends Controller
         $nomCellier = $cellier->nom_cellier;
         $cellier->delete();
 
-        // Retourne au formulaire
+        // Retourne au cellier
         return redirect()
             ->route('cellier.index')
             ->withSuccess("Vous avez supprimer le cellier  {$nomCellier}  !");

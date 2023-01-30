@@ -22,8 +22,8 @@
 
       
         {{-- Section Navigation fait par Fabio --}}
-        <div x-data="{ open: false }" class="mx-auto flex max-w-screen-xl flex-col px-4 md:flex-row md:items-center md:justify-between md:px-6 lg:px-8">
-          <div class="flex flex-row items-center justify-between p-4">
+        <div x-data="{ open: false }" class="mx-auto flex max-w-screen-xl  px-4  items-center justify-between md:px-6 lg:px-8">
+          <div class="flex flex-row  justify-between p-4">
             <a href="/" class="focus:shadow-outline rounded-lg text-lg font-semibold uppercase tracking-widest text-white focus:outline-none">L'atelier a vin </a>
             
             <!--
@@ -34,6 +34,7 @@
               </svg>
             </button> -->
           </div>
+
           <nav :class="{'flex': open, 'hidden': !open}" class="hidden flex-grow flex-col pb-4 md:flex md:flex-row md:justify-end md:pb-0">
 
             <a class="focus:shadow-outline mt-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="/">Acceuil</a>
@@ -43,18 +44,30 @@
             <a class="focus:shadow-outline mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4" href="/logout">Deconnexion</a>
             <div @click.away="open = false" class="relative" x-data="{ open: false }">
 
+
+
+          <nav  class="flex-col pb-4 md:flex md:flex-row md:justify-end md:pb-0">
+         <!-- <nav :class="{'flex': open, 'hidden': !open}" class="hidden flex-grow flex-col pb-4 md:flex md:flex-row md:justify-end md:pb-0">-->
+
            <!-- <a class="focus:shadow-outline mt-2 rounded-lg bg-red-500 px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0" href="">Acceuil</a>-->
            <!-- <a class="focus:shadow-outline mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4" href="/cellier">Cellier</a>-->
            <!-- <a class="focus:shadow-outline mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4" href="">Inscription</a>-->
           <!--  <a class="focus:shadow-outline mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4" href="">Connexion</a>-->
           <!--  <a class="focus:shadow-outline mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4" href="">Deconnexion</a>-->
           <!--  <div @click.away="open = false" class="relative" x-data="{ open: false }">
-
               <button @click="open = !open" class="focus:shadow-outline mt-2 flex w-full flex-row items-center rounded-lg  px-4 py-2 text-left text-sm font-semibold hover:bg-gray-200 hover:text-gray-900 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4 md:inline md:w-auto">
                 <a class="text-gray-200  hover:text-red-900" href=""><span>Admin</span></a>
                 <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="text-red-200 mt-1 ml-1 inline h-4 w-4 transform transition-transform duration-200 md:-mt-1"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
               </button>
             </div> -->
+            <div class="text-white text-center log">
+            @if (Auth::check())
+            <div class="font-semibold uppercase">{{ Auth::user()->name }}</div>
+               <a class="rounded" href="{{ route('logout')}}">
+                Déconnexion
+              </a>
+            @endif
+            </div>
           </nav>
          
         </div>

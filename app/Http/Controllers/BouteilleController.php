@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\CelliersBouteillesController as ControllersCelliersBouteillesController;
+
 use App\Models\Bouteille;
 use App\Models\BouteillePersonalize;
 use App\Models\Cellier;
@@ -10,6 +10,7 @@ use App\Models\CelliersBouteilles;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+//use Illuminate\Http\Request;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -168,18 +169,20 @@ class BouteilleController extends Controller
     /**
      * Update
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idVin, $idCellier)
     {
         //dd($id);
         $this->validateBouteille($request);
+        $request = Request::all();
 
+        $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
+        //dd($bouteille);
 
-        $bouteille = BouteillePersonalize::findOrFail($id)->update($request->all());
-
+        
 
         // Retourne au formulaire
         return redirect()
-            ->route('bouteille.liste', [ 'id' => $id_cellier] )
+            ->route('bouteille.liste', [ 'id' => $idCellier] )
             ->withSuccess('La modification a réussi!');
     }
 
@@ -187,12 +190,14 @@ class BouteilleController extends Controller
     /**
      * Supprime
      */
-    public function supprime(Request $request, $id)
+    public function supprime(Request $request, $idVin, $idCellier)
     {
-        //dd($id);
+        //dd($idVin);
+        $id =(int)$idVin;
         // TODO lier usager à ses bouteille...
-        //$bouteille = BouteillePersonalize::findOrFail($id);
-        $bouteille = Bouteille::findOrFail($id);
+        $bouteille = BouteillePersonalize::findOrFail($id);
+        
+        
         $bouteille->delete();
 
         //--------TODO 
@@ -202,8 +207,13 @@ class BouteilleController extends Controller
 
         --------------*/
 
+        // Retourne au formulaire
+        return redirect()
+            ->route('bouteille.liste', [ 'id' => $idCellier] )
+            ->withSuccess("Vous avez supprimer la bouteille  {$bouteille->nom}  !");
+
         
-        return "Vous avez supprimer le cellier {$bouteille->nom} !";
+       
 
     }
 
@@ -218,5 +228,37 @@ class BouteilleController extends Controller
             'type' => 'required'
         ]);
     }
+
+    
+    /**
+     * Fonction qui modifie la quantité de bouteille
+     */
+    public function quantite(Request $request)
+    {
+        
+       
+        $idVin = intval(Request::get('idVin'));
+       //dd($idVin);
+        $idCellier = Request::get('idCellier');
+        $quantite = Request::get('quantite');
+    //dd($idCellier, $idVin, $quantite);
+
+        $updated = CelliersBouteilles::where('vino__bouteille_id', $idVin)
+                                        ->limit(1)
+                                        ->update(['quantite' => $quantite]); 
+
+        
+        //dd($updated);
+
+
+        return json_encode($quantite);
+
+        // Redirect
+        return redirect()
+            ->route('bouteille.liste', [ 'id' => $idCellier] );
+          
+    }
+
+
     
 }
