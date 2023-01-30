@@ -29,6 +29,8 @@ use App\Http\Controllers\FallbackController;
 */
 
 
+Route::group(['middleware' => 'prevent-back-history'],function(){
+    
 //route auth
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -42,14 +44,34 @@ Route::get('/catalogue', function () {
 })->middleware(['auth', 'verified'])->name('catalogue');
 
 
+// remettre apres avoir fini
+// Route::get('/', [RegisteredUserController::class, 'create'])->name('register');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+//redirige vers login
+/*Route::get('/login', function () {
+    return view('auth.login');
+});
+*/
+
+/*
+    Section fait par Fabio DASHBOARD
+*/
+/*Route::get('/dashboard', function () {
+    return view('dashboard');
+});*/
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-require __DIR__.'/auth.php';
-
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
 
@@ -64,8 +86,6 @@ Route::get('/SAQ', [SAQController::class, 'import'])
 
 
 /****************CELLIER *********/
-
-
 /* CELLIER */
 Route::get('/cellier', [CellierController::class, 'index'])
     ->name('cellier.index');
@@ -87,14 +107,12 @@ Route::post('/cellier/update/{id}', [CellierController::class, 'update'])
 Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 ->name('cellier.supprime');
 
-
-
-
 /****************BOUTEILLE *********/
 
 // Route pour Liste bouteille
 Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
+
 
 Route::post('/bouteille/{id}', [BouteilleController::class, 'quantite'])
 ->name('bouteille.quantite');
@@ -124,3 +142,8 @@ Route::post('/bouteille/supprime/{idVin}/{idCellier}', [BouteilleController::cla
 
 // Route Fallback pour les routes non existantes Page Erreur 404
 Route::fallback(FallbackController::class);
+
+});//prevent back middleware
+
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
