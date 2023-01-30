@@ -59,7 +59,19 @@
                         <div class="p-4 flex flex-col justify-between leading-normal">
                             <div class="mb-3">
                                 {{-- Nom Cellier --}}
-                                <h2 class="text-xl uppercase font-bold">{{ $info->nom_cellier }} </h2>
+                                <h2 class="text-xl uppercase font-bold">
+                                    {{ $info->nom_cellier }} 
+                                
+                                    <!-- zone edit cellier-->
+                                  <span
+                                  class="inline-block"><a
+                                      href="{{ route('cellier.edit', ['id' => $info->id]) }}"><i
+                                          class="far fa-edit"></i></a></span>
+                                
+                                
+                                </h2>
+
+                                
 
                                 <small class="inline-block   py-1 pb-2 mt-1 text-sm font-semibold  mr-2">
                                     <span>
@@ -84,16 +96,12 @@
                                         class="fa-solid fa-plus"></i> Ajouter une bouteille
                                 </a>
                                 <div class="mt-5">
-                                  <!-- zone edit cellier-->
-                                  <span
-                                      class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700 mr-1"><a
-                                          href="{{ route('cellier.edit', ['id' => $info->id]) }}"><i
-                                              class="far fa-edit"></i></a></span>
+                                  
                                   <!-- zone delete cellier-->
                                   <span class="inline-block bg-gray-200 rounded px-3 py-1 text-xl font-semibold text-gray-700">
                                       <form action="{{ route('cellier.supprime', ['id' => $info->id]) }}" method="POST">
                                           @csrf
-                                          <button><i class="fa-solid fa-trash"></i></button>
+                                          <button data-modal="modal-{{$info->id}}"><i class="fa-solid fa-trash"></i></button>
                                       </form>
       
                                   </span>
@@ -103,8 +111,83 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal" id="modal-{{$info->id}}">
+                        <div class="modal-bg modal-exit"></div>
+                        <div class="modal-container">
+                        <button data-action="no-supprimer" class="modal-close modal-exit">X</button>
+                        <h1>Êtes-vous certain de vouloir supprimer le ceiller</h1>
+                        <h2>{{$info->nom_cellier}}</h2>
+
+                        <p>
+                            @if ($info->bouteilles_count != 0)
+                                @if ($info->bouteilles_count == 1)
+                                    {{ $info->bouteilles_count }} bouteille
+                                @else
+                                    {{ $info->bouteilles_count }} bouteilles
+                            @endif
+                            seront également suprrimées
+                            @endif
+                        </p>
+                        <button data-action="supprimer" class="modal-exit">Oui</button>
+                        <button data-action="no-supprimer" class="modal-exit">Non</button>
+                        </div>
+                    </div>
+
+
+
+
+
                 @endforeach
             @endif
         </div>
     </div>
 @endsection
+
+
+<!--
+    /**
+    * Script qui gere l'ajout et la suppression d'une bouteille dans la carte
+    */
+
+-->
+<script>
+            
+    window.addEventListener("load",function(){
+
+
+    //Détecter si url =  vue liste bouteille
+    
+
+        //Gestionnaire d'evenement du bouton delete 
+
+        const modals = document.querySelectorAll("[data-modal]");
+
+        modals.forEach(function (trigger) {
+        trigger.addEventListener("click", function (event) {
+            event.preventDefault();
+            let form = event.target.parentElement.parentElement
+            console.log(trigger.dataset.modal)
+            const modal = document.getElementById(trigger.dataset.modal);
+            console.log(modal);
+            modal.classList.add("open");
+            const exits = modal.querySelectorAll(".modal-exit");
+            exits.forEach(function (exit) {
+            exit.addEventListener("click", function (event) {
+                event.preventDefault();
+                console.log(form)
+                console.log(event.target.dataset.action)
+                if(event.target.dataset.action == "supprimer"){
+                    console.log(form)
+                    form.submit();
+                }
+                modal.classList.remove("open");
+            });
+            });
+        });
+        });
+
+    });
+
+</script>

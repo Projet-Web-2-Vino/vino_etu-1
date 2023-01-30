@@ -8,6 +8,9 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <title>L'Atelier a Vin</title>
 
+  <!-- LiveWire style -->
+  @livewireStyles
+
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 

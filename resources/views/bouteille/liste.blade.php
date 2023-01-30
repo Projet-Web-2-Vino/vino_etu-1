@@ -109,8 +109,8 @@
             <p>Quantité :</p>
              <p class="quantite">{{$info->quantite}}</p>
            
-                 <button data-action="plus" class='btnAjouter inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-plus"></i></button>
-                <button data-action="moins" class='btnAjouter inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-minus"></i></button>
+                 <button data-action="plus" class='btnModif inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-plus"></i></button>
+                <button data-action="moins" class='btnModif inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-minus"></i></button>
             
         </div>
     
@@ -146,120 +146,178 @@
             <span class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-200 px-3 py-2 hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200 ">
                 <form action="{{ route('bouteille.supprime', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id ]) }}" method="POST">
                     @csrf
-                    <button><i class="fa-solid fa-trash"></i></button>
+                    <button data-modal="modal-{{$info->vino__bouteille_id}}" class="delete"><i class="fa-solid fa-trash"></i></button>
                 </form>
 
             </span>
         
 
+             <!-- Modal -->
+     <div class="modal" id="modal-{{$info->vino__bouteille_id}}">
+        <div class="modal-bg modal-exit"></div>
+        <div class="modal-container">
+          <button data-action="no-supprimer" class="modal-close modal-exit">X</button>
+          <h1>Êtes-vous certain de vouloir supprimer</h1>
+          <h2>{{$info->nom}}</h2>
+          <button data-action="supprimer" class="modal-exit">Oui</button>
+          <button data-action="no-supprimer" class="modal-exit">Non</button>
+        </div>
+      </div>
         
       </div>
     </div>
   </div>
 
+
+    
+
   @endforeach
+
 </div>
   @endsection
 
+
+
+
+         
+
+
+
+<!--
+    /**
+    * Script qui gere l'ajout et la suppression d'une bouteille dans la carte
+    */
+
+-->
 <script>
-    
-window.addEventListener("load",function(){
+            
+        window.addEventListener("load",function(){
 
 
-//Détecter si url =  vue liste bouteille
-if (window.location.href.indexOf("bouteille") > -1) {
-    console.log('oui')
-    // ajouter un gestionnaire d'évènement au bouton ajouter
-    let elBoutonAjout = this.document.querySelectorAll('.btnAjouter')
-
-    elBoutonAjout.forEach(element => {
-       
-         //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
-        element.addEventListener('click', function (evt) { 
-            evt.preventDefault();
-            let idCellier = evt.target.parentElement.parentElement.dataset.id
-           // console.log(evt.target.parentElement.parentElement.dataset.id)
-           // console.log(idCellier);
-
-            let idVin = evt.target.parentElement.parentElement.dataset.idVin;
-           // console.log(idVin);
-
-            let elemBouteille = evt.target.parentElement.parentElement;
-             // console.log(elemBouteille);
-
-            let valueQuantite = elemBouteille.querySelector('.quantite').innerText;
-            let elemQuantite = elemBouteille.querySelector('.quantite')
-           // console.log(valueQuantite);
+        //Détecter si url =  vue liste bouteille
+        if (window.location.href.indexOf("bouteille") > -1) {
+            //console.log('oui')
 
 
-           let action = evt.target.parentElement.dataset.action
-        //console.log(action)
-        let newQuantite = valueQuantite
-            if(action == 'plus'){
-                newQuantite = parseInt(valueQuantite) + 1
-            }else{
-               console.log(valueQuantite)
-               
-                if(valueQuantite != 0 ){
-                newQuantite = parseInt(valueQuantite) - 1
-                }else{
-                    newQuantite = 0;
-                    
-                }
-            }
-          
-           // console.log(newQuantite);
+            //Gestionnaire d'evenement du bouton delete 
 
-           //recherche Url
-           const url = window.location.href
-            console.log(url);
+            const modals = document.querySelectorAll("[data-modal]");
 
-            const options = {
-                    headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "X-Requested-With": "XMLHttpRequest",
-                    "X-CSRF-Token": document.querySelector('input[name="_token"]').value
-                    },
-                    method: "post",
-                    credentials: "same-origin",
-                    body: JSON.stringify({
-                    idCellier :  idCellier,
-                    idVin :  idVin,
-                    quantite: newQuantite
-                    })
-                }
-    
-
-               /* fetch(url, options)
-                .then((data) => {
-
-                    /*Injecter la quantite dans le HTML*/
-                    //console.log(typeof newQuantite)
-                   // console.log(valueQuantite);
-                   elemQuantite.innerText = newQuantite.toString();
-                    
-              /*  }) 
-               
-                .catch(function(error){
-                    console.log(error);
-                })*/
- 
-
-
+            modals.forEach(function (trigger) {
+            trigger.addEventListener("click", function (event) {
+                event.preventDefault();
+                let form = event.target.parentElement.parentElement
+                console.log(trigger.dataset.modal)
+                const modal = document.getElementById(trigger.dataset.modal);
+                console.log(modal);
+                modal.classList.add("open");
+                const exits = modal.querySelectorAll(".modal-exit");
+                exits.forEach(function (exit) {
+                exit.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    console.log(form)
+                    console.log(event.target.dataset.action)
+                    if(event.target.dataset.action == "supprimer"){
+                        console.log(form)
+                        form.submit();
+                    }
+                    modal.classList.remove("open");
+                });
+                });
+            });
+            });
 
             
 
+            // ajouter un gestionnaire d'évènement au bouton ajouter/enlever
+            let elBoutonAjout = this.document.querySelectorAll('.btnModif')
 
-    
+            elBoutonAjout.forEach(element => {
+            
+                //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
+                element.addEventListener('click', function (evt) { 
+                    evt.preventDefault();
+                    let idCellier = evt.target.parentElement.parentElement.dataset.id
+                // console.log(evt.target.parentElement.parentElement.dataset.id)
+                // console.log(idCellier);
+
+                    let idVin = evt.target.parentElement.parentElement.dataset.idVin;
+                // console.log(idVin);
+
+                    let elemBouteille = evt.target.parentElement.parentElement;
+                    // console.log(elemBouteille);
+
+                    let valueQuantite = elemBouteille.querySelector('.quantite').innerText;
+                    let elemQuantite = elemBouteille.querySelector('.quantite')
+                // console.log(valueQuantite);
+
+
+                let action = evt.target.parentElement.dataset.action
+                //console.log(action)
+                let newQuantite = valueQuantite
+                    if(action == 'plus'){
+                        newQuantite = parseInt(valueQuantite) + 1
+                    }else{
+                    console.log(valueQuantite)
+                    
+                        if(valueQuantite != 0 ){
+                        newQuantite = parseInt(valueQuantite) - 1
+                        }else{
+                            newQuantite = 0;
+                            
+                        }
+                    }
+                
+                // console.log(newQuantite);
+
+                //recherche Url
+                const url = window.location.href
+                    console.log(url);
+
+                    const options = {
+                            headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
+                            "X-Requested-With": "XMLHttpRequest",
+                            "X-CSRF-Token": document.querySelector('input[name="_token"]').value
+                            },
+                            method: "post",
+                            credentials: "same-origin",
+                            body: JSON.stringify({
+                            idCellier :  idCellier,
+                            idVin :  idVin,
+                            quantite: newQuantite
+                            })
+                        }
+            
+
+                    /* fetch(url, options)
+                        .then((data) => {
+
+                            /*Injecter la quantite dans le HTML*/
+                            //console.log(typeof newQuantite)
+                        // console.log(valueQuantite);
+                        elemQuantite.innerText = newQuantite.toString();
+                            
+                    /*  }) 
+                    
+                        .catch(function(error){
+                            console.log(error);
+                        })*/
+        
+
+
+
+                    
+
+
+            
+                });
+            })
+
+        }
+
         });
-    })
-
-}
-
-});
-
-
 
 </script>
 
