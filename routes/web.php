@@ -96,7 +96,8 @@ Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
-
+Route::post('/bouteille/{id}', [BouteilleController::class, 'quantite'])
+->name('bouteille.quantite');
 
 // Ajout d'une bouteille
 Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])

@@ -154,7 +154,7 @@
 
 		//Liste recherche
 		let liste = document.getElementById('listeAutoComplete');
-		console.log(liste)
+		//console.log(liste)
 
 		//recherche Url
         const url = "{{route('bouteille.recherche')}}";

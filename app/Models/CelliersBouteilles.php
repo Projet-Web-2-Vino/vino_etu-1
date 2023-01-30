@@ -23,7 +23,12 @@ class CelliersBouteilles extends Model
     /*Pour l'instant il n'y en a pas */
     public $timestamps = false;
 
-    public $incrementing = true;
+    public $incrementing = false;
+
+    
+   
+
+   
 
     /**
      * Get all bouteille for the cellier
