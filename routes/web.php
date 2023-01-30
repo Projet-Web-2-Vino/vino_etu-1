@@ -28,7 +28,8 @@ use App\Http\Controllers\FallbackController;
 |
 */
 
-
+Route::group(['middleware' => 'prevent-back-history'],function(){
+    
 //Section page d'accueil
 Route::get('/', AcceuilController::class)->name('acceuil');
 
@@ -36,8 +37,6 @@ Route::get('/', AcceuilController::class)->name('acceuil');
 Route::get('/catalogue', function () {
     return view('catalogue');
 })->middleware(['auth', 'verified'])->name('catalogue');
-
-
 
 
 // remettre apres avoir fini
@@ -62,22 +61,12 @@ Route::get('/catalogue', function () {
     return view('dashboard');
 });*/
 
-
-
-
-
-
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
 
@@ -120,8 +109,6 @@ Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
-
-
 // Ajout d'une bouteille
 Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
     ->name('bouteille.nouveau');
@@ -147,3 +134,8 @@ Route::post('/bouteille/supprime/{id}', [BouteilleController::class, 'bouteille'
 
 // Route Fallback pour les routes non existantes Page Erreur 404
 Route::fallback(FallbackController::class);
+
+});//prevent back middleware
+
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
