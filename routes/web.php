@@ -81,8 +81,6 @@ Route::get('/SAQ', [SAQController::class, 'import'])
 
 
 /****************CELLIER *********/
-
-
 /* CELLIER */
 Route::get('/cellier', [CellierController::class, 'index'])
     ->name('cellier.index');
