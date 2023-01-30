@@ -99,20 +99,22 @@
             | {{$info->format}} | {{$info->pays}}  </small>
     </div>
 
-    <form name="recherche"  method="POST">
-    <div class=" py-1 flex px-3 space-x-2  text-sm font-medium justify-start">
-        <p>Quantité :</p>
-        <p class="quantite">{{$info->quantite}}</p>
+    <form  method="POST">
+    
+        
         {{-- Section ajouter au boire.  --}}
         
             @csrf 
-        <div class="options" data-id="{{$info->vino__cellier_id}}" data-id-vin="{{$info->vino__bouteille_id}}">
-            <!-- <button class='btnModifier'>Modifier</button> -->
-                <button class='btnAjouter'>Ajouter</button>
-                <button class='btnAjouter'>Boire</button>
+        <div class="options py-1 flex px-3 space-x-2  text-sm font-medium justify-start" data-id="{{$info->vino__cellier_id}}" data-id-vin="{{$info->vino__bouteille_id}}">
+            <p>Quantité :</p>
+             <p class="quantite">{{$info->quantite}}</p>
+           
+                 <button data-action="plus" class='btnAjouter inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-plus"></i></button>
+                <button data-action="moins" class='btnAjouter inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-minus"></i></button>
+            
         </div>
     
-    </div>
+    
 </form>
 
     <div class="text-sm font-medium justify-start">

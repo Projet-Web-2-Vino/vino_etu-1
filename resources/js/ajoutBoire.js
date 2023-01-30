@@ -13,23 +13,42 @@ window.addEventListener("load",function(){
              //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
             element.addEventListener('click', function (evt) { 
                 evt.preventDefault();
-                let idCellier = evt.target.parentElement.dataset.id;
-                console.log(idCellier);
+                let idCellier = evt.target.parentElement.parentElement.dataset.id
+               // console.log(evt.target.parentElement.parentElement.dataset.id)
+               // console.log(idCellier);
 
-                let idVin = evt.target.parentElement.dataset.idVin;
-                console.log(idVin);
+                let idVin = evt.target.parentElement.parentElement.dataset.idVin;
+               // console.log(idVin);
 
                 let elemBouteille = evt.target.parentElement.parentElement;
-                  console.log(elemBouteille);
+                 // console.log(elemBouteille);
 
-                let elemQuantite = elemBouteille.querySelector('.quantite').innerText;
-                console.log(elemQuantite);
+                let valueQuantite = elemBouteille.querySelector('.quantite').innerText;
+                let elemQuantite = elemBouteille.querySelector('.quantite')
+               // console.log(valueQuantite);
 
-                let newQuantite = parseInt(elemQuantite) + 1
-                console.log(newQuantite);
 
-                const url = window.location.href;
-                console.log(url);
+               let action = evt.target.parentElement.dataset.action
+            //console.log(action)
+            let newQuantite = valueQuantite
+                if(action == 'plus'){
+                    newQuantite = parseInt(valueQuantite) + 1
+                }else{
+                   console.log(valueQuantite)
+                   
+                    if(valueQuantite != 0 ){
+                    newQuantite = parseInt(valueQuantite) - 1
+                    }else{
+                        newQuantite = 0;
+                        
+                    }
+                }
+              
+               // console.log(newQuantite);
+
+               //recherche Url
+                const url = window.location.href
+               // console.log(url);
 
                 const options = {
                         headers: {
@@ -49,11 +68,15 @@ window.addEventListener("load",function(){
         
 
                     fetch(url, options)
-                    .then((resp) => resp.json()) //Transforme  data en json
-                    .then(function(data){
+                    .then((data) => {
+
+                        /*Injecter la quantite dans le HTML*/
+                        //console.log(typeof newQuantite)
+                       // console.log(valueQuantite);
+                       elemQuantite.innerText = newQuantite.toString();
                         
-                            
-                    })
+                    }) 
+                   
                     .catch(function(error){
                         console.log(error);
                     })
@@ -61,11 +84,11 @@ window.addEventListener("load",function(){
 
 
 
-
+                
 
 
         
-            }).bind(this);
+            });
         })
 
     }

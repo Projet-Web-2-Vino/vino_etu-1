@@ -236,25 +236,26 @@ class BouteilleController extends Controller
     public function quantite(Request $request)
     {
         
-        $data = '';
-        $quantite = $request->get('quantite');
-        dd($quantite);
-        
-        //$request = Request::all();
-        
-        
-        //dd($request);
-        //$this->validateBouteille($request);
-        //$request = Request::all();
+       
+        $idVin = intval(Request::get('idVin'));
+       //dd($idVin);
+        $idCellier = Request::get('idCellier');
+        $quantite = Request::get('quantite');
+    //dd($idCellier, $idVin, $quantite);
 
-        //$bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
-        //dd($bouteille);
+        $updated = CelliersBouteilles::where('vino__bouteille_id', $idVin)
+                                        ->limit(1)
+                                        ->update(['quantite' => $quantite]); 
 
-        return json_encode($data);
+        
+        //dd($updated);
 
-        // Retourne au formulaire
-       /* return redirect()
-            ->route('bouteille.liste', [ 'id' => $idCellier] );*/
+
+        return json_encode($quantite);
+
+        // Redirect
+        return redirect()
+            ->route('bouteille.liste', [ 'id' => $idCellier] );
           
     }
 
