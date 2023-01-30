@@ -31,7 +31,7 @@
 					<div class="max-w">
 
 		<!-- Zone recherche -->
-		<form name="recherche"  method="POST">
+		<form name="recherche" id="rechercheForm"  method="POST">
 			@csrf
 
 			<label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -146,6 +146,21 @@
 
 <!-- SCRIPT-->
 <script>
+
+
+window.addEventListener("load",function(){
+document.getElementById("rechercheForm").onkeypress = function(e) {
+	console.log(e.charCode)
+    var key = e.charCode || e.keyCode || 0;     
+    if (key == 13) {
+      //alert("No Enter!");
+      e.preventDefault();
+    }
+  } 
+})
+
+
+
     function fetchData()
 	{
        
