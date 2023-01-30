@@ -228,5 +228,36 @@ class BouteilleController extends Controller
             'type' => 'required'
         ]);
     }
+
+    
+    /**
+     * Fonction qui modifie la quantité de bouteille
+     */
+    public function quantite(Request $request)
+    {
+        
+        $data = '';
+        $quantite = $request->get('quantite');
+        dd($quantite);
+        
+        //$request = Request::all();
+        
+        
+        //dd($request);
+        //$this->validateBouteille($request);
+        //$request = Request::all();
+
+        //$bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
+        //dd($bouteille);
+
+        return json_encode($data);
+
+        // Retourne au formulaire
+       /* return redirect()
+            ->route('bouteille.liste', [ 'id' => $idCellier] );*/
+          
+    }
+
+
     
 }

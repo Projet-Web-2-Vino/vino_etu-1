@@ -2,89 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-
 /*
     SECTION PAGE ACCUEIL
 */
 
 .background {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-  }
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 
 
 .background.a {
-    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2909085/pexels-photo-2909085.jpeg?auto=compress&cs=tinysrgb&w=600");
-    background-size: cover;
-    height: 100vh;
-    width: auto;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2909085/pexels-photo-2909085.jpeg?auto=compress&cs=tinysrgb&w=600");
+  background-size: cover;
+  height: 100vh;
+  width: auto;
 
-  }
+}
 
 
 .covertext {
-    position: absolute; /* To make the div to be place anywhere. It is out of the document flow */
-    top: 200px; /* The distance between the div with the top of document */
-    left: 0px; /* Make the div full width */
-    right: 0px; /* Make the div full width */
-  }
+  position: absolute;
+  /* To make the div to be place anywhere. It is out of the document flow */
+  top: 200px;
+  /* The distance between the div with the top of document */
+  left: 0px;
+  /* Make the div full width */
+  right: 0px;
+  /* Make the div full width */
+}
 
-  .title {
-    font-family: Verdana;
-    font-weight: 600;
-    font-size: 60px;
-    color: #ffffff;
-    text-align: center;
-  }
+.title {
+  font-family: Verdana;
+  font-weight: 600;
+  font-size: 60px;
+  color: #ffffff;
+  text-align: center;
+}
 
-  .subtitle {
-    font-family: Verdana;
-    font-size: 23px;
-    color: #ffffff;
-    text-align: center;
-  }
+.subtitle {
+  font-family: Verdana;
+  font-size: 23px;
+  color: #ffffff;
+  text-align: center;
+}
 
-  .explore {
-    text-align: center;
-    margin-top: 10px;
-  }
+.explore {
+  text-align: center;
+  margin-top: 10px;
+}
 
-  .explore .btn-lg,
-  .explore .btn-lg:hover {
-    border-radius: 30px;
-    padding: 15px 25px;
-    font-size: 22px;
-    background-image: none;
-    background-color: #FF4000;
-    border-color: #FF4000;
-    color: #ffffff;
-  }
+.explore .btn-lg,
+.explore .btn-lg:hover {
+  border-radius: 30px;
+  padding: 15px 25px;
+  font-size: 22px;
+  background-image: none;
+  background-color: #FF4000;
+  border-color: #FF4000;
+  color: #ffffff;
+}
 
-  .btn {
-    border-radius: 0px;
-    background-image: none;
-    background-color: #FF4000;
-    border-color: #FF4000;
-    color: #ffffff;
-    margin-bottom: 20px;
-    box-shadow: none;
-    outline: none;
-  }
+.btn {
+  border-radius: 0px;
+  background-image: none;
+  background-color: #FF4000;
+  border-color: #FF4000;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: none;
+  outline: none;
+}
 
-  .btn:focus,
-  .btn:active:focus,
-  .btn.active:focus,
-  .btn.focus,
-  .btn:active.focus,
-  .btn.active.focus {
-    color: #ffffff;
-    outline: none;
-  }
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  color: #ffffff;
+  outline: none;
+}
 
 
 
@@ -94,75 +94,79 @@
 */
 
 .container_fallback {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.text_fallback{
-    width: 50%; /* or any other width */
-    margin: 0 auto;
-    text-align: center;
+.text_fallback {
+  width: 50%;
+  /* or any other width */
+  margin: 0 auto;
+  text-align: center;
 
-    font-size: 2rem;
-    font-family: poppins;
-}
-.text_fallback h1{
-    font-size: 5rem;
-    font-family: poppins;
-    font-weight: 600;
-}
-.text_fallback h3{
-    background-color: red;
-    font-size: 1.5rem;
-    font-family: poppins;
-    font-weight: 300;
-}
-.button_fallback{
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
+  font-size: 2rem;
+  font-family: poppins;
 }
 
+.text_fallback h1 {
+  font-size: 5rem;
+  font-family: poppins;
+  font-weight: 600;
+}
+
+.text_fallback h3 {
+  background-color: red;
+  font-size: 1.5rem;
+  font-family: poppins;
+  font-weight: 300;
+}
+
+.button_fallback {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
 
 
-/******Ajout Annabelle ******/ 
+
+/******Ajout Annabelle ******/
 
 
 /* vue accueil-login-register*/
 
-.title{
-  font-size:8vw;
-  margin-bottom:5vh;
+.title {
+  font-size: 8vw;
+  margin-bottom: 5vh;
 }
 
 
-.appbtn{
+.appbtn {
   display: inline-block;
   max-width: 80%;
 }
 
-.appbtn:hover{
-  color:#000;
+.appbtn:hover {
+  color: #000;
 }
 
 
 
 /*titre h3 login/register*/
-.titleLog{
-  font-size:7vw;
-  margin-bottom:5vh;
+.titleLog {
+  font-size: 7vw;
+  margin-bottom: 5vh;
 }
 
 
 
 /*page liste bouteille*/
-.titleBouteille{
-  font-size:6vw;
+.titleBouteille {
+  font-size: 6vw;
   transition: all ease-in-out 0.3s
 }
 
 /*titre carte nom bouteille*/
-.titreBouteille{
+.titreBouteille {
   max-width: 30ch;
   line-height: 1.25em;
 }
@@ -170,23 +174,23 @@
 
 /*ajout bouteille*/
 
-form[name="recherche"]{
-  margin-bottom:0;
-  z-index:10;
+form[name="recherche"] {
+  margin-bottom: 0;
+  z-index: 10;
 }
 
-#listeAutoComplete{
+#listeAutoComplete {
   position: relative;
-  margin-top:-8px;
-  width:100%;
-  text-align:center;
-  z-index:0;
+  margin-top: -8px;
+  width: 100%;
+  text-align: center;
+  z-index: 0;
 }
 
-#tbodyfordata td{
-  cursor:pointer;
+#tbodyfordata td {
+  cursor: pointer;
   padding: 10px;
-  width:100%;
+  width: 100%;
   /*border-bottom:1px solid rgb(223, 220, 220)*/
 }
 
@@ -196,16 +200,17 @@ form[name="recherche"]{
 /**nav for sprint1**/
 
 
-  .log{
-    display:block;
-    padding-top:8px;
-    line-height: 0.8em;
-  
-  }
-  .log a{
-    
-    font-size:12px;
-  }
+.log {
+  display: block;
+  padding-top: 8px;
+  line-height: 0.8em;
+
+}
+
+.log a {
+
+  font-size: 12px;
+}
 
 
 
@@ -215,18 +220,19 @@ form[name="recherche"]{
 
 /* Si écran < 500px  */
 @media screen and (max-width: 500px) {
-  .logZone{
-   width:90%
+  .logZone {
+    width: 90%
   }
 }
 
 
 /* Si écran > 1020px  */
 @media screen and (min-width: 1020px) {
-  .titleLog{
-    font-size:4vw;
+  .titleLog {
+    font-size: 4vw;
   }
-  .titleBouteille{
-    font-size:4vw;
+
+  .titleBouteille {
+    font-size: 4vw;
   }
 }

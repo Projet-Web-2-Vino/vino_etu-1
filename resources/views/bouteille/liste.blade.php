@@ -99,18 +99,21 @@
             | {{$info->format}} | {{$info->pays}}  </small>
     </div>
 
+    <form name="recherche"  method="POST">
     <div class=" py-1 flex px-3 space-x-2  text-sm font-medium justify-start">
-        <p>Quantiter :</p>
-        <p>{{$info->quantite}}</p>
-        {{-- Section ajouter au boire. 
+        <p>Quantité :</p>
+        <p class="quantite">{{$info->quantite}}</p>
+        {{-- Section ajouter au boire.  --}}
+        
+            @csrf 
         <div class="options" data-id="{{$info->vino__cellier_id}}" data-id-vin="{{$info->vino__bouteille_id}}">
             <!-- <button class='btnModifier'>Modifier</button> -->
                 <button class='btnAjouter'>Ajouter</button>
                 <button class='btnAjouter'>Boire</button>
         </div>
-        --}}
+    
     </div>
-
+</form>
 
     <div class="text-sm font-medium justify-start">
         <span class="inline-block bg-gray-200 rounded-lg px-3 py-1 mt-2 ml-2 text-sm font-semibold text-gray-700 mr-2">{{$info->millesime}}</span>
@@ -155,6 +158,9 @@
   @endforeach
 </div>
   @endsection
+
+
+
 
 
 
