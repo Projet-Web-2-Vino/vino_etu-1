@@ -49,7 +49,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-  
+
 
 
     /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
