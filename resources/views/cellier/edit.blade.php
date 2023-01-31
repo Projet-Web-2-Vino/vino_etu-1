@@ -4,24 +4,18 @@
 <form action="{{ route('cellier.update', ['id' => $cellier->id])}}" method="POST">
     {{-- Token pour la securiter du formulaire --}}
     @csrf
-    <div >
-        <div class="bg-gray-100 p-10 flex flex-col  min-h-screen">
-        
             <div class="relative px-4 py-10 bg-white">
                 <div class="max-w-full mx-auto">
                     <div class="flex items-center space-x-5">
                             <div class="h-12 w-12 rounded-full justify-center items-center text-yellow-500 text-2xl font-mono">
                                 <img src="https://static.thenounproject.com/png/5003274-200.png" alt="">
                             </div>
-                            <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
-                            <h2 class="leading-relaxed">Modifier votre cellier</h2>
-                            <p class="text-sm text-gray-500 font-normal leading-relaxed">Veuillez entrer vos informations</p>
-                            </div>
+                            
                         </div>
                         <div class="divide-y divide-gray-200">
                             <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                             <div class="flex flex-col">
-                                <label class="leading-loose">Nom de votre cellier</label>
+                                <label class="leading-loose">Nom :</label>
                                 {{-- Section pour le nom du cellier --}}
                                 <input class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" name="nom_cellier" type="text" value="{{ old('nom_cellier', $cellier->nom_cellier)}}" />
                                 @error('nom_cellier')
@@ -47,9 +41,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+           
         </div>
-    </div>
+   
 </form>
 
 @endsection
