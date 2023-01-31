@@ -18,6 +18,7 @@ class CellierController extends Controller
      */
     public function index(Request $request)
     {
+       $titre = 'Mes celliers' ;
        
        Auth::check();
        $id_usager = Auth::id();
@@ -26,8 +27,9 @@ class CellierController extends Controller
 
       
         return view('cellier.index', [
-            'celliers' => $celliers,   //to get nbBouteille in view = {{$info->bouteilles_count}}
-            'id_usager' => $id_usager
+            'celliers' => $celliers,   
+            'id_usager' => $id_usager,
+            'titre' => $titre
         ]);
     }
 
@@ -38,7 +40,8 @@ class CellierController extends Controller
     public function nouveau(Request $request)
     {
 
-       Auth::check();
+       $titre = "Ajout d'un cellier" ;
+        Auth::check();
        $id_usager = Auth::id();
        
         //Liste des cellier au besoins ... 
@@ -48,7 +51,8 @@ class CellierController extends Controller
 
         //vue creation ceillier 
         return view('cellier.nouveau', [
-            'celliers' => $celliers
+            'celliers' => $celliers,
+            'titre' => $titre
         ]);
     }
 
