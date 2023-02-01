@@ -35,13 +35,16 @@ class BouteilleController extends Controller
             //dd($bouteilles);
 
         $cellier = Cellier::find($id);
+        $titre = 'Liste bouteilles' ;
 
         return view('bouteille.liste', [
             'bouteilles' => $bouteilles,
             'id_usager' => $id_usager,
             'id_cellier' => $id,
             'cellier' => $cellier,
-            'msg'=> NULL
+            'msg'=> NULL,
+            'titre' => $titre
+
         ]);
 
         }else{
@@ -64,11 +67,13 @@ class BouteilleController extends Controller
 
             //cellier impliquer
             $cellier = Cellier::find($id);
+            $titre = 'Ajout bouteille' ;
             
             //vue des bouteille du catalogue
             return view('bouteille.nouveau', [
                 'bouteillesSAQ' => $bouteillesSAQ, //pour la rechercher
-                'cellier' => $cellier
+                'cellier' => $cellier,
+                'titre' => $titre
             ]);
         }else{
 
@@ -140,12 +145,13 @@ class BouteilleController extends Controller
     
 
             $cellier = Cellier::find($idCellier);
-        
+            $titre = 'Edition bouteille' ;
             //dd($bouteille);
 
             return view('bouteille.edit', [
                 'bouteille' => $bouteille,
-                'cellier' => $cellier
+                'cellier' => $cellier,
+                'titre' => $titre
                 
             ]);
         }else{
