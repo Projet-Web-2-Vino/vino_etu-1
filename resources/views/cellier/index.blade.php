@@ -82,7 +82,7 @@
                             @endif
                         </p>
                         <div class="flex justify-end space-x-1">
-                            <button class="bg-red-900 text-white font-bold py-2 px-4 rounded" data-action="supprimer" class="modal-exit">Supprimer</button>
+                            <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="supprimer" class="modal-exit">Supprimer</button>
                             <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="no-supprimer" class="modal-exit">Non</button>
                             
                             
@@ -138,11 +138,13 @@
         trigger.addEventListener("click", function (event) {
             event.preventDefault();
             let form = event.target.parentElement.parentElement
+            console.log(event.target.parentElement.parentElement);
             //console.log(trigger.dataset.modal)
             const modal = document.getElementById(trigger.dataset.modal);
             //console.log(modal);
             modal.classList.add("open");
             const exits = modal.querySelectorAll(".modal-exit");
+           // console.log(exits);
             exits.forEach(function (exit) {
             exit.addEventListener("click", function (event) {
                 event.preventDefault();
