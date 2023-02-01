@@ -26,9 +26,7 @@
         
           <div class="flex justify-between p-4">
             <a href="/cellier" class="text-lg font-semibold uppercase  text-white">L'atelier a vin </a>
-            @isset($titre)
-            <h2 class="text-lg font-semibold uppercase  text-white">{{$titre}}</h2>
-            @endisset
+            
             <!--
             <button class="focus:shadow-outline rounded-lg focus:outline-none md:hidden" @click="open = !open">
               <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6">

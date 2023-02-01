@@ -13,30 +13,7 @@
 
         <h1 class="titleBouteille text-5xl  font-extrabold">L'atelier à vin</h1>
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 text-center">Bienvenue dans votre espace cellier : {{$cellier->nom_cellier}}.</p>
-        <ul class="py-6 flex flex-wrap align-items-center justify-center mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-
-
-            <li class="mr-2">
-                {{-- Section Espace Cellier--}}
-                <button class=" inline-flex items-center text-sm font-medium mb-2  bg-red-800 px-3 py-2 hover:shadow-lg  text-white rounded-md hover:bg-red-600 ">
-                    <span>
-                        <a class="btnModifier" href='/cellier'>Retour à votre espace cellier</a>
-                    </span>
-                </button>
-            </li>
-
-            <li class="mr-2">
-                <button class=" inline-flex items-center text-sm font-medium mb-2  bg-red-800 px-3 py-2 hover:shadow-lg  text-white rounded-md hover:bg-red-600 ">
-                    <span>
-                        <a href='{{ route('bouteille.nouveau', ['id' => $cellier->id]) }}'>Ajouter une bouteille
-                        </a>
-                    </span>
-                </button>
-            </li>
-
-
-
-        </ul>
+        
     </div>
 
     <!-- Feedback success -->
@@ -54,7 +31,7 @@
 
 
 {{-- Section pour carte des vins --}}
-<div class="flex flex-wrap 	justify-evenly">
+<div class="flex flex-wrap 	justify-evenly mb-20">
   @foreach ($bouteilles as  $info)
   <div class="w-fit py-3 mt-3 m-2  flex items-center bg-white shadow-md hover:shadow-xl rounded-lg">
 
