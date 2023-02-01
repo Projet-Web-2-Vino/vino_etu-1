@@ -18,7 +18,7 @@
   
 
 </head>
-<body class="font-poppins">
+<body>
     <div class="w-full bg-red-900 ">
 
       
