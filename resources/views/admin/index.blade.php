@@ -24,7 +24,7 @@
                     </span>  {{$info->name}} </span>
                    
                     <!-- zone delete usager-->
-                    <form action="{{ route('user.supprime', ['id' => $info->id]) }}" method="POST">
+                    <form action="{{ route('admin.supprime', ['id' => $info->id]) }}" method="POST">
                         @csrf
                         <button>Supprimer</button>
                     </form>
