@@ -119,39 +119,45 @@
 
     <div class="options py-1 flex px-3 space-x-2  text-sm font-medium justify-start"">
         <p>Millesime :</p>
-        <span class="inline-block bg-gray-200 rounded-lg px-3 py-1 mt-2 ml-2 text-sm font-semibold text-gray-700 mr-2">{{$info->millesime}}</span>
+        <span class="inline-block bg-gray-200 rounded-lg px-3 py-1  ml-3 text-sm font-semibold text-gray-700 mr-2">{{$info->millesime}}</span>
 
     </div>
 
 
 
-   <div class="flex mt-6 mr-4 space-x-2 text-sm font-medium justify-start">
+<div class="flex mt-6 mr-4 space-x-2 text-sm font-medium justify-start">
 
 
- {{-- Section pour inserer URL SAQ --}}
+ {{-- Section pour inserer URL SAQ
  @if($info->url_saq)
  <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-md hover:bg-red-600 ">
    <span><a href="{{$info->url_saq}}">Voir SAQ</a></span>
  </button>
- @endif
+ @endif --}}
 
-        {{-- Section pour Modifier --}}
-        <button class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-red-800 px-3 py-2 hover:shadow-lg tracking-wider text-white rounded-md hover:bg-red-600 ">
-            <span> <a class="btnModifier" href="{{ route('bouteille.edit', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id  ]) }}">Modifier</a></span>
+
+ <div class="flex justify-center">
+    <span class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 px-3  text-2xl mx-3">
+        <a href="{{$info->url_saq}}"><img class="w-9 h-12"   src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/84/SAQ_Logo.svg/1200px-SAQ_Logo.svg.png" alt=""></a>
+    </span>
+
+    {{-- Section pour Modifier --}}
+    <span class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-200 px-5  hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200 text-2xl mx-3">
+        <button>
+            <span> <a class="btnModifier" href="{{ route('bouteille.edit', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id  ]) }}"><i class="fa-solid fa-pen-to-square"></i></a></span>
         </button>
+    </span>
 
+    {{-- Section pour Supprimer --}}
 
+    <span class="transition ease-in duration-300 flex justify-center items-center select-none text-sm font-medium mb-2 md:mb-0 bg-gray-200 px-3 py-2 hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200 text-2xl mx-3">
+        <form action="{{ route('bouteille.supprime', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id ]) }}" method="POST">
+            @csrf
+            <button data-modal="modal-{{$info->vino__bouteille_id}}" class="delete"><i class="fa-sharp fa-solid fa-trash  space-y-2"></i></button>
+        </form>
+    </span>
 
-
-
-            <span class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-200 px-3 py-2 hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200 ">
-                <form action="{{ route('bouteille.supprime', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id ]) }}" method="POST">
-                    @csrf
-                    <button data-modal="modal-{{$info->vino__bouteille_id}}" class="delete"><i class="fa-solid fa-trash"></i></button>
-                </form>
-
-            </span>
-
+  </div>
 
              <!-- Modal -->
      <div class="modal" id="modal-{{$info->vino__bouteille_id}}">
@@ -169,10 +175,8 @@
     </div>
   </div>
 
-
-
-
   @endforeach
+
 
 </div>
   @endsection

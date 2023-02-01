@@ -175,7 +175,6 @@
 /*ajout bouteille*/
 
 form[name="recherche"] {
-  margin-bottom: 0;
   z-index: 10;
 }
 
