@@ -13,7 +13,7 @@
 			</a>
 			<a href="#" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
                 <i class="fa-solid fa-right-from-bracket"></i>
-				<span class="tab tab-whishlist block text-xs">Logout</span>
+				<span class="tab tab-whishlist block text-xs">Déconnexion</span>
 			</a>
 		</div>
 	</section>
