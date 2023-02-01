@@ -58,11 +58,6 @@
   @foreach ($bouteilles as  $info)
   <div class="w-fit py-3 mt-3 m-2  flex items-center bg-white shadow-md hover:shadow-xl rounded-lg">
 
-
-
-
-
-
     <img class="h-300 w-300" src="https://www.saq.com/media/catalog/product/1/2/12728904-1_1649076332.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166">
     <div>
         <div class="px-3">
@@ -108,12 +103,14 @@
         {{-- Section ajouter au boire.  --}}
 
             @csrf
-        <div class="options py-1 flex px-3 space-x-2  text-sm font-medium justify-start" data-id="{{$info->vino__cellier_id}}" data-id-vin="{{$info->vino__bouteille_id}}">
+        <div class="options py-2 px-3  text-sm font-medium " data-id="{{$info->vino__cellier_id}}" data-id-vin="{{$info->vino__bouteille_id}}">
             <p>Quantité :</p>
-             <p class="quantite">{{$info->quantite}}</p>
 
-                 <button data-action="plus" class='btnModif inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-plus"></i></button>
-                <button data-action="moins" class='btnModif inline-block bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-minus"></i></button>
+                <div class="flex py-3" >
+                    <button data-action="plus" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-plus"></i></button>
+                    <p class="p-2 quantite">{{$info->quantite}}</p>
+                    <button data-action="moins" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i class="fa-solid fa-minus"></i></button>
+                </div>
 
         </div>
 
