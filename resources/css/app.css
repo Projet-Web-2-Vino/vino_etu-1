@@ -175,7 +175,6 @@
 /*ajout bouteille*/
 
 form[name="recherche"] {
-  margin-bottom: 0;
   z-index: 10;
 }
 
@@ -294,7 +293,9 @@ form[name="recherche"] {
 
 
 
+
 /*pour enlver zoom form */
 form input{
   font-size:16px!important
 }
+
