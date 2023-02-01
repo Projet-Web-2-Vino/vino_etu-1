@@ -11,7 +11,7 @@
         @endif
 
         <div class="relative">
-            <img src="https://aboutmurals.ca/wp-content/uploads/2022/03/Cellar-Wallpaper-Stock-Room-About-murals.jpg" />
+            <img class="w-full"  src="https://aboutmurals.ca/wp-content/uploads/2022/03/Cellar-Wallpaper-Stock-Room-About-murals.jpg" />
             <h1 class="absolute  rounded-md bg-opacity-50 bg-white p-2  text-7xl text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold">Votre Cellier</h1>
         </div>
 
