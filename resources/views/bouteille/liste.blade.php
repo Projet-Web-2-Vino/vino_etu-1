@@ -5,9 +5,9 @@
 
 
 
-
     {{-- Section Boutton pour Importer et Cellier --}}
     <div class="py-8  grid place-items-center ">
+
         <h1 class="titleBouteille text-5xl  font-extrabold">L'atelier à vin</h1>
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 text-center">Bienvenue dans votre espace cellier : {{$cellier->nom_cellier}}.</p>
         <ul class="py-6 flex flex-wrap align-items-center justify-center  -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">

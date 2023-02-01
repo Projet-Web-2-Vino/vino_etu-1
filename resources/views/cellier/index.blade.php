@@ -10,7 +10,7 @@
             <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
         @endif
 
-        <div class='max-w-full flex flex-wrap justify-evenly p-10'>
+
 
             {{-- Section Carte Cellier --}}
             @if ($celliers)
@@ -86,29 +86,33 @@
             @endif
             <!-- Bouton ajouter un cellier -->
             <a class="block text-center w-full max-w-sm border border-gray-200 rounded-lg shadow" href='cellier/nouveau'>
-
-
                    <svg class="mx-auto my-10" height="150px" width="150px"  viewBox="0 0 50 50"><rect fill="none" height="50" width="50"/><line fill="none" stroke="#bfbfbf" stroke-miterlimit="10" stroke-width="2" x1="9" x2="41" y1="25" y2="25"/><line fill="none" stroke="#bfbfbf" stroke-miterlimit="10" stroke-width="2" x1="25" x2="25" y1="9" y2="41"/></svg>
                     <h5 class="mb-1 text-l font-medium text-gray-900 uppercase">Ajouter un cellier</h5>
-
-
             </a>
-
-
-
-
-
-
-
-
-
-
         </div>
     </div>
+
+
+    <div class="grid grid-cols-2 gap-2 w-full">
+        <div id="card">
+           <span><img src="http://placebeer.com/150/150" alt=""></span>
+        </div>
+        <div id="card">
+           <span><img src="http://placebeer.com/150/150" alt=""></span>
+        </div>
+    </div>
+
       {{-- Section pour le navbar du bas --}}
     @include('layouts.bottomNav')
+
 @endsection
 
+<style>
+    #card span img {
+    width: 100%;
+    height: 100%;
+}
+</style>
 
 <!--
     /**
