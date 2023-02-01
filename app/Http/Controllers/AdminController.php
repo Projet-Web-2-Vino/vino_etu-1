@@ -25,16 +25,14 @@ class AdminController extends Controller
      */
     public function supprime(Request $request, $id)
     {
-        dd($id);
+        //dd($id);
         $user = User::findOrFail($id);
         $user->delete();
-        
-        return "Vous avez supprimer le user {$user->name} !";
 
-        // Retourne au cellier
-        /*return redirect()
-            ->route('cellier.index')
-            ->withSuccess("Vous avez supprimer le cellier  {$nomCellier}  !");*/
+        // Retourne au tableau admin
+        return redirect()
+            ->route('admin.index')
+            ->withSuccess("Vous avez supprimer le user {$user->name} !");
 
     }
 
