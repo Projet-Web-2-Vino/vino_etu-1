@@ -56,6 +56,7 @@ ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 -- -----------------------------------------------------
 -- Table `vinodb`.`vino__commentaire`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `vino__commentaire`;
 DROP TABLE IF EXISTS `vino__note`;
 CREATE TABLE `vino__note` (
   `id` INT NOT NULL AUTO_INCREMENT,
