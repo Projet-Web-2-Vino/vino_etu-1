@@ -11,7 +11,7 @@
         @endif
 
         <div class="relative">
-            <img class="w-full"  src="https://aboutmurals.ca/wp-content/uploads/2022/03/Cellar-Wallpaper-Stock-Room-About-murals.jpg" />
+            <img class=""  src="https://aboutmurals.ca/wp-content/uploads/2022/03/Cellar-Wallpaper-Stock-Room-About-murals.jpg" />
             <h1 class="absolute  rounded-md bg-opacity-50 bg-white p-2  text-7xl text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold">Votre Cellier</h1>
         </div>
 
@@ -23,7 +23,7 @@
 
 
 
-                    <div class="w-full max-w-sm border border-gray-200 rounded-lg shadow">
+                    <div class="py-5 w-full max-w-sm border border-gray-200 rounded-lg hover:shadow-xl ">
 
                           <!-- zone edition cellier-->
                           <div class="flex p-2 space-x-2 justify-end bg-slate-100">
@@ -96,15 +96,6 @@
         </div>
     </div>
 
-
-    <div class="grid grid-cols-2 gap-2 w-full">
-        <div id="card">
-           <span><img src="http://placebeer.com/150/150" alt=""></span>
-        </div>
-        <div id="card">
-           <span><img src="http://placebeer.com/150/150" alt=""></span>
-        </div>
-    </div>
 
       {{-- Section pour le navbar du bas --}}
     @include('layouts.bottomNav')
