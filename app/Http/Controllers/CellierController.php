@@ -44,7 +44,7 @@ class CellierController extends Controller
     {
 
         if(Auth::check()){ 
-            $titre = "Ajout d'un cellier" ;
+            $titre = "Ajout cellier" ;
                 Auth::check();
             $id_usager = Auth::id();
             
@@ -93,9 +93,10 @@ class CellierController extends Controller
         if(Auth::check()){
             //dd($id);
             $cellier = Cellier::findOrFail($id);
-        
+            $titre = 'Édition cellier' ;
             return view('cellier.edit', [
                 'cellier' => $cellier,
+                'titre' => $titre
             ]);
         }else{
             return redirect('/login');
