@@ -61,6 +61,7 @@ CREATE TABLE `vino__commentaire` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_usager` INT(20) NULL,
   `commentaire` VARCHAR(200) NULL,
+  `note` INT(11) NULL,
   `id_bouteille` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;

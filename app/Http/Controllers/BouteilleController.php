@@ -7,6 +7,7 @@ use App\Models\Bouteille;
 use App\Models\BouteillePersonalize;
 use App\Models\Cellier;
 use App\Models\CelliersBouteilles;
+use App\ReviewRating;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
@@ -36,8 +37,8 @@ class BouteilleController extends Controller
 
        $cellier = Cellier::find($id);
 
-       
-        
+
+
 
 
         //dd($bouteilles);
@@ -59,14 +60,14 @@ class BouteilleController extends Controller
     {
         Auth::check();
         $id_usager = Auth::id();
-       
-        //Liste des bouteille  
+
+        //Liste des bouteille
          $bouteillesSAQ = DB::table('vino__bouteille')
          ->get();
 
         //cellier impliquer
         $cellier = Cellier::find($id);
-        
+
         //vue des bouteille du catalogue
         return view('bouteille.nouveau', [
             'bouteillesSAQ' => $bouteillesSAQ, //pour la rechercher
@@ -81,7 +82,7 @@ class BouteilleController extends Controller
     {
         Auth::check();
         $id_usager = Auth::id();
-        
+
         //TODO validate data
         //$this->validateBouteille($request);
 
@@ -94,7 +95,7 @@ class BouteilleController extends Controller
         //TODO check duplication//
         $bouteille = BouteillePersonalize::create(Request::except(['quantite', 'id_cellier']));
 
-        //Ajout de la bouteille dans le cellier 
+        //Ajout de la bouteille dans le cellier
         $idBouteille = $bouteille->id;
         $request2 = [
             'vino__cellier_id'   => $id_cellier,
@@ -109,7 +110,7 @@ class BouteilleController extends Controller
             ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
             ->where('vino__cellier_id', $id_cellier)
             ->get();
-    
+
         //Redirect vers la liste des bouteille du cellier avec un message de succès
         return redirect()
         ->route('bouteille.liste', [ 'id' => $id_cellier] )
@@ -123,8 +124,8 @@ class BouteilleController extends Controller
     */
     public function edit(Request $request, $idVin, $idCellier)
     {
-      
-        
+
+
        //dd($id);
 
         $bouteille = BouteillePersonalize::findOrFail($idVin)
@@ -132,16 +133,16 @@ class BouteilleController extends Controller
                                             ->join('vino__cellier_has_vino__bouteille', 'vino__bouteille_personalize.id', '=', 'vino__cellier_has_vino__bouteille.vino__bouteille_id')
                                             ->where('id', $idVin)
                                             ->first();
- 
+
 
        $cellier = Cellier::find($idCellier);
-       
+
         //dd($bouteille);
 
             return view('bouteille.edit', [
                 'bouteille' => $bouteille,
                 'cellier' => $cellier
-                
+
             ]);
     }
 
@@ -157,7 +158,7 @@ class BouteilleController extends Controller
         $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
         //dd($bouteille);
 
-        
+
 
         // Retourne au formulaire
         return redirect()
@@ -175,14 +176,14 @@ class BouteilleController extends Controller
         $id =(int)$idVin;
         // TODO lier usager à ses bouteille...
         $bouteille = BouteillePersonalize::findOrFail($id);
-        
-        
+
+
         $bouteille->delete();
 
-        //--------TODO 
+        //--------TODO
 
         /*supprimer bouteille/ceillier
-        /* model=CelliersBouteilles 
+        /* model=CelliersBouteilles
 
         --------------*/
 
@@ -191,8 +192,8 @@ class BouteilleController extends Controller
             ->route('bouteille.liste', [ 'id' => $idCellier] )
             ->withSuccess("Vous avez supprimer la bouteille  {$bouteille->nom}  !");
 
-        
-       
+
+
 
     }
 
@@ -201,7 +202,7 @@ class BouteilleController extends Controller
     */
     public function recherche(Request $request)
     {
-            
+
             $data = '';
             $recherche = Request::get('recherche');
            // dd($recherche);
@@ -225,8 +226,8 @@ class BouteilleController extends Controller
      */
     public function quantite(Request $request)
     {
-        
-       
+
+
         $idVin = intval(Request::get('idVin'));
        //dd($idVin);
         $idCellier = Request::get('idCellier');
@@ -235,9 +236,9 @@ class BouteilleController extends Controller
 
         $updated = CelliersBouteilles::where('vino__bouteille_id', $idVin)
                                         ->limit(1)
-                                        ->update(['quantite' => $quantite]); 
+                                        ->update(['quantite' => $quantite]);
 
-        
+
         dd($updated);
 
 
@@ -246,12 +247,12 @@ class BouteilleController extends Controller
         // Redirect
         return redirect()
             ->route('bouteille.liste', [ 'id' => $idCellier] );
-          
+
     }
 
 
     /**
-     * Fonction qui permet de valider les données de l'usager 
+     * Fonction qui permet de valider les données de l'usager
      */
     private function validateBouteille(Request $request)
     {
@@ -261,9 +262,32 @@ class BouteilleController extends Controller
         ]);
     }
 
-    
-    
+
+    /**
+     * Fonction pour le rating des bouteilles
+     */
+
+     public function rating(Request $request)
+     {
+         $review = new ReviewRating();
+         $review->note = $request->input('note');
+
+         // Validate the data
+         $validatedData = $request->validate([
+             'note' => 'required|integer|between:1,5'
+         ]);
+
+         // Attempt to save the rating to the database
+         try {
+             $review->save();
+             return response()->json(['message' => 'Rating saved successfully'], 201);
+         } catch (\Exception $e) {
+             // Handle the exception and return an error response
+             return response()->json(['message' => 'Error saving the rating'], 500);
+         }
+     }
 
 
-    
+
+
 }
