@@ -90,7 +90,7 @@ class BouteilleController extends Controller
             $id_usager = Auth::id();
             
             //TODO validate data
-            //$this->validateBouteille($request);
+            $this->validateBouteille($request);
 
             $quantite = Request::get('quantite');
             $id_cellier = Request::get('id_cellier');
