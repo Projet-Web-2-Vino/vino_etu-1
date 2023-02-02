@@ -24,31 +24,5 @@ class CelliersBouteilles extends Model
     public $timestamps = false;
 
     public $incrementing = false;
-
-    
-   
-
-   
-
-    /**
-     * Get all bouteille for the cellier
-     */
-   /* public function bouteilles()
-    {
-        return $this->hasManyThrough(BouteillePersonalize::class, Cellier::class);
-    }*/
-
-
-     /**
-     * Get all cellier for the bouteille  --pas nécessaire
-     */
-    /*public function celliers()
-    {
-        return $this->hasManyThrough(Cellier::class, BouteillePersonalize::class);
-    }*/
-
-
-
-  
    
 }

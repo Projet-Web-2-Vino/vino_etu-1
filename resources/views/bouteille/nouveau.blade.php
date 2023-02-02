@@ -98,7 +98,7 @@
 								<label class="leading-loose" for="format">Format :</label>
 								<input id="format" name="format" type="text" value="" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
 								
-								<?php $years = range(1900, strftime("%Y", time())); ?>
+								<?php $years = range(1970, strftime("%Y", time())); ?>
 								<label class="leading-loose" for="millesime">Millesime :</label>
 								<select id="millesime" name="millesime" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
 									<option value="">Année</option>
@@ -127,7 +127,7 @@
 							</div>
 							<div class="pt-4 flex items-center space-x-4">
 								<a class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" href='/cellier'>
-								<svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Canceler
+								<svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Annuler
 								</a>
 								{{-- Section pour le bouton ajouter --}}
 								<form action="{{ route('cellier.creer')}}" method="POST">
