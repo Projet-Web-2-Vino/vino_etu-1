@@ -77,13 +77,14 @@
             </div> -->
 
              <!-- admin seulement -->
-             <div class="text-white text-center log">
              @if(auth()->check() && auth()->user()->is_admin == 1)
+             <div class="text-white text-center log">
              <x-nav-link :href="route('admin.tableau')" :active="request()->routeIs('admin.tableau')">
                  {{ __('Admin Tableau') }}
              </x-nav-link>
-             @endif
-            </div>
+            </div> <!-- fin admin seulement -->
+            
+            @else
             
             <div class="text-white text-center log">
             @if (Auth::check())
@@ -93,6 +94,8 @@
               </a>
             @endif
             </div>
+
+            @endif
           </nav>
 
          

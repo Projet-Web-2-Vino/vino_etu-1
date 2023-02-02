@@ -162,7 +162,8 @@
   @endsection
 
 
-
+   {{-- Section pour le navbar du bas --}}
+   @include('layouts.bottomNav')
 
 
 

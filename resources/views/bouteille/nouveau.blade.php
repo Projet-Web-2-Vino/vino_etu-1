@@ -144,6 +144,10 @@
 </div>
 @endsection
 
+
+{{-- Section pour le navbar du bas --}}
+@include('layouts.bottomNav')
+
 <!-- SCRIPT-->
 <script>
 
@@ -165,11 +169,11 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 	{
        
 		//recherche Value
-		let elRecheche = document.getElementById('recherche').value;
+		let elRecherche = document.getElementById('recherche').value;
 
 		//Liste recherche
 		let liste = document.getElementById('listeAutoComplete');
-		console.log(liste)
+		//console.log(liste)
 
 		//recherche Url
         const url = "{{route('bouteille.recherche')}}";
@@ -185,7 +189,7 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 				method: "post",
 				credentials: "same-origin",
 				body: JSON.stringify({
-				recherche: elRecheche
+				recherche: elRecherche
 				})
 			}
 
@@ -219,7 +223,8 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 
 						//console.log(liste);
 						liste.innerHTML = "";
-						elRecheche = "";
+						console.log(elRecherche)
+						elRecherche = "";
 
 						}
 					});

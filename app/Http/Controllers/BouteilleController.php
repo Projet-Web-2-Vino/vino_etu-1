@@ -35,7 +35,7 @@ class BouteilleController extends Controller
             //dd($bouteilles);
 
         $cellier = Cellier::find($id);
-        $titre = 'bouteille' ;
+        $titre = 'Liste bouteilles' ;
 
         return view('bouteille.liste', [
             'bouteilles' => $bouteilles,
@@ -67,7 +67,7 @@ class BouteilleController extends Controller
 
             //cellier impliquer
             $cellier = Cellier::find($id);
-            $titre = 'bouteille' ;
+            $titre = 'Ajout bouteille' ;
             
             //vue des bouteille du catalogue
             return view('bouteille.nouveau', [
@@ -145,7 +145,7 @@ class BouteilleController extends Controller
     
 
             $cellier = Cellier::find($idCellier);
-            $titre = 'bouteille' ;
+            $titre = 'Edition bouteille' ;
             //dd($bouteille);
 
             return view('bouteille.edit', [
