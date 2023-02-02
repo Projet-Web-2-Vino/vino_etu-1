@@ -8,16 +8,45 @@
             <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
         @endif
 
-        <div class="relative">
-            <img class=""  src="https://aboutmurals.ca/wp-content/uploads/2022/03/Cellar-Wallpaper-Stock-Room-About-murals.jpg" />
-            <h1 class="absolute  rounded-md bg-opacity-50 bg-white p-2  text-7xl text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold">Votre Cellier</h1>
-        </div>
-
-
             {{-- Section Carte Cellier --}}
             @if ($celliers)
                 @foreach ($celliers as $info)
 
+
+                {{-- NOUVELLE SECTION CARTE CELLIER --}}
+
+
+                <section class="mx-auto mt-[50px] aut xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-5 justify-items-center   min-w-fit pb-20">
+                    <article class="hover:scale-105 transition-all relative h-[300px] w-[350px]  overflow-auto rounded-xl bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5">
+                      <h1 class="mt-9 text-6xl font-bold leading-10 text-white">
+                        L'atelier à <br />
+                        vin
+                      </h1>
+                    </article>
+
+                    <article class="hover:scale-105 hover:border-orange-500  transition-all relative  flex items-center  h-[300px] w-[350px] rounded-xl border border bg-gradient-to-t from-white p-5 drop-shadow-2xl">
+                        <i class="space-x-6 fa-solid fa-pen text-white"></i>
+                      <div class="flex  absolute -top-6 w-fit items-center justify-center rounded-full bg-gradient-to-t bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-3">
+                        <i class="fa-solid fa-pen text-white"></i>
+                      </div>
+
+
+                      <div class="flex flex-col justify-start gap-5">
+                        <h1 class="text-3xl font-bold leading-10 text-black/75">Cellier</h1>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto dignissimos quis tempora autem vel a!</p>
+
+                            <div>
+                                @if ($info->bouteilles_count != 0)
+                                <a class=" w-fit py-2 text-xl font-bold text-red-600" href='{{ route('bouteille.liste', ['id' => $info->id]) }}' style="display: inline-block;"><small>Voir bouteille</small></a>
+                                @endif
+                                <a class=" w-fit py-2 text-xl font-bold text-red-600" href='{{ route('bouteille.nouveau', ['id' => $info->id]) }}' style="display: inline-block;"><small>Ajouter bouteille</small></a>
+                             </div>
+                        {{-- <button class="w-fit py-2 text-xl font-bold text-red-600">Get Started</button> --}}
+
+                    </article>
+                  </section>
+
+                {{-- FIN NOUVELLE SECTION CARTE CELLIER --}}
 
 
 
@@ -106,7 +135,34 @@
       {{-- Section pour le navbar du bas --}}
     @include('layouts.bottomNav')
 
+
+  <section class="mx-auto mt-[50px] aut xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-5 justify-items-center   min-w-fit pb-20">
+    <article class="hover:scale-105 transition-all relative h-[300px] w-[350px]  overflow-auto rounded-xl bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5">
+      <h1 class="mt-9 text-6xl font-bold leading-10 text-white">
+        L'atelier à <br />
+        vin
+      </h1>
+    </article>
+
+    <article class="hover:scale-105 hover:border-orange-500  transition-all relative  flex items-center  h-[300px] w-[350px] rounded-xl border border bg-gradient-to-t from-white p-5 drop-shadow-2xl">
+        <i class="space-x-6 fa-solid fa-pen text-white"></i>
+      <div class="flex  absolute -top-6 w-fit items-center justify-center rounded-full bg-gradient-to-t bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-3">
+        <i class="fa-solid fa-pen text-white"></i>
+      </div>
+
+
+      <div class="flex flex-col justify-start gap-5">
+        <h1 class="text-3xl font-bold leading-10 text-black/75">Cellier</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto dignissimos quis tempora autem vel a!</p>
+        <button class="w-fit py-2 text-xl font-bold text-red-600">Get Started</button>
+      </div>
+    </article>
+  </section>
+
 @endsection
+
+
+
 
 <style>
     #card span img {

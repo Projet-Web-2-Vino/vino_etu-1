@@ -7,7 +7,7 @@ use App\Models\Bouteille;
 use App\Models\BouteillePersonalize;
 use App\Models\Cellier;
 use App\Models\CelliersBouteilles;
-use App\ReviewRating;
+
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
@@ -267,25 +267,25 @@ class BouteilleController extends Controller
      * Fonction pour le rating des bouteilles
      */
 
-     public function rating(Request $request)
-     {
-         $review = new ReviewRating();
-         $review->note = $request->input('note');
+    //  public function rating(Request $request)
+    //  {
+    //      $review = new ReviewRating();
+    //      $review->note = $request->input('note');
 
-         // Validate the data
-         $validatedData = $request->validate([
-             'note' => 'required|integer|between:1,5'
-         ]);
+    //      // Validate the data
+    //      $validatedData = $request->validate([
+    //          'note' => 'required|integer|between:1,5'
+    //      ]);
 
-         // Attempt to save the rating to the database
-         try {
-             $review->save();
-             return response()->json(['message' => 'Rating saved successfully'], 201);
-         } catch (\Exception $e) {
-             // Handle the exception and return an error response
-             return response()->json(['message' => 'Error saving the rating'], 500);
-         }
-     }
+    //      // Attempt to save the rating to the database
+    //      try {
+    //          $review->save();
+    //          return response()->json(['message' => 'Rating saved successfully'], 201);
+    //      } catch (\Exception $e) {
+    //          // Handle the exception and return an error response
+    //          return response()->json(['message' => 'Error saving the rating'], 500);
+    //      }
+    //  }
 
 
 
