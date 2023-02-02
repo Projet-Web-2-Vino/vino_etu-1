@@ -11,18 +11,29 @@
             {{-- Section Carte Cellier --}}
             @if ($celliers)
                 @foreach ($celliers as $info)
-
-
                 {{-- NOUVELLE SECTION CARTE CELLIER --}}
 
+                <div>
+                    <div class="pl-4 mt-4">
+                        <i class="w-fit  rounded-full bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-3 text-white fa-sharp fa-solid fa-arrow-left"></i>
+                      </div>
+                </div>
+                <section class="mx-auto mt-[50px]  aut xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  justify-items-center min-w-fit">
 
-                <section class="mx-auto mt-[50px] aut xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-5 justify-items-center   min-w-fit pb-20">
-                    <article class="hover:scale-105 transition-all relative h-[300px] w-[350px]  overflow-auto rounded-xl bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5">
-                      <h1 class="mt-9 text-6xl font-bold leading-10 text-white">
-                        L'atelier à <br />
+                    {{-- Section header --}}
+                    <article class=" hover:scale-105 transition-all relative h-[350px] w-[350px]  overflow-auto rounded-xl bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5 pt-10">
+                      <h1 class=" mt-8 text-6xl font-bold leading-10 text-white p-2">
+                        L'atelier <br /> à <br />
                         vin
                       </h1>
+                        <p class="mt-5 text-sm font-normal text-white">Veuillez cree votre espace cellier personaliser</p>
                     </article>
+
+                    {{-- Section créé cellier --}}
+                    <button type="button" class="text-white bg-slate-800 hover:bg-slate-800/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-full text-sm px-20 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                        Créé votre cellier !
+                        <img class="ml-5 h-8 w-7"  src="https://static.vecteezy.com/system/resources/previews/009/399/560/original/wine-barrel-clipart-design-illustration-free-png.png" alt="">
+                      </button>
 
                     <article class="hover:scale-105 hover:border-orange-500  transition-all relative  flex items-center  h-[300px] w-[350px] rounded-xl border border bg-gradient-to-t from-white p-5 drop-shadow-2xl">
                         <i class="space-x-6 fa-solid fa-pen text-white"></i>
