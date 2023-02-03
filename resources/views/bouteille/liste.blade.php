@@ -12,7 +12,7 @@
         </div>
 
         <h1 class="titleBouteille text-5xl  font-extrabold">Vos bouteilles</h1>
-        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 text-center">Bienvenue dans votre espace cellier : {{$cellier->nom_cellier}}.</p>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 text-center">Votre espace cellier : {{$cellier->nom_cellier}}.</p>
         
     </div>
 
@@ -113,12 +113,12 @@
  </button>
  @endif --}}
 
-
+ @if($info->url_saq)
  <div class="flex justify-center">
     <span class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 px-3  text-2xl mx-3">
         <a href="{{$info->url_saq}}"><img class="w-9 h-12"   src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/84/SAQ_Logo.svg/1200px-SAQ_Logo.svg.png" alt=""></a>
     </span>
-
+@endif
     {{-- Section pour Modifier --}}
     <span class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-200 px-5  hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200 text-2xl mx-3">
         <button>
@@ -171,17 +171,33 @@
 
 
 
-             <!-- Modal -->
-     <div class="modal" id="modal-{{$info->vino__bouteille_id}}">
-        <div class="modal-bg modal-exit"></div>
-        <div class="modal-container">
-          <button data-action="no-supprimer" class="modal-close modal-exit">X</button>
-          <h1>Êtes-vous certain de vouloir supprimer</h1>
-          <h2>{{$info->nom}}</h2>
-          <button data-action="supprimer" class="modal-exit">Oui</button>
-          <button data-action="no-supprimer" class="modal-exit">Non</button>
-        </div>
-      </div>
+   <!-- Modal -->
+   <div class="modal" id="modal-{{$info->vino__bouteille_id}}">
+    <div class="modal-bg modal-exit"></div>
+    <div class="modal-container">
+        <button data-action="no-supprimer" class="modal-close modal-exit"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+        <div><i class="block text-amber-600 mx-auto fa-solid fa-triangle-exclamation text-5xl"></i></div>
+        <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
+        <h2 class="font-semibold uppercase text-2xl text-amber-800">{{$info->nom}}</h2>
+
+         <p class="mb-3">
+        @if ($info->quantite != 0)
+            @if ($info->quantite == 1)
+                {{ $info->quantite }} bouteille sera supprimée
+            @else
+             {{ $info->quantite }} bouteilles seront  supprimées
+        @endif
+        
+        @endif
+    </p>
+    <div class="flex justify-end space-x-1">
+        <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="supprimer" class="modal-exit">Supprimer</button>
+        <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="no-supprimer" class="modal-exit">Non</button>
+        
+        
+    </div>
+    </div>
+</div> <!-- Modal Fin -->
 
       </div>
     </div>

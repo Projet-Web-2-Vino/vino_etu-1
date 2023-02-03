@@ -8,7 +8,7 @@
 @endif
 
 
-<div class="relative p-4 bg-white">
+<div class="relative p-4 bg-white mb-20">
 	<div class="max-w-full mx-auto">
 		<div class="mb-5 flex items-center space-x-3">
 				<div class="w-12 mr-1">
