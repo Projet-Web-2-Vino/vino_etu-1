@@ -44,7 +44,7 @@ class CellierController extends Controller
     {
 
         if(Auth::check()){ 
-            $titre = "cellier" ;
+            $titre = "formCellier" ;
                 Auth::check();
             $id_usager = Auth::id();
             
