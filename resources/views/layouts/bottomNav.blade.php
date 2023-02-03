@@ -23,6 +23,7 @@
 					@endisset
 			@endif
 
+			
 			 
 			@if($titre == 'formBouteille')
 				@isset($id_cellier)
@@ -32,6 +33,8 @@
 					</a>
 					@endisset
 			@endif
+
+			
 
 
 			<a href="/logout" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">

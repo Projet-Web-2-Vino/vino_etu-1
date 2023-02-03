@@ -18,8 +18,33 @@
     {{-- Section pour carte des vins --}}
     <div class="flex flex-wrap 	justify-evenly mb-20">
         @foreach ($bouteilles as $info)
-            <div class="w-fit py-3 mt-3 m-2  flex items-center bg-white shadow-md hover:shadow-xl rounded-lg">
 
+
+         
+
+            <div class="w-fit py-3 mt-3 m-2  bg-white rounded-lg">
+
+                <!-- zone edition bouteille-->
+         <div class="flex p-2 space-x-2 justify-end bg-gray-100 bg-white">
+            {{-- Section pour Modifier seulement si artisanal--}}
+            @if (!$info->url_saq)
+            <span class="inline-block text-xl text-gray-700">
+                    <button>
+                         <a class="btnModifier" href="{{ route('bouteille.edit', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id]) }}">
+                        <i class="fa-solid fa-pen-to-square"></i></a></span>
+                    </button>
+                </span>
+            @endif
+        {{-- Section pour Supprimer --}}
+            <span class="inline-block text-xl text-gray-700">
+                <form action="{{ route('bouteille.supprime', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id]) }}" method="POST">
+                    @csrf
+                    <button data-modal="modal-{{ $info->vino__bouteille_id }}" class="delete">
+                        <i class="fa-sharp fa-solid fa-trash  space-y-2"></i></button>
+                </form>
+            </span>
+        </div>
+        <div class="flex py-3 mt-3 m-2   items-center ">
                 <!-- image selon le type, venant du scraping ne marchait pas -->
                 @switch($info->type)
                     @case(1)
@@ -71,40 +96,30 @@
                     </div>
 
                     <form method="POST">
-
-
                         {{-- Section ajouter au boire.  --}}
-
                         @csrf
                         <div class="options py-2 px-3  text-sm font-medium " data-id="{{ $info->vino__cellier_id }}"
                             data-id-vin="{{ $info->vino__bouteille_id }}">
                             <p>Quantité :</p>
-
                             <div class="flex py-3">
-                                <button data-action="plus"
-                                    class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i
-                                        class="fa-solid fa-plus"></i></button>
+                                <button data-action="plus" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'>
+                                    <i class="fa-solid fa-plus"></i></button>
                                 <p class="p-2 quantite">{{ $info->quantite }}</p>
-                                <button data-action="moins"
-                                    class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'><i
-                                        class="fa-solid fa-minus"></i></button>
+                                <button data-action="moins" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'>
+                                    <i class="fa-solid fa-minus"></i></button>
                             </div>
-
                         </div>
-
-
                     </form>
 
                     @if ($info->millesime)
                         <div class="options py-1 flex px-3 space-x-2  text-sm font-medium justify-start">
                             <p>Millesime :</p>
-                            <span
-                                class="inline-block bg-gray-200 rounded-lg px-3 py-1  ml-3 text-sm font-semibold text-gray-700 mr-2">{{ $info->millesime }}</span>
+                            <span class="inline-block bg-gray-200 rounded-lg px-3 py-1  ml-3 text-sm font-semibold text-gray-700 mr-2">{{ $info->millesime }}</span>
 
                         </div>
                     @endif
 
-
+                {{-- Lien SAQ si existe--}}
                     <div class="flex mt-6 mr-4 space-x-2 text-sm font-medium justify-start">
                         @if ($info->url_saq)
                             <div class="flex justify-center">
@@ -113,63 +128,50 @@
                                         <img class="w-9 h-12"src="https://upload.wikimedia.org/wikipedia/fr/thumb/8/84/SAQ_Logo.svg/1200px-SAQ_Logo.svg.png" alt="">
                                         </a>
                                 </span>
+                            </div>
                         @endif
-                                {{-- Section pour Modifier --}}
-                                <span class="transition ease-in duration-300 inline-flex items-center text-sm font-medium mb-2 md:mb-0 bg-gray-200 px-5  hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200 text-2xl mx-3">
-                                    <button>
-                                        <span> <a class="btnModifier" href="{{ route('bouteille.edit', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id]) }}">
-                                            <i class="fa-solid fa-pen-to-square"></i></a></span>
-                                    </button>
-                                </span>
-
-                                {{-- Section pour Supprimer --}}
-
-                                <span class="transition ease-in duration-300 flex justify-center items-center select-none text-sm font-medium mb-2 md:mb-0 bg-gray-200 px-3 py-2 hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200 text-2xl mx-3">
-                                    <form action="{{ route('bouteille.supprime', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id]) }}" method="POST">
-                                        @csrf
-                                        <button data-modal="modal-{{ $info->vino__bouteille_id }}" class="delete">
-                                            <i class="fa-sharp fa-solid fa-trash  space-y-2"></i></button>
-                                    </form>
-                                </span>
+                        
+                                
+                            </div>
                         </div>
                 </div>
-            </div>
-       
-                    <!-- Modal -->
-                    <div class="modal" id="modal-{{ $info->vino__bouteille_id }}">
-                        <div class="modal-bg modal-exit"></div>
-                        <div class="modal-container">
-                            <button data-action="no-supprimer" class="modal-close modal-exit"><i class="fa fa-window-close"
-                                    aria-hidden="true"></i></button>
-                            <div><i class="block text-amber-600 mx-auto fa-solid fa-triangle-exclamation text-5xl"></i>
-                            </div>
-                            <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
-                            <h2 class="font-semibold uppercase text-2xl text-amber-800">{{ $info->nom }}</h2>
-
-                            <p class="mb-3">
-                                @if ($info->quantite != 0)
-                                    @if ($info->quantite == 1)
-                                        {{ $info->quantite }} bouteille sera supprimée
-                                    @else
-                                        {{ $info->quantite }} bouteilles seront supprimées
-                                    @endif
-                                @endif
-                            </p>
-                            <div class="flex justify-end space-x-1">
-                                <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit"
-                                    data-action="supprimer" class="modal-exit">Supprimer</button>
-                                <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit"
-                                    data-action="no-supprimer" class="modal-exit">Non</button>
-
-
-                            </div>
+            </div>    
+                 <!-- Modal -->
+                 <div class="modal" id="modal-{{ $info->vino__bouteille_id }}">
+                    <div class="modal-bg modal-exit"></div>
+                    <div class="modal-container">
+                        <button data-action="no-supprimer" class="modal-close modal-exit"><i class="fa fa-window-close"
+                                aria-hidden="true"></i></button>
+                        <div><i class="block text-amber-600 mx-auto fa-solid fa-triangle-exclamation text-5xl"></i>
                         </div>
-                    </div> <!-- Modal Fin -->
+                        <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
+                        <h2 class="font-semibold uppercase text-2xl text-amber-800">{{ $info->nom }}</h2>
 
-                
-            
+                        <p class="mb-3">
+                            @if ($info->quantite != 0)
+                                @if ($info->quantite == 1)
+                                    {{ $info->quantite }} bouteille sera supprimée
+                                @else
+                                    {{ $info->quantite }} bouteilles seront supprimées
+                                @endif
+                            @endif
+                        </p>
+                        <div class="flex justify-end space-x-1">
+                            <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit"
+                                data-action="supprimer" class="modal-exit">Supprimer</button>
+                            <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit"
+                                data-action="no-supprimer" class="modal-exit">Non</button>
+
+
+                        </div>
+                    </div>
+                </div> <!-- Modal Fin -->
+
+
+
     @endforeach
 </div>
+
 
 
 
@@ -178,8 +180,7 @@
 @endsection
 
 
-{{-- Section pour le navbar du bas --}}
-@include('layouts.bottomNav')
+
 
 
 

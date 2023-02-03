@@ -77,7 +77,7 @@
 										<input type="radio" name="type" id="blanc" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
 										<label for="blanc" class=" radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Blanc</label>
 
-										<input type="radio" name="type" id="rose" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+										<input type="radio" name="type" id="rose" value="3" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
 										<label for="rose" class="radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Rosé</label>
 										
 									</div>
