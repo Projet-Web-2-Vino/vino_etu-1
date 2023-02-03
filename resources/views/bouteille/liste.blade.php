@@ -11,7 +11,7 @@
             <img class="w-full pb-5"  src="https://www.toutlevin.com/img/5146bd0d459d2576d8a6fbb89238ceea-1920.jpg" />
         </div>
 
-        <h1 class="titleBouteille text-5xl  font-extrabold">L'atelier à vin</h1>
+        <h1 class="titleBouteille text-5xl  font-extrabold">Vos bouteilles</h1>
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400 text-center">Bienvenue dans votre espace cellier : {{$cellier->nom_cellier}}.</p>
         
     </div>

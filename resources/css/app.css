@@ -295,7 +295,7 @@ form[name="recherche"] {
 
 
 /*pour enlver zoom form */
-form *{
+form *:not(label){
   font-size:16px!important
 }
 
@@ -307,6 +307,13 @@ form *{
   border-color: transparent;
   color:#666;
   pointer-events: none;
+ }
+
+
+ /*ajout bouteille label form*/
+ #formAjoutBouteille label:not(.radiolabel){
+  font-size:14px;
+  color:rgb(127, 29, 29);
  }
 
 

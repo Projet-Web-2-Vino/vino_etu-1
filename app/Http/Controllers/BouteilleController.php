@@ -35,7 +35,7 @@ class BouteilleController extends Controller
             //dd($bouteilles);
 
         $cellier = Cellier::find($id);
-        $titre = 'Liste bouteilles' ;
+        $titre = 'bouteille' ; 
 
         return view('bouteille.liste', [
             'bouteilles' => $bouteilles,
@@ -54,7 +54,7 @@ class BouteilleController extends Controller
     }
 
     /*
-     Retourne la vue pour catalogue
+     Retourne pour ajouter une bouteille au cellier
     */
     public function nouveau(Request $request, $id)
     {
@@ -67,7 +67,7 @@ class BouteilleController extends Controller
 
             //cellier impliquer
             $cellier = Cellier::find($id);
-            $titre = 'Ajout bouteille' ;
+            $titre = 'bouteille' ;
             
             //vue des bouteille du catalogue
             return view('bouteille.nouveau', [
@@ -111,6 +111,8 @@ class BouteilleController extends Controller
 
             CelliersBouteilles::create($request2);
 
+            $titre = 'form';
+
             $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
@@ -119,7 +121,7 @@ class BouteilleController extends Controller
         
             //Redirect vers la liste des bouteille du cellier avec un message de succès
             return redirect()
-            ->route('bouteille.liste', [ 'id' => $id_cellier] )
+            ->route('bouteille.liste', [ 'id' => $id_cellier, 'titre' => $titre] )
             ->withSuccess('Vous avez ajouter la bouteille '.$bouteille->nom.'!');
         }else{
 
@@ -273,7 +275,8 @@ class BouteilleController extends Controller
     {
         Request::validate([
             'nom' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'quantite' => 'required',
         ]);
     }
 
