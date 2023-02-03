@@ -4,7 +4,6 @@
 
  <!-- Scripts Modal et Ajout Quantiter Bouteille-->
  @vite(['resources/js/listeBouteille.js'])
- @vite(['resources/css/cardFiltre.css'])
 
 
 
@@ -12,9 +11,16 @@
     @if (session()->has('success'))
     <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
     @endif
-    <div class="px-3">
-       <a href="/cellier"><i class=" py-4 fa-solid fa-circle-left  text-xs text-black sm:text-3xl md:text-6xl"></i></a>
+
+    {{-- Section bouton retour --}}
+    <div class="p-3">
+       <a href="/cellier">
+        <button class="w-12 h-12 rounded-full
+        bg-gradient-to-r from-red-900 via-red-800 to-red-600  text-white">
+            <i class=" fa-2xl fa-solid fa-angle-left  text-xs text-white sm:text-3xl md:text-6xl fa-fade justify-center"></i></a>
+        </button>
     </div>
+
     {{-- Section Boutton pour Importer et Cellier --}}
     <div class="  grid place-items-center  ">
         {{-- Section header --}}
@@ -26,9 +32,20 @@
               <p class="px-3 mt-5 text-sm font-normal text-white">Bienvenue dans votre cave à vin : {{$cellier->nom_cellier}}</p>
           </article>
 
-          {{-- Section Filtre Snap Scroll--}}
-            <div class="flex justify-center pt-4 space-x-2">
-                <div class="card w-[100px]  h-[100px]  bg-white  shadow   mx-auto hover:shadow-xl rounded-full">
+
+
+        <ul class="py-6 flex flex-wrap align-items-center justify-center mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+            {{-- Section Ajouter Bouteille--}}
+            <li class="mr-2">
+                <a href='{{ route('bouteille.nouveau', ['id' => $cellier->id]) }}'>
+                    <button type="button" class="text-white mt-4/8 bg-slate-800 hover:bg-slate-800/80 focus:ring-4  font-medium rounded-full text-sm px-20 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                        Ajouter une bouteille
+                    </button>
+                </a>
+            </li>
+               {{-- Section Filtre Snap Scroll--}}
+               <div class="flex justify-center pt-4 space-x-2">
+                <div class="card w-[100px]  h-[100px]  bg-white  shadow   mx-auto hover:shadow-xl rounded-lg">
                     <img src="https://images.squarespace-cdn.com/content/v1/5c23c149fcf7fd189fa57e45/1607028981777-ZP4QA0LB3CSPZ52VAV4H/montage+note+book_2012fond+blanc+carre%CC%81.jpg" alt="">
                 </div>
                 <div class="card w-[100px]  h-[100px]  bg-white  shadow   mx-auto hover:shadow-xl rounded-lg ">
@@ -39,23 +56,6 @@
                 </div>
             </div>
 
-        <ul class="py-6 flex flex-wrap align-items-center justify-center mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-            <li class="mr-2">
-                {{-- Section Espace Cellier--}}
-                <a href="/cellier">
-                    <button type="button" class="text-white  mt-4/8 bg-slate-800 hover:bg-slate-800/80 focus:ring-4  font-medium rounded-full text-sm px-20 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
-                        Retour à votre espace cellier
-                    </button>
-                </a>
-            </li>
-            {{-- Section Ajouter Bouteille--}}
-            <li class="mr-2">
-                <a href='{{ route('bouteille.nouveau', ['id' => $cellier->id]) }}'>
-                    <button type="button" class="text-white mt-4/8 bg-slate-800 hover:bg-slate-800/80 focus:ring-4  font-medium rounded-full text-sm px-20 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
-                        Ajouter une bouteille
-                    </button>
-                </a>
-            </li>
         </ul>
     </div>
     {{-- Section Carte Bouteil  --}}
@@ -69,19 +69,19 @@
         }
       </style>
     @foreach ($bouteilles as  $info)
-      <div class="w-80 bg-white shadow  border border-transparent mx-auto hover:shadow-xl rounded-lg pt-10">
+      <div class="w-80 bg-white shadow  border border-transparent mx-auto hover:shadow-xl rounded-lg pt-10 pb-20">
         <div class="h-48 w-full checker-bg flex flex-col justify-between p-4">
 
         {{-- SECTION POUR ACTION --}}
-          <div class="w-8 h-9 bg-white rounded flex items-center justify-center  space-x-1">
+          <div class="pl-5 w-8 h-9 bg-white rounded flex items-center justify-center  space-x-1">
             {{-- Section pour modifier --}}
             <button>
-                <span class="  p-2 hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200"> <a class="btnModifier" href="{{ route('bouteille.edit', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id  ]) }}"><i class="fa-solid fa-pen-to-square"></i></a></span>
+                <span class="  p-2  text-gray-700 rounded-md "> <a class="btnModifier" href="{{ route('bouteille.edit', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id  ]) }}"><i class="fa-solid fa-pen-to-square"></i></a></span>
             </button>
             {{-- Section pour supprimer --}}
             <form action="{{ route('bouteille.supprime', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id ]) }}" method="POST">
                 @csrf
-              <span class="  p-2 hover:shadow-lg tracking-wider text-gray-700 rounded-md hover:bg-gray-700 hover:text-gray-200"><button data-modal="modal-{{$info->vino__bouteille_id}}" class="delete"><i class="fa-sharp fa-solid fa-trash  space-y-2"></i></button></span>
+              <span class="  p-2  text-gray-700 rounded-md"><button data-modal="modal-{{$info->vino__bouteille_id}}" class="delete"><i class="fa-sharp fa-solid fa-trash  space-y-2"></i></button></span>
             </form>
           </div>
 
@@ -194,6 +194,9 @@
 
   {{-- Section pour le navbar du bas --}}
   @include('layouts.bottomNav')
+
+
+
 
   @endsection
 
