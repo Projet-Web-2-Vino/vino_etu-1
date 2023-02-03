@@ -165,7 +165,7 @@
     </div>
   </div>
 
-
+  @vite(['resources/js/listeBouteille.js'])
 
   @endforeach
 
@@ -173,37 +173,12 @@
   @include('layouts.bottomNav')
 
 
-  <section class="mx-auto mt-[50px] aut xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-5 justify-items-center   min-w-fit pb-20">
-    <article class="hover:scale-105 transition-all relative h-[300px] w-[350px]  overflow-auto rounded-xl bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5">
-      <h1 class="mt-9 text-6xl font-bold leading-10 text-white">
-        L'atelier à <br />
-        vin
-      </h1>
-    </article>
-
-    <article class="hover:scale-105 hover:border-orange-500  transition-all relative  flex items-center  h-[300px] w-[350px] rounded-xl border border bg-gradient-to-t from-white p-5 drop-shadow-2xl">
-        <i class="space-x-6 fa-solid fa-pen text-white"></i>
-      <div class="flex  absolute -top-6 w-fit items-center justify-center rounded-full bg-gradient-to-t bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-3">
-        <i class="fa-solid fa-pen text-white"></i>
-      </div>
 
 
-      <div class="flex flex-col justify-start gap-5">
-        <h1 class="text-3xl font-bold leading-10 text-black/75">Cellier</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto dignissimos quis tempora autem vel a!</p>
-        <button class="w-fit py-2 text-xl font-bold text-red-600">Get Started</button>
-      </div>
-    </article>
-  </section>
+ <!-- Scripts -->
+ @vite(['resources/js/cardVin.js'])
 
   @endsection
-
-
-
-
-
-
-
 <!--
     /**
     * Script qui gere l'ajout et la suppression d'une bouteille dans la carte
@@ -212,133 +187,6 @@
 -->
 <script>
 
-        window.addEventListener("load",function(){
-
-
-        //Détecter si url =  vue liste bouteille
-        if (window.location.href.indexOf("bouteille") > -1) {
-            //console.log('oui')
-
-
-            //Gestionnaire d'evenement du bouton delete
-
-            const modals = document.querySelectorAll("[data-modal]");
-
-            modals.forEach(function (trigger) {
-            trigger.addEventListener("click", function (event) {
-                event.preventDefault();
-                let form = event.target.parentElement.parentElement
-                console.log(trigger.dataset.modal)
-                const modal = document.getElementById(trigger.dataset.modal);
-                console.log(modal);
-                modal.classList.add("open");
-                const exits = modal.querySelectorAll(".modal-exit");
-                exits.forEach(function (exit) {
-                exit.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    console.log(form)
-                    console.log(event.target.dataset.action)
-                    if(event.target.dataset.action == "supprimer"){
-                        console.log(form)
-                        form.submit();
-                    }
-                    modal.classList.remove("open");
-                });
-                });
-            });
-            });
-
-
-
-            // ajouter un gestionnaire d'évènement au bouton ajouter/enlever
-            let elBoutonAjout = this.document.querySelectorAll('.btnModif')
-
-            elBoutonAjout.forEach(element => {
-
-                //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
-                element.addEventListener('click', function (evt) {
-                    evt.preventDefault();
-                    let idCellier = evt.target.parentElement.parentElement.dataset.id
-                // console.log(evt.target.parentElement.parentElement.dataset.id)
-                // console.log(idCellier);
-
-                    let idVin = evt.target.parentElement.parentElement.dataset.idVin;
-                // console.log(idVin);
-
-                    let elemBouteille = evt.target.parentElement.parentElement;
-                    // console.log(elemBouteille);
-
-                    let valueQuantite = elemBouteille.querySelector('.quantite').innerText;
-                    let elemQuantite = elemBouteille.querySelector('.quantite')
-                // console.log(valueQuantite);
-
-
-                let action = evt.target.parentElement.dataset.action
-                //console.log(action)
-                let newQuantite = valueQuantite
-                    if(action == 'plus'){
-                        newQuantite = parseInt(valueQuantite) + 1
-                    }else{
-                    console.log(valueQuantite)
-
-                        if(valueQuantite != 0 ){
-                        newQuantite = parseInt(valueQuantite) - 1
-                        }else{
-                            newQuantite = 0;
-
-                        }
-                    }
-
-                // console.log(newQuantite);
-
-                //recherche Url
-                const url = window.location.href
-                    console.log(url);
-
-                    const options = {
-                            headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json",
-                            "X-Requested-With": "XMLHttpRequest",
-                            "X-CSRF-Token": document.querySelector('input[name="_token"]').value
-                            },
-                            method: "post",
-                            credentials: "same-origin",
-                            body: JSON.stringify({
-                            idCellier :  idCellier,
-                            idVin :  idVin,
-                            quantite: newQuantite
-                            })
-                        }
-
-
-                    /* fetch(url, options)
-                        .then((data) => {
-
-                            /*Injecter la quantite dans le HTML*/
-                            //console.log(typeof newQuantite)
-                        // console.log(valueQuantite);
-                        elemQuantite.innerText = newQuantite.toString();
-
-                    /*  })
-
-                        .catch(function(error){
-                            console.log(error);
-                        })*/
-
-
-
-
-
-
-
-
-                });
-            })
-
-        }
-
-        });
 
 </script>
 

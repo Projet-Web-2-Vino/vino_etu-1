@@ -280,3 +280,72 @@ form[name="recherche"] {
   font-weight: bold;
   cursor: pointer;
 }
+
+
+/* SECTION CARD POUR BOUTEILLE DE VIN */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
+
+
+
+
+
+.container {
+
+  width: 100%;
+  background-color: #12192c;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+li a {
+  color: #fff;
+}
+
+li a:hover {
+  padding-bottom: 4px;
+  border-bottom: 3px solid #85FFBD;
+}
+
+.wrapper_tab-content {
+  position: relative;
+}
+
+.tab-content {
+  position: absolute;
+  padding: 1.75em 0;
+  visibility: hidden;
+  height: 0;
+  color:#fff
+}
+
+.tab-content h1 {
+  font-size: 1.12em;
+  margin-bottom: .5em;
+}
+
+.content-visible {
+  position: static;
+  visibility: visible;
+  height: auto;
+}
+
+.active {
+  color: #85FFBD;
+  padding-bottom: 4px;
+  border-bottom: 3px solid #85FFBD;
+}
+
+.credit a{
+  text-decoration: none;
+  color: #85FFBD;
+  font-weight: 800;
+  }
+
+  .credit {
+      text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px;
+    color:#FFF
+  }
