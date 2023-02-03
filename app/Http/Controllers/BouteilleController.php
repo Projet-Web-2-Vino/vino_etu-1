@@ -35,7 +35,7 @@ class BouteilleController extends Controller
             //dd($bouteilles);
 
         $cellier = Cellier::find($id);
-        $titre = 'bouteille' ;
+        $titre = 'Liste bouteilles' ;
 
         return view('bouteille.liste', [
             'bouteilles' => $bouteilles,
@@ -67,7 +67,7 @@ class BouteilleController extends Controller
 
             //cellier impliquer
             $cellier = Cellier::find($id);
-            $titre = 'bouteille' ;
+            $titre = 'Ajout bouteille' ;
             
             //vue des bouteille du catalogue
             return view('bouteille.nouveau', [
@@ -90,7 +90,7 @@ class BouteilleController extends Controller
             $id_usager = Auth::id();
             
             //TODO validate data
-            //$this->validateBouteille($request);
+            $this->validateBouteille($request);
 
             $quantite = Request::get('quantite');
             $id_cellier = Request::get('id_cellier');
@@ -145,7 +145,7 @@ class BouteilleController extends Controller
     
 
             $cellier = Cellier::find($idCellier);
-            $titre = 'bouteille' ;
+            $titre = 'Edition bouteille' ;
             //dd($bouteille);
 
             return view('bouteille.edit', [
