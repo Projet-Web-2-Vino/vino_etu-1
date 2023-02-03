@@ -86,8 +86,9 @@
                 </div>
             </div>
   
+{{-- Section pour le navbar du bas --}}
+@include('layouts.bottomNav')
+
 
 @endsection
 
-   {{-- Section pour le navbar du bas --}}
-   @include('layouts.bottomNav')

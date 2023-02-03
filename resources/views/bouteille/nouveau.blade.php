@@ -102,14 +102,14 @@
 
 
 								<?php $years = range(2000, strftime("%Y", time())); ?>
-								<label class="formlabel leading-loose" for="millesime">Millesime :</label>
-								<select id="millesime" name="millesime" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+								<label class="formlabel leading-loose" for="millesime2">Millesime :</label>
+								<select id="millesime2" name="millesime2" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 									<option value="">Année </option>
 									<?php foreach($years as $year) : ?>
 									  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
 									<?php endforeach; ?>
 								  </select>
-								 
+								  <input name="millesime" type="hidden" value=""> 
 								
 		  						
 								
@@ -145,10 +145,11 @@
 		
 	</div>
 </div>
-@endsection
-
 {{-- Section pour le navbar du bas --}}
 @include('layouts.bottomNav')
+@endsection
+
+
 
 
 <!-- SCRIPT-->
@@ -307,9 +308,10 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 		let annee = form.nom.value.match(/(\d{4}-\d{4}|\d{4})/g)
 		if(annee){
 			annee = annee[0];
+			form.millesime2.value = annee
 			form.millesime.value = annee
 			console.log(millesime)
-			form.millesime.disabled = true
+			form.millesime2.disabled = true
 		}
 		
 		//console.log(annee);

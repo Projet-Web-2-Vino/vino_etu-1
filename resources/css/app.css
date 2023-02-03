@@ -316,4 +316,7 @@ form *:not(label){
   color:rgb(127, 29, 29);
  }
 
-
+/*nav bottom */
+#bottom-navigation{
+  z-index:1000;
+}

@@ -21,8 +21,19 @@
 						<span class="tab tab-explore block text-xs">Ajouter</span>
 					</a>
 					@endisset
-			
 			@endif
+
+			 
+			@if($titre == 'formBouteille')
+				@isset($id_cellier)
+					<a href={{ route('bouteille.liste', ['id' => $id_cellier])}} class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+						<i class="fa-solid fa-wine-bottle"></i>
+						<span class="tab tab-explore block text-xs">Liste</span>
+					</a>
+					@endisset
+			@endif
+
+
 			<a href="/logout" class="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
                 <i class="fa-solid fa-right-from-bracket"></i>
 				<span class="tab tab-whishlist block text-xs">Déconnexion</span>

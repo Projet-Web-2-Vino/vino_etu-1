@@ -94,12 +94,13 @@
 
 </form>
 
-    <div class="options py-1 flex px-3 space-x-2  text-sm font-medium justify-start"">
+@if($info->millesime)
+    <div class="options py-1 flex px-3 space-x-2  text-sm font-medium justify-start">
         <p>Millesime :</p>
         <span class="inline-block bg-gray-200 rounded-lg px-3 py-1  ml-3 text-sm font-semibold text-gray-700 mr-2">{{$info->millesime}}</span>
 
     </div>
-
+@endif
 
 
 <div class="flex mt-6 mr-4 space-x-2 text-sm font-medium justify-start">
@@ -135,6 +136,40 @@
     </span>
 
   </div>
+
+
+  <!-- Modal -->
+  <div class="modal" id="modal-{{$info->vino__bouteille_id}}">
+    <div class="modal-bg modal-exit"></div>
+    <div class="modal-container">
+        <button data-action="no-supprimer" class="modal-close modal-exit"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+        <div><i class="block text-amber-600 mx-auto fa-solid fa-triangle-exclamation text-5xl"></i></div>
+        <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
+        <h2 class="font-semibold uppercase text-2xl text-amber-800">{{$info->nom}}</h2>
+
+         <p class="mb-3">
+        @if ($info->quantite != 0)
+            @if ($info->quantite == 1)
+                {{ $info->quantite }} bouteille sera supprimée
+            @else
+             {{ $info->quantite }} bouteilles seront  supprimées
+        @endif
+        
+        @endif
+    </p>
+    <div class="flex justify-end space-x-1">
+        <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="supprimer" class="modal-exit">Supprimer</button>
+        <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="no-supprimer" class="modal-exit">Non</button>
+        
+        
+    </div>
+    </div>
+</div>
+
+
+
+
+
 
              <!-- Modal -->
      <div class="modal" id="modal-{{$info->vino__bouteille_id}}">
