@@ -8,42 +8,31 @@
 @endif
 
 
-
-
-
- <div class="relative gap-5 items-center w-full  rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-	<!-- Début form ajout -->
-	<div id="nouvelleBouteille" class=" p-5 bg-gray-100  flex flex-col justify-center ">
-		<div class="max-w-md mx-auto">
-			<div class="flex items-center space-x-5">
-				<div class="h-12 w-12 rounded-full justify-center items-center text-yellow-500 text-2xl font-mono">
+<div class="relative p-4 bg-white mb-20">
+	<div class="max-w-full mx-auto">
+		<div class="mb-5 flex items-center space-x-3">
+				<div class="w-12 mr-1">
 					<img src="https://static.thenounproject.com/png/5003274-200.png" alt="">
 				</div>
-				<div class="block pl-2 font-semibold text-xl self-start text-gray-700">
-				<h2 class="leading-relaxed">Ajout d'une bouteille</h2>
-				<span class="text-sm">Cellier</span><span class="text-red-900 text-sm"> {{$cellier->nom_cellier}}</span>
-				</div>
+				<h2 class="text-xl">Ajouter une bouteille au cellier {{$cellier->nom_cellier}} </h2>
 			</div>
-		</div>
-		<div class="divide-y divide-gray-200">
-			<div class="relative py-3">
-				<div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
-					<div class="max-w">
 
+		<hr class="my-2">	
+		<p class="bg-gray-700 text-white p-2 text-center">Vous pouvez rechercher une bouteille provenant du catalogue</p>
+		<hr class="my-2">
 		<!-- Zone recherche -->
 		<form name="recherche" id="rechercheForm"  method="POST">
 			@csrf
 
-			<label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
 			<div class="relative">
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 					<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
 				</div>
-				<input type="search" name="recherche" id="recherche" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche d'une bouteille par nom" required>
+				<input type="search" name="recherche" id="recherche" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche dans le catalogue par nom">
 			</div>
 		</form>
 
-
+	
 		<!-- Output catalogue -->
 		<table class="pl-10 text-md text-gray-900 border border-gray-300 rounded-lg bg-gray-50" id="listeAutoComplete">
 
@@ -52,6 +41,10 @@
 			</tbody>
 		</table>
 		<!-- Fin zone recherche -->
+
+		<hr class="my-2">	
+		<p class="bg-gray-700 text-white p-2 text-center">Vous pouvez aussi entrer vos propres bouteilles</p>
+		<hr class="my-2">
 
 
 		<form id="formAjoutBouteille" action="{{ route('bouteille.creer')}}" method="POST">
@@ -67,48 +60,61 @@
 							<div class="flex flex-col">
 
 								<!-- Obligatoire -->
-								<label class="leading-loose" for="nom"> * Nom  :</label>
-								<input id="nom" name="nom" type="text" value="" required class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-
-								<span class="leading-loose">* Type :</span>
-								<ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+								<label class="" for="nom">Nom  :</label>
+								<input id="nom" name="nom" type="text" placeholder="Nom *" value="" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+								@error('nom')
+								<span style="color:red"> {{ $message }}</span>
+								@enderror
+								
+								<label class="formlabel leading-loose" for="type">Type  :</label>
+								<ul class="my-3 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
 									<div class="flex items-center pl-3">
 										
-										<input type="radio" name="type" id="rouge" value="1" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-										<label for="rouge" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Rouge</label>
+										<input type="radio" name="type" id="rouge" value="1" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900">
+										<label for="rouge" class="radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Rouge</label>
 
-										<input type="radio" name="type" id="blanc" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-										<label for="blanc" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Blanc</label>
+										<input type="radio" name="type" id="blanc" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+										<label for="blanc" class=" radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Blanc</label>
 
-										<input type="radio" name="type" id="rose" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-										<label for="rose" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Rosé</label>
+										<input type="radio" name="type" id="rose" value="3" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+										<label for="rose" class="radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Rosé</label>
+										
 									</div>
 								</li>
 								</ul>
+								@error('type')
+								<span style="color:red"> {{ $message }}</span>
+								@enderror
 
-
-								<label class="leading-loose" for="quantite">* Quantité :</label>
-		  						<input id="quantite" name="quantite" type="number" value=""  required class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+								<label class="formlabel leading-loose" for="quantite">Quantité  :</label>
+								<input id="quantite" name="quantite" placeholder="Quantité" type="number" min="1" value="1"  class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+								
 								
 								 <!-- Pas obligatoire -->
-								<label class="leading-loose" for="pays">Pays :</label>
-								<input id="pays" name="pays" type="text" value="" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+								 <label class="formlabel leading-loose" for="pays">Pays/Provenance  :</label>
+								<input id="pays" name="pays" type="text" placeholder="Pays/Provenance" value="" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								
-								<label class="leading-loose" for="format">Format :</label>
-								<input id="format" name="format" type="text" value="" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+								<label class="formlabel leading-loose" for="format">Format :</label>
+								<input id="format" name="format" type="text" value="" placeholder="Format : 750ml, 1L" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								
-								<?php $years = range(1900, strftime("%Y", time())); ?>
-								<label class="leading-loose" for="millesime">Millesime :</label>
-								<select id="millesime" name="millesime" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-									<option value="">Année</option>
+
+
+
+								<?php $years = range(2000, strftime("%Y", time())); ?>
+								<label class="formlabel leading-loose" for="millesime2">Millesime :</label>
+								<select id="millesime2" name="millesime2" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+									<option value="">Année </option>
 									<?php foreach($years as $year) : ?>
 									  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
 									<?php endforeach; ?>
 								  </select>
+								  <input name="millesime" type="hidden" value=""> 
 								
-								<label class="leading-loose" for="description">Description</label>
-								<textarea id="description" name="description" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"></textarea>
+		  						
+								
+								 <label class="formlabel leading-loose" for="millesime">Description :</label>
+								<textarea placeholder="Description / Note" id="description" name="description" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600"></textarea>
 								
 								<!-- Caché non obligatoire -->
 								<input id="url_saq" name="url_saq" type="hidden" value="">
@@ -136,13 +142,15 @@
 								</form>
 							</div>
 						
-					</div>
-				</div>
-			</div>
-		</div>
+		
 	</div>
 </div>
+{{-- Section pour le navbar du bas --}}
+@include('layouts.bottomNav')
 @endsection
+
+
+
 
 <!-- SCRIPT-->
 <script>
@@ -165,11 +173,11 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 	{
        
 		//recherche Value
-		let elRecheche = document.getElementById('recherche').value;
+		let elRecherche = document.getElementById('recherche').value;
 
 		//Liste recherche
 		let liste = document.getElementById('listeAutoComplete');
-		console.log(liste)
+		//console.log(liste)
 
 		//recherche Url
         const url = "{{route('bouteille.recherche')}}";
@@ -185,7 +193,7 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 				method: "post",
 				credentials: "same-origin",
 				body: JSON.stringify({
-				recherche: elRecheche
+				recherche: elRecherche
 				})
 			}
 
@@ -217,9 +225,13 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 						
 						injectBouteilleInfo(bouteille)
 
-						//console.log(liste);
+						//vide la recherche
 						liste.innerHTML = "";
-						elRecheche = "";
+						document.getElementById('recherche').value = '';
+
+						//Rendre les inputs du form readonly
+						readOnly();
+
 
 						}
 					});
@@ -263,7 +275,7 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 				valueBte = value
 				switch (valueBte) {
 					case '1':
-					console.log(document.getElementById("rouge"))
+					//console.log(document.getElementById("rouge"))
 					document.getElementById("rouge").checked =true;
 					break;
 					case '2':
@@ -280,6 +292,38 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 			   //ajout d'une quantite par defaut
 			   form.quantite.value = 1;
 		}
+		
+	}
+
+	function readOnly()
+	{
+
+		var form = document.getElementById('formAjoutBouteille')
+		
+		form.nom.readOnly = true
+		form.pays.readOnly = true
+		form.format.readOnly = true
+
+		/*detection millesime*/
+		let annee = form.nom.value.match(/(\d{4}-\d{4}|\d{4})/g)
+		if(annee){
+			annee = annee[0];
+			form.millesime2.value = annee
+			form.millesime.value = annee
+			console.log(millesime)
+			form.millesime2.disabled = true
+		}
+		
+		//console.log(annee);
+		
+
+		
+		
+		/*disable les autres options... dans ce cas-ci provenant du catalogue=rouge*/
+		form.type.forEach(element => {
+			if(!element.checked) element.disabled = true
+		});
+		
 		
 	}
 

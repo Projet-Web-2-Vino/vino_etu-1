@@ -16,7 +16,6 @@ class AdminController extends Controller
       
         return view('admin.index', [
             'users' => $users
-           
         ]);
         return view('admin.index');
     }
@@ -29,8 +28,11 @@ class AdminController extends Controller
         //dd($id);
         $user = User::findOrFail($id);
         $user->delete();
-        
-        return "Vous avez supprimer le user {$user->name} !";
+
+        // Retourne au tableau admin
+        return redirect()
+            ->route('admin.index')
+            ->withSuccess("Vous avez supprimer le user {$user->name} !");
 
     }
 

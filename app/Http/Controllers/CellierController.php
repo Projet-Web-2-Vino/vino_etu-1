@@ -18,19 +18,22 @@ class CellierController extends Controller
      */
     public function index(Request $request)
     {
-       $titre = 'Mes celliers' ;
+       $titre = 'cellier' ;
        
-       Auth::check();
-       $id_usager = Auth::id();
+       if(Auth::check()){
+        $id_usager = Auth::id();
 
-       $celliers = Cellier::where('id_usager' , $id_usager)->withCount('bouteilles')->get();
+        $celliers = Cellier::where('id_usager' , $id_usager)->withCount('bouteilles')->get();
 
-      
-        return view('cellier.index', [
-            'celliers' => $celliers,   
-            'id_usager' => $id_usager,
-            'titre' => $titre
-        ]);
+        
+            return view('cellier.index', [
+                'celliers' => $celliers,   
+                'id_usager' => $id_usager,
+                'titre' => $titre
+            ]);
+        }else{
+            return redirect('/login');
+        }
     }
 
 
@@ -40,20 +43,24 @@ class CellierController extends Controller
     public function nouveau(Request $request)
     {
 
-       $titre = "Ajout d'un cellier" ;
-        Auth::check();
-       $id_usager = Auth::id();
-       
-        //Liste des cellier au besoins ... 
-        // TODO selon le id de l'usager pas encore implementer
-         $celliers = DB::table('vino__cellier')->where('id_usager', $id_usager)
-         ->get();
+        if(Auth::check()){ 
+            $titre = "formCellier" ;
+                Auth::check();
+            $id_usager = Auth::id();
+            
+                //Liste des cellier au besoins ... 
+                // TODO selon le id de l'usager pas encore implementer
+                $celliers = DB::table('vino__cellier')->where('id_usager', $id_usager)
+                ->get();
 
-        //vue creation ceillier 
-        return view('cellier.nouveau', [
-            'celliers' => $celliers,
-            'titre' => $titre
-        ]);
+                //vue creation ceillier 
+                return view('cellier.nouveau', [
+                    'celliers' => $celliers,
+                    'titre' => $titre
+                ]);
+        }else{
+            return redirect('/login');
+        }
     }
 
     /*
@@ -61,16 +68,20 @@ class CellierController extends Controller
     */
     public function creer(Request $request)
     {
-        $this->validateCellier($request);
+        if(Auth::check()){ 
+            $this->validateCellier($request);
 
-        // On assume que la requête
-        $cellier = Cellier::create($request->all());
+            // On assume que la requête
+            $cellier = Cellier::create($request->all());
 
-    
-        //Redirect avec message de succès
-        return redirect()
-        ->route('cellier.index')
-        ->withSuccess('Vous avez créé le cellier '.$cellier->nom_cellier.'!');
+        
+            //Redirect avec message de succès
+            return redirect()
+            ->route('cellier.index')
+            ->withSuccess('Vous avez créé le cellier '.$cellier->nom_cellier.'!');
+        }else{
+            return redirect('/login');
+        }
     }
 
 
@@ -79,13 +90,17 @@ class CellierController extends Controller
     */
     public function edit(Request $request, $id)
     {
-      
-        //dd($id);
-        $cellier = Cellier::findOrFail($id);
-       
-        return view('cellier.edit', [
-            'cellier' => $cellier,
-        ]);
+        if(Auth::check()){
+            //dd($id);
+            $cellier = Cellier::findOrFail($id);
+            $titre = 'cellier' ;
+            return view('cellier.edit', [
+                'cellier' => $cellier,
+                'titre' => $titre
+            ]);
+        }else{
+            return redirect('/login');
+        }
     }
 
 
@@ -95,17 +110,21 @@ class CellierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($id);
-        $this->validateCellier($request);
+        if(Auth::check()){ 
+            //dd($id);
+            $this->validateCellier($request);
 
-        // On assume que la requête
-        $cellier = Cellier::findOrFail($id)->update($request->all());
+            // On assume que la requête
+            $cellier = Cellier::findOrFail($id)->update($request->all());
 
 
-        // Retourne au formulaire
-        return redirect()
-            ->route('cellier.index')
-            ->withSuccess('La modification a réussi!');
+            // Retourne au formulaire
+            return redirect()
+                ->route('cellier.index')
+                ->withSuccess('La modification a réussi!');
+        }else{
+            return redirect('/login');
+        }
     }
 
 
@@ -114,17 +133,19 @@ class CellierController extends Controller
      */
     public function supprime(Request $request, $id)
     {
-        
-        $cellier = Cellier::find($id);
-        $nomCellier = $cellier->nom_cellier;
-        $cellier->delete();
+        if(Auth::check()){ 
+            $cellier = Cellier::find($id);
+            $nomCellier = $cellier->nom_cellier;
+            $cellier->delete();
 
-        // Retourne au cellier
-        return redirect()
-            ->route('cellier.index')
-            ->withSuccess("Vous avez supprimer le cellier  {$nomCellier}  !");
- 
-
+            // Retourne au cellier
+            return redirect()
+                ->route('cellier.index')
+                ->withSuccess("Vous avez supprimer le cellier  {$nomCellier}  !");
+    
+        }else{
+            return redirect('/login');
+        }
     }
 
 
