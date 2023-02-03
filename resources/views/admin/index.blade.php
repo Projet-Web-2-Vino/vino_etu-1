@@ -45,7 +45,9 @@
                                 </th>
                                 </tr>
                         </thead>
+                                
                                     @foreach ($users as  $info)
+                                    @if ($info->id >1)
                                     <tbody class="bg-white">
                                         <tr>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -62,13 +64,13 @@
                                                   {{$info->name}}
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            <!--<td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div class="flex items-center">
                                                  <!-- zone detail usager-->
-                                                <form action="{{ route('admin.supprime', ['id' => $info->id]) }}" method="POST">
+                                                <!--<form action="{{ route('admin.supprime', ['id' => $info->id]) }}" method="POST">
                                                     @csrf
                                                     <button>Detail</button>
-                                                </form>
+                                                </form>-->
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -76,11 +78,12 @@
                                                  <!-- zone delete usager-->
                                                 <form action="{{ route('admin.supprime', ['id' => $info->id]) }}" method="POST">
                                                     @csrf
-                                                    <button>Supprimer</button>
+                                                    <button data-modal="modal-{{$info->id}}"><i class="fa-solid fa-trash"></i></button>
                                                 </form>
                                                 </div>
                                             </td>
                                     </tbody>
+                                    @endif
                                     @endforeach
                                 @endif
                                 </th>
@@ -101,6 +104,34 @@
                                 Next
                             </button>
                         </div>
+
+                         <!-- Modal copy dans admin-->
+                        <div class="modal" id="modal-{{$info->id}}">
+                        <div class="modal-bg modal-exit"></div>
+                        <div class="modal-container">
+                            <button data-action="no-supprimer" class="modal-close modal-exit"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+                            <div><i class="block text-amber-600 mx-auto fa-solid fa-triangle-exclamation text-5xl"></i></div>
+                            <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
+                            <h2 class="font-semibold uppercase text-2xl text-amber-800">{{$info->nom_cellier}}</h2>
+
+                             <p class="mb-3">
+                            @if ($info->bouteilles_count != 0)
+                                @if ($info->bouteilles_count == 1)
+                                    {{ $info->bouteilles_count }} bouteille
+                                @else
+                                    {{ $info->bouteilles_count }} bouteilles
+                            @endif
+                            seront  supprimées
+                            @endif
+                        </p>
+                        <div class="flex justify-end space-x-1">
+                            <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="supprimer" class="modal-exit">Supprimer</button>
+                            <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="no-supprimer" class="modal-exit">Non</button>
+                            
+                            
+                        </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -111,3 +142,50 @@
 
 
   @endsection
+
+  <!--
+    /**
+    * Script qui gere la suppression d'un usager
+    */
+
+-->
+<script>
+
+    window.addEventListener("load",function(){
+
+
+
+        //Gestionnaire d'evenement du bouton delete
+
+        const modals = document.querySelectorAll("[data-modal]");
+
+        modals.forEach(function (trigger) {
+        trigger.addEventListener("click", function (event) {
+            event.preventDefault();
+            let form = event.target.parentElement.parentElement
+            console.log(event.target.parentElement.parentElement);
+            //console.log(trigger.dataset.modal)
+            const modal = document.getElementById(trigger.dataset.modal);
+            //console.log(modal);
+            modal.classList.add("open");
+            const exits = modal.querySelectorAll(".modal-exit");
+           // console.log(exits);
+            exits.forEach(function (exit) {
+            exit.addEventListener("click", function (event) {
+                event.preventDefault();
+                console.log(form)
+                console.log(event.target.dataset.action)
+                if(event.target.dataset.action == "supprimer"){
+                    console.log(form)
+                    form.submit();
+                }
+                modal.classList.remove("open");
+            });
+            });
+        });
+        });
+
+    });
+
+</script>
+
