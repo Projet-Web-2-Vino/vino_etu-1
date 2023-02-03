@@ -8,7 +8,7 @@
     <div class="mb-4">
         <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Gestion SAQ</h1>
       <div class="flex justify-end">
-        <button class="px-4 py-2 rounded-md bg-red-900 text-sky-100 hover:bg-red-500">Mis a jour</button>
+        <a class="px-4 py-2 rounded-md bg-red-900 text-sky-100 hover:bg-red-500"  href='{{ route('bouteille.updateSAQ') }}'>Importation de la SAQ</a>
       </div>
     </div>
 </div>
@@ -26,6 +26,10 @@
                     <table class="min-w-full leading-normal">
                         <thead>
                             <tr>
+                                @if (session()->has('success'))
+                                <span style="color:green">{{ session('success') }}</span>
+                                @endif
+
                                 @if ($users)
                                 <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -64,13 +68,13 @@
                                                   {{$info->name}}
                                                 </div>
                                             </td>
-                                            <!--<td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div class="flex items-center">
                                                  <!-- zone detail usager-->
-                                                <!--<form action="{{ route('admin.supprime', ['id' => $info->id]) }}" method="POST">
+                                                <form action="{{ route('cellier.index', ['id' => $info->id]) }}" method="POST">
                                                     @csrf
                                                     <button>Detail</button>
-                                                </form>-->
+                                                </form>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -140,8 +144,11 @@
 </body>
 
 
+    {{-- Section pour le navbar du bas --}}
+   
 
-  @endsection
+
+@endsection
 
   <!--
     /**

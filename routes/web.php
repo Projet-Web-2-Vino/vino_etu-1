@@ -28,7 +28,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::get('/', AcceuilController::class)->name('acceuil');
 
     //route catalogue
-    Route::get('/catalogue', function () {
+    /*Route::get('/catalogue', function () {
         return view('catalogue');
     })->middleware(['auth', 'verified'])->name('catalogue');
 
@@ -37,7 +37,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
+    });*/
 
 
 
