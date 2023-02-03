@@ -76,7 +76,7 @@
                         </div>
                     </div>
 
-                    <!-- Modal -->
+                    <!-- Modal copy dans admin-->
                     <div class="modal" id="modal-{{$info->id}}">
                         <div class="modal-bg modal-exit"></div>
                         <div class="modal-container">
