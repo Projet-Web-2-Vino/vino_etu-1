@@ -293,6 +293,9 @@ form[name="recherche"] {
 
 
 
+/* SECTION CARD POUR BOUTEILLE DE VIN */
+
+
 
 /*pour enlver zoom form */
 form *:not(label){
@@ -320,3 +323,4 @@ form *:not(label){
 #bottom-navigation{
   z-index:1000;
 }
+

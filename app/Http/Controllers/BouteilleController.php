@@ -285,7 +285,30 @@ class BouteilleController extends Controller
     }
 
     
-    
+     /**
+     * Fonction pour le rating des bouteilles
+     */
+
+    //  public function rating(Request $request)
+    //  {
+    //      $review = new ReviewRating();
+    //      $review->note = $request->input('note');
+
+    //      // Validate the data
+    //      $validatedData = $request->validate([
+    //          'note' => 'required|integer|between:1,5'
+    //      ]);
+
+    //      // Attempt to save the rating to the database
+    //      try {
+    //          $review->save();
+    //          return response()->json(['message' => 'Rating saved successfully'], 201);
+    //      } catch (\Exception $e) {
+    //          // Handle the exception and return an error response
+    //          return response()->json(['message' => 'Error saving the rating'], 500);
+    //      }
+    //  }
+
 
 
     
