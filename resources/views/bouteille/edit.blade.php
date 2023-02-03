@@ -66,28 +66,30 @@
                                 </div>
                             </div>
                         </div>
-						<button class="bg-red-800 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none">Sauvegarder</button>
-						</form>
+                        <div class="pt-4 flex flex-wrap items-center space-x-4">
+						    <button class="bg-red-800 flex justify-center items-center  text-white px-4 py-3 rounded-md focus:outline-none">Sauvegarder</button>
+                            <a class="flex justify-center items-center  text-gray-900 px-4 py-3 rounded-md focus:outline-none" href='{{ route('bouteille.liste', ['id' => $bouteille->vino__cellier_id]) }}'>
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Annuler
+                            </a>
+                        </div>
+                    </form>
 					
-                        {{-- Section pour le bouton ajouter et supprimer --}}
+                        {{-- Section pour le bouton ajouter et supprimer 
                             <div class="pt-4 flex flex-wrap items-center space-x-4">
                                 
                                 <form action="{{ route('bouteille.supprime', ['idVin' => $bouteille->id, 'idCellier' => $cellier->id ]) }}" method="POST">
                                     @csrf
                                     <button class="bg-red-800 flex justify-center items-center  text-white px-3 py-3 rounded-md focus:outline-none">Supprimer</button>
-                                </form>
-                               
-                                <a class="flex justify-center items-center  text-gray-900 px-4 py-3 rounded-md focus:outline-none" href='{{ route('bouteille.liste', ['id' => $bouteille->vino__cellier_id]) }}'>
-                                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Annuler
-								</a>
-                            </div>
+                                </form>  --}}
+                            
                         </div>
                     </div>
                 </div>
             </div>
   
+{{-- Section pour le navbar du bas --}}
+@include('layouts.bottomNav')
+
 
 @endsection
 
-   {{-- Section pour le navbar du bas --}}
-   @include('layouts.bottomNav')

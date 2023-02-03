@@ -8,7 +8,7 @@
 @endif
 
 
-<div class="relative p-4 bg-white">
+<div class="relative p-4 bg-white mb-20">
 	<div class="max-w-full mx-auto">
 		<div class="mb-5 flex items-center space-x-3">
 				<div class="w-12 mr-1">
@@ -18,7 +18,7 @@
 			</div>
 
 		<hr class="my-2">	
-		<p class="text-center">Vous pouvez rechercher une bouteille provenant du catalogue</p>
+		<p class="bg-gray-700 text-white p-2 text-center">Vous pouvez rechercher une bouteille provenant du catalogue</p>
 		<hr class="my-2">
 		<!-- Zone recherche -->
 		<form name="recherche" id="rechercheForm"  method="POST">
@@ -28,7 +28,7 @@
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 					<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
 				</div>
-				<input type="search" name="recherche" id="recherche" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche d'une bouteille par nom">
+				<input type="search" name="recherche" id="recherche" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche dans le catalogue par nom">
 			</div>
 		</form>
 
@@ -43,7 +43,7 @@
 		<!-- Fin zone recherche -->
 
 		<hr class="my-2">	
-		<p class="text-center">Vous pouvez aussi entrer vos propres bouteilles</p>
+		<p class="bg-gray-700 text-white p-2 text-center">Vous pouvez aussi entrer vos propres bouteilles</p>
 		<hr class="my-2">
 
 
@@ -60,24 +60,25 @@
 							<div class="flex flex-col">
 
 								<!-- Obligatoire -->
-							
-								<input id="nom" name="nom" type="text" placeholder="Nom *" value="" class="my-3 px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+								<label class="" for="nom">Nom  :</label>
+								<input id="nom" name="nom" type="text" placeholder="Nom *" value="" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								@error('nom')
 								<span style="color:red"> {{ $message }}</span>
 								@enderror
 								
-								<ul class="my-3 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+								<label class="formlabel leading-loose" for="type">Type  :</label>
+								<ul class="my-3 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
 								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
 									<div class="flex items-center pl-3">
 										
-										<input type="radio" name="type" id="rouge" value="1" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-										<label for="rouge" class="w-full py-3 ml-2 text-gray-600 font-normal">Rouge</label>
+										<input type="radio" name="type" id="rouge" value="1" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900">
+										<label for="rouge" class="radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Rouge</label>
 
-										<input type="radio" name="type" id="blanc" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-										<label for="blanc" class="w-full py-3 ml-2 text-gray-600 font-normal">Blanc</label>
+										<input type="radio" name="type" id="blanc" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+										<label for="blanc" class=" radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Blanc</label>
 
-										<input type="radio" name="type" id="rose" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900 dark:focus:ring-red-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-										<label for="rose" class="w-full py-3 ml-2 text-gray-600 font-normal">Rosé</label>
+										<input type="radio" name="type" id="rose" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+										<label for="rose" class="radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Rosé</label>
 										
 									</div>
 								</li>
@@ -86,33 +87,34 @@
 								<span style="color:red"> {{ $message }}</span>
 								@enderror
 
-								<input id="quantite" name="quantite" placeholder="Quantité" type="number" value="1"  class="my-3  px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+								<label class="formlabel leading-loose" for="quantite">Quantité  :</label>
+								<input id="quantite" name="quantite" placeholder="Quantité" type="number" min="1" value="1"  class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								
 								
 								 <!-- Pas obligatoire -->
+								 <label class="formlabel leading-loose" for="pays">Pays/Provenance  :</label>
+								<input id="pays" name="pays" type="text" placeholder="Pays/Provenance" value="" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								
-								<input id="pays" name="pays" type="text" placeholder="Pays/Provenance" value="" class="my-3 px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-								
-								
-								<input id="format" name="format" type="text" value="" placeholder="Format : 750ml, 1L" class="my-3 px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+								<label class="formlabel leading-loose" for="format">Format :</label>
+								<input id="format" name="format" type="text" value="" placeholder="Format : 750ml, 1L" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								
 
 
 
 								<?php $years = range(2000, strftime("%Y", time())); ?>
-								
-								<select id="millesime" name="millesime" class="my-3  px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-									<option value="">Millesime </option>
+								<label class="formlabel leading-loose" for="millesime2">Millesime :</label>
+								<select id="millesime2" name="millesime2" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+									<option value="">Année </option>
 									<?php foreach($years as $year) : ?>
 									  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
 									<?php endforeach; ?>
 								  </select>
-								 
+								  <input name="millesime" type="hidden" value=""> 
 								
 		  						
 								
-								
-								<textarea placeholder="Description / Note" id="description" name="description" class="my-3  px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"></textarea>
+								 <label class="formlabel leading-loose" for="millesime">Description :</label>
+								<textarea placeholder="Description / Note" id="description" name="description" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600"></textarea>
 								
 								<!-- Caché non obligatoire -->
 								<input id="url_saq" name="url_saq" type="hidden" value="">
@@ -143,11 +145,12 @@
 		
 	</div>
 </div>
+{{-- Section pour le navbar du bas --}}
+@include('layouts.bottomNav')
 @endsection
 
 
-{{-- Section pour le navbar du bas --}}
-@include('layouts.bottomNav')
+
 
 <!-- SCRIPT-->
 <script>
@@ -300,6 +303,20 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 		form.nom.readOnly = true
 		form.pays.readOnly = true
 		form.format.readOnly = true
+
+		/*detection millesime*/
+		let annee = form.nom.value.match(/(\d{4}-\d{4}|\d{4})/g)
+		if(annee){
+			annee = annee[0];
+			form.millesime2.value = annee
+			form.millesime.value = annee
+			console.log(millesime)
+			form.millesime2.disabled = true
+		}
+		
+		//console.log(annee);
+		
+
 		
 		
 		/*disable les autres options... dans ce cas-ci provenant du catalogue=rouge*/
