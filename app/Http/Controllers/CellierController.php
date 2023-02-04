@@ -9,6 +9,7 @@ use App\Models\CelliersBouteilles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class CellierController extends Controller
 {
@@ -19,21 +20,23 @@ class CellierController extends Controller
     public function index(Request $request)
     {
        $titre = 'cellier' ;
-       
+       $field = User::findOrFail(Auth::id());
        if(Auth::check()){
-        $id_usager = Auth::id();
-
-        $celliers = Cellier::where('id_usager' , $id_usager)->withCount('bouteilles')->get();
-
-        
-            return view('cellier.index', [
-                'celliers' => $celliers,   
-                'id_usager' => $id_usager,
-                'titre' => $titre
-            ]);
-        }else{
+            $id_usager = Auth::id();
+            $celliers = Cellier::where('id_usager' , $id_usager)->withCount('bouteilles')->get();
+            if ($field->is_admin == 1) {
+                return redirect('/admin');
+            } else {
+                return view('cellier.index', [
+                    'celliers' => $celliers,   
+                    'id_usager' => $id_usager,
+                    'titre' => $titre
+                ]);
+            }
+        } else{
             return redirect('/login');
         }
+        
     }
 
 
