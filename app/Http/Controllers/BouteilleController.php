@@ -88,14 +88,17 @@ class BouteilleController extends Controller
     */
     public function creer(Request $request)
     {
+        
         if(Auth::check()){
             $id_usager = Auth::id();
-            
-            //TODO validate data
-            $this->validateBouteille($request);
 
             $quantite = Request::get('quantite');
             $id_cellier = Request::get('id_cellier');
+
+            
+            
+            //TODO validate data
+            if($this->validateBouteille($request)){
             
 
             //dd($quantite);
@@ -126,6 +129,12 @@ class BouteilleController extends Controller
             return redirect()
             ->route('bouteille.liste', [ 'id' => $id_cellier, 'titre' => $titre] )
             ->withSuccess('Vous avez ajouter la bouteille '.$bouteille->nom.'!');
+        }else{
+            dd('ici');
+            return redirect()
+            ->route('bouteille.nouveau', ['id' => $id_cellier])
+            ->withInput();
+        }
         }else{
 
             return redirect('/login');
@@ -171,9 +180,17 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, $idVin, $idCellier)
     {
+        
+        
         if(Auth::check()){
+            
             $this->validateBouteille($request);
-            $request = Request::all();
+
+            $request = Request::except(['quantite', 'id_cellier', 'millesime2' ]);
+
+            
+           
+            //dd($request);
 
             $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
             //dd($bouteille);
@@ -247,7 +264,7 @@ class BouteilleController extends Controller
      */
     public function quantite(Request $request)
     {
-        
+        //dd($request);
        
         $idVin = intval(Request::get('idVin'));
        //dd($idVin);
@@ -277,15 +294,41 @@ class BouteilleController extends Controller
      */
     private function validateBouteille(Request $request)
     {
-        Request::validate([
+        
+        return Request::validate([
             'nom' => 'required',
             'type' => 'required',
             'quantite' => 'required',
         ]);
+
+         
     }
 
     
-    
+     /**
+     * Fonction pour le rating des bouteilles
+     */
+
+    //  public function rating(Request $request)
+    //  {
+    //      $review = new ReviewRating();
+    //      $review->note = $request->input('note');
+
+    //      // Validate the data
+    //      $validatedData = $request->validate([
+    //          'note' => 'required|integer|between:1,5'
+    //      ]);
+
+    //      // Attempt to save the rating to the database
+    //      try {
+    //          $review->save();
+    //          return response()->json(['message' => 'Rating saved successfully'], 201);
+    //      } catch (\Exception $e) {
+    //          // Handle the exception and return an error response
+    //          return response()->json(['message' => 'Error saving the rating'], 500);
+    //      }
+    //  }
+
 
 
     

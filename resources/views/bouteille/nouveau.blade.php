@@ -28,7 +28,7 @@
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 					<svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
 				</div>
-				<input type="search" name="recherche" id="recherche" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche dans le catalogue par nom">
+				<input type="search" name="recherche" id="recherche" onblur="resetForm()" onkeyup="fetchData()"  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Recherche dans le catalogue par nom">
 			</div>
 		</form>
 
@@ -61,23 +61,23 @@
 
 								<!-- Obligatoire -->
 								<label class="" for="nom">Nom  :</label>
-								<input id="nom" name="nom" type="text" placeholder="Nom *" value="" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+								<input id="nom" name="nom" type="text" placeholder="Nom *" value="{{ old('nom') }}" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								@error('nom')
 								<span style="color:red"> {{ $message }}</span>
 								@enderror
 								
 								<label class="formlabel leading-loose" for="type">Type  :</label>
-								<ul class="my-3 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
-								<li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
-									<div class="flex items-center pl-3">
+								<ul id="radioLi" class="my-3 items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex">
+								<li  class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+									<div  class="flex items-center pl-3">
 										
-										<input type="radio" name="type" id="rouge" value="1" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900">
+										<input type="radio" name="type" id="rouge" value="1" {{ old("type") == '1' ? 'checked' : '' }} class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 focus:ring-red-900">
 										<label for="rouge" class="radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Rouge</label>
 
-										<input type="radio" name="type" id="blanc" value="2" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+										<input type="radio" name="type" id="blanc" value="2"  {{ old("type") == '2' ? 'checked' : '' }} class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
 										<label for="blanc" class=" radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Blanc</label>
 
-										<input type="radio" name="type" id="rose" value="3" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
+										<input type="radio" name="type" id="rose" value="3"  {{ old("type") == '3' ? 'checked' : '' }} class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300">
 										<label for="rose" class="radiolabel w-full py-3 ml-2 text-gray-600 font-normal">Rosé</label>
 										
 									</div>
@@ -87,34 +87,40 @@
 								<span style="color:red"> {{ $message }}</span>
 								@enderror
 
-								<label class="formlabel leading-loose" for="quantite">Quantité  :</label>
-								<input id="quantite" name="quantite" placeholder="Quantité" type="number" min="1" value="1"  class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+								
 								
 								
 								 <!-- Pas obligatoire -->
 								 <label class="formlabel leading-loose" for="pays">Pays/Provenance  :</label>
-								<input id="pays" name="pays" type="text" placeholder="Pays/Provenance" value="" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+								<input id="pays" name="pays" type="text" placeholder="Pays/Provenance" value="{{ old('pays') }}" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								
 								<label class="formlabel leading-loose" for="format">Format :</label>
-								<input id="format" name="format" type="text" value="" placeholder="Format : 750ml, 1L" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+								<input id="format" name="format" type="text" value="{{ old('format') }}" placeholder="Format : 750ml, 1L" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 								
 
+								 <!-- Pas obligatoire -->
+								 <?php $years = range(2000, strftime("%Y", time())); ?>
+								 <label class="formlabel leading-loose" for="millesime2">Millesime :</label>
+								 <select id="millesime2" name="millesime2" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
+									
+									 <option value="" >Année </option>
+									 <?php foreach($years as $year) : ?>
+									   <option value="<?php echo $year; ?>" {{ old('millesime2') == $year ? "selected" : "" }}><?php echo $year; ?></option>
+									 <?php endforeach; ?>
+								   </select>
 
+								   <input name="millesime" type="hidden" value=""> 
+								
+								 <!-- obligatoire -->
+								<label class="formlabel leading-loose" for="quantite">Quantité  :</label>
+								<input id="quantite" name="quantite" placeholder="Quantité" type="number" min="1" value="{{ old('quantite'), 1 }}"  class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
 
-								<?php $years = range(2000, strftime("%Y", time())); ?>
-								<label class="formlabel leading-loose" for="millesime2">Millesime :</label>
-								<select id="millesime2" name="millesime2" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">
-									<option value="">Année </option>
-									<?php foreach($years as $year) : ?>
-									  <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-									<?php endforeach; ?>
-								  </select>
-								  <input name="millesime" type="hidden" value=""> 
+								
 								
 		  						
 								
-								 <label class="formlabel leading-loose" for="millesime">Description :</label>
-								<textarea placeholder="Description / Note" id="description" name="description" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600"></textarea>
+								 <label class="formlabel leading-loose" for="description">Description :</label>
+								<textarea placeholder="Description / Note" id="description" name="description" class="mb-3 px-4 py-2 border focus:ring-gray-500 focus:border-red-200 w-full sm:text-sm border-gray-300 rounded-md text-gray-600">{{ old('description'), 1 }}</textarea>
 								
 								<!-- Caché non obligatoire -->
 								<input id="url_saq" name="url_saq" type="hidden" value="">
@@ -134,6 +140,9 @@
 							<div class="pt-4 flex items-center space-x-4">
 								<a class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" href='/cellier'>
 								<svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Annuler
+								</a>
+								<a class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none" onclick="resetForm()">
+									<svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Effacer
 								</a>
 								{{-- Section pour le bouton ajouter --}}
 								<form action="{{ route('cellier.creer')}}" method="POST">
@@ -158,7 +167,7 @@
 
 window.addEventListener("load",function(){
 document.getElementById("rechercheForm").onkeypress = function(e) {
-	console.log(e.charCode)
+	//console.log(e.charCode)
     var key = e.charCode || e.keyCode || 0;     
     if (key == 13) {
       //alert("No Enter!");
@@ -172,6 +181,7 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
     function fetchData()
 	{
        
+		resetForm()
 		//recherche Value
 		let elRecherche = document.getElementById('recherche').value;
 
@@ -203,9 +213,10 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 			
 
 			var tbodyref  = document.getElementById('tbodyfordata');
+			console.log(tbodyref);
 			tbodyref.innerHTML = '';
 			let bouteilles = data;
-			console.log(bouteilles);
+			//console.log(bouteilles);
 			bouteilles.map(function(bouteille){
 				let tr = createNode('tr'),
 					nom = createNode('td');
@@ -226,7 +237,8 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 						injectBouteilleInfo(bouteille)
 
 						//vide la recherche
-						liste.innerHTML = "";
+						console.log(liste);
+						liste.innerHTML = '<tbody class="transition-all" id="tbodyfordata"></tbody>';
 						document.getElementById('recherche').value = '';
 
 						//Rendre les inputs du form readonly
@@ -271,7 +283,7 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 
 			 // radio bouton
 			  if (prop == 'type'){
-				console.log(typeof value)
+				//console.log(typeof value)
 				valueBte = value
 				switch (valueBte) {
 					case '1':
@@ -295,6 +307,25 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 		
 	}
 
+	function resetForm(){
+		var form = document.getElementById('formAjoutBouteille')
+		form.reset();
+		form.nom.readOnly = false
+		form.pays.readOnly = false
+		form.format.readOnly = false
+		form.millesime.value = ""
+		form.millesime2.value = ""
+		form.millesime2.disabled = false
+
+		/*radio group*/
+		document.querySelector('#radioLi').style.border = "1px solid #D1C9DB"
+		form.type.forEach(element => {
+				element.disabled = false
+				element.nextSibling.nextSibling.style.display = "inline-block"
+				element.style.display = "inline-block"
+		});
+	}
+
 	function readOnly()
 	{
 
@@ -309,8 +340,9 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 		if(annee){
 			annee = annee[0];
 			form.millesime2.value = annee
+			form.millesime2.style.border = "none"
 			form.millesime.value = annee
-			console.log(millesime)
+			console.log(form.millesime)
 			form.millesime2.disabled = true
 		}
 		
@@ -320,8 +352,14 @@ document.getElementById("rechercheForm").onkeypress = function(e) {
 		
 		
 		/*disable les autres options... dans ce cas-ci provenant du catalogue=rouge*/
+		document.querySelector('#radioLi').style.border = "none"
 		form.type.forEach(element => {
-			if(!element.checked) element.disabled = true
+			if(!element.checked) {
+				element.disabled = true
+				element.nextSibling.nextSibling.style.display = "none"
+				element.style.display = "none"
+				
+			} 
 		});
 		
 		
