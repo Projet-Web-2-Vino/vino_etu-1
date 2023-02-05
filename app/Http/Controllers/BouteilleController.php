@@ -98,7 +98,7 @@ class BouteilleController extends Controller
             
             
             //TODO validate data
-            if($this->validateBouteille($request)){
+            $this->validateBouteille($request);
             
 
             //dd($quantite);
@@ -129,12 +129,7 @@ class BouteilleController extends Controller
             return redirect()
             ->route('bouteille.liste', [ 'id' => $id_cellier, 'titre' => $titre] )
             ->withSuccess('Vous avez ajouter la bouteille '.$bouteille->nom.'!');
-        }else{
-            dd('ici');
-            return redirect()
-            ->route('bouteille.nouveau', ['id' => $id_cellier])
-            ->withInput();
-        }
+       
         }else{
 
             return redirect('/login');
@@ -186,8 +181,12 @@ class BouteilleController extends Controller
             
             $this->validateBouteille($request);
 
+            $quantite = Request::get('quantite');
+          
+
             $request = Request::except(['quantite', 'id_cellier', 'millesime2' ]);
 
+            
             
            
             //dd($request);
@@ -195,7 +194,17 @@ class BouteilleController extends Controller
             $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
             //dd($bouteille);
 
-            
+
+            $request2 = [
+                'idCellier'   => $idCellier,
+                'idVin' => $idVin,
+                'quantite' => $quantite
+            ];
+
+            $request3 = new Request;
+            $request3::merge($request2);
+
+            $this->quantite($request3);
 
             // Retourne au formulaire
             return redirect()
