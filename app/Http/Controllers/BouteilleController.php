@@ -88,14 +88,17 @@ class BouteilleController extends Controller
     */
     public function creer(Request $request)
     {
+        
         if(Auth::check()){
             $id_usager = Auth::id();
-            
-            //TODO validate data
-            $this->validateBouteille($request);
 
             $quantite = Request::get('quantite');
             $id_cellier = Request::get('id_cellier');
+
+            
+            
+            //TODO validate data
+            $this->validateBouteille($request);
             
 
             //dd($quantite);
@@ -126,6 +129,7 @@ class BouteilleController extends Controller
             return redirect()
             ->route('bouteille.liste', [ 'id' => $id_cellier, 'titre' => $titre] )
             ->withSuccess('Vous avez ajouter la bouteille '.$bouteille->nom.'!');
+       
         }else{
 
             return redirect('/login');
@@ -171,14 +175,36 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, $idVin, $idCellier)
     {
+        
+        
         if(Auth::check()){
+            
             $this->validateBouteille($request);
-            $request = Request::all();
+
+            $quantite = Request::get('quantite');
+          
+
+            $request = Request::except(['quantite', 'id_cellier', 'millesime2' ]);
+
+            
+            
+           
+            //dd($request);
 
             $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
             //dd($bouteille);
 
-            
+
+            $request2 = [
+                'idCellier'   => $idCellier,
+                'idVin' => $idVin,
+                'quantite' => $quantite
+            ];
+
+            $request3 = new Request;
+            $request3::merge($request2);
+
+            $this->quantite($request3);
 
             // Retourne au formulaire
             return redirect()
@@ -247,7 +273,7 @@ class BouteilleController extends Controller
      */
     public function quantite(Request $request)
     {
-        
+        //dd($request);
        
         $idVin = intval(Request::get('idVin'));
        //dd($idVin);
@@ -277,11 +303,14 @@ class BouteilleController extends Controller
      */
     private function validateBouteille(Request $request)
     {
-        Request::validate([
+        
+        return Request::validate([
             'nom' => 'required',
             'type' => 'required',
             'quantite' => 'required',
         ]);
+
+         
     }
 
     

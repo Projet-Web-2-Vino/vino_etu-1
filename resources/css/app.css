@@ -319,8 +319,21 @@ form *:not(label){
   color:rgb(127, 29, 29);
  }
 
+ #formModifBouteille label:not(.radiolabel){
+  font-size:14px;
+  color:rgb(127, 29, 29);
+ }
+
 /*nav bottom */
 #bottom-navigation{
   z-index:1000;
 }
+
+
+#radioLi{
+  margin-top:0;
+}
+
+
+
 

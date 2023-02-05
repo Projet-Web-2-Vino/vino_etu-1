@@ -301,10 +301,10 @@
                             data-id-vin="{{ $info->vino__bouteille_id }}">
                             <p>Quantité :</p>
                             <div class="flex py-3">
-                                <button data-action="plus" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'>
+                                <button data-id="{{ $info->vino__cellier_id }}" data-id-vin="{{ $info->vino__bouteille_id }}" data-action="plus" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'>
                                     <i class="fa-solid fa-plus"></i></button>
                                 <p class="p-2 quantite">{{ $info->quantite }}</p>
-                                <button data-action="moins" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'>
+                                <button data-id="{{ $info->vino__cellier_id }}" data-id-vin="{{ $info->vino__bouteille_id }}" data-action="moins" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'>
                                     <i class="fa-solid fa-minus"></i></button>
                             </div>
                         </div>
@@ -438,19 +438,19 @@
                 //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
                 element.addEventListener('click', function(evt) {
                     evt.preventDefault();
-                    let idCellier = evt.target.parentElement.parentElement.dataset.id
-                    // console.log(evt.target.parentElement.parentElement.dataset.id)
-                    // console.log(idCellier);
+                    let idCellier = element.dataset.id
+                   // console.log(evt.target)
+                     //console.log(idCellier);
 
-                    let idVin = evt.target.parentElement.parentElement.dataset.idVin;
-                    // console.log(idVin);
+                    let idVin = element.dataset.idVin;
+                     //console.log(idVin);
 
                     let elemBouteille = evt.target.parentElement.parentElement;
                     // console.log(elemBouteille);
 
                     let valueQuantite = elemBouteille.querySelector('.quantite').innerText;
                     let elemQuantite = elemBouteille.querySelector('.quantite')
-                    // console.log(valueQuantite);
+                   // console.log(valueQuantite);
 
 
                     let action = evt.target.parentElement.dataset.action
@@ -459,7 +459,7 @@
                     if (action == 'plus') {
                         newQuantite = parseInt(valueQuantite) + 1
                     } else {
-                        console.log(valueQuantite)
+                        //console.log(valueQuantite)
 
                         if (valueQuantite != 0) {
                             newQuantite = parseInt(valueQuantite) - 1
@@ -473,7 +473,7 @@
 
                     //recherche Url
                     const url = window.location.href
-                    console.log(url);
+                    //console.log(url);
 
                     const options = {
                         headers: {
@@ -493,19 +493,19 @@
                     }
 
 
-                    /* fetch(url, options)
+                     fetch(url, options)
                         .then((data) => {
-
+                            console.log(data)
                             /*Injecter la quantite dans le HTML*/
                     //console.log(typeof newQuantite)
                     // console.log(valueQuantite);
                     elemQuantite.innerText = newQuantite.toString();
 
-                    /*  })
+                      })
 
                         .catch(function(error){
                             console.log(error);
-                        })*/
+                        })
 
 
 
