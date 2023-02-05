@@ -30,12 +30,13 @@ class BouteilleController extends Controller
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
                 ->where('vino__cellier_id', $id)
+                ->orderBy('vino__bouteille_id', 'DESC')
                 ->get();
 
             //dd($bouteilles);
 
         $cellier = Cellier::find($id);
-        $titre = 'bouteille' ;
+        $titre = 'bouteille' ; 
 
         return view('bouteille.liste', [
             'bouteilles' => $bouteilles,
@@ -54,7 +55,7 @@ class BouteilleController extends Controller
     }
 
     /*
-     Retourne la vue pour catalogue
+     Retourne pour ajouter une bouteille au cellier
     */
     public function nouveau(Request $request, $id)
     {
@@ -67,13 +68,14 @@ class BouteilleController extends Controller
 
             //cellier impliquer
             $cellier = Cellier::find($id);
-            $titre = 'bouteille' ;
+            $titre = 'formBouteille';
             
             //vue des bouteille du catalogue
             return view('bouteille.nouveau', [
                 'bouteillesSAQ' => $bouteillesSAQ, //pour la rechercher
                 'cellier' => $cellier,
-                'titre' => $titre
+                'titre' => $titre,
+                'id_cellier' => $id
             ]);
         }else{
 
@@ -90,16 +92,17 @@ class BouteilleController extends Controller
             $id_usager = Auth::id();
             
             //TODO validate data
-            //$this->validateBouteille($request);
+            $this->validateBouteille($request);
 
             $quantite = Request::get('quantite');
             $id_cellier = Request::get('id_cellier');
+            
 
             //dd($quantite);
 
             //Ajout de la bouteille dans vin personalize
             //TODO check duplication//
-            $bouteille = BouteillePersonalize::create(Request::except(['quantite', 'id_cellier']));
+            $bouteille = BouteillePersonalize::create(Request::except(['quantite', 'id_cellier', 'millesime2' ]));
 
             //Ajout de la bouteille dans le cellier 
             $idBouteille = $bouteille->id;
@@ -111,6 +114,8 @@ class BouteilleController extends Controller
 
             CelliersBouteilles::create($request2);
 
+            $titre = 'bouteille';
+
             $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
@@ -119,7 +124,7 @@ class BouteilleController extends Controller
         
             //Redirect vers la liste des bouteille du cellier avec un message de succès
             return redirect()
-            ->route('bouteille.liste', [ 'id' => $id_cellier] )
+            ->route('bouteille.liste', [ 'id' => $id_cellier, 'titre' => $titre] )
             ->withSuccess('Vous avez ajouter la bouteille '.$bouteille->nom.'!');
         }else{
 
@@ -145,13 +150,14 @@ class BouteilleController extends Controller
     
 
             $cellier = Cellier::find($idCellier);
-            $titre = 'bouteille' ;
+            $titre = 'formBouteille';
             //dd($bouteille);
 
             return view('bouteille.edit', [
                 'bouteille' => $bouteille,
                 'cellier' => $cellier,
-                'titre' => $titre
+                'titre' => $titre,
+                'id_cellier' => $idCellier
                 
             ]);
         }else{
@@ -273,12 +279,36 @@ class BouteilleController extends Controller
     {
         Request::validate([
             'nom' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'quantite' => 'required',
         ]);
     }
 
     
-    
+     /**
+     * Fonction pour le rating des bouteilles
+     */
+
+    //  public function rating(Request $request)
+    //  {
+    //      $review = new ReviewRating();
+    //      $review->note = $request->input('note');
+
+    //      // Validate the data
+    //      $validatedData = $request->validate([
+    //          'note' => 'required|integer|between:1,5'
+    //      ]);
+
+    //      // Attempt to save the rating to the database
+    //      try {
+    //          $review->save();
+    //          return response()->json(['message' => 'Rating saved successfully'], 201);
+    //      } catch (\Exception $e) {
+    //          // Handle the exception and return an error response
+    //          return response()->json(['message' => 'Error saving the rating'], 500);
+    //      }
+    //  }
+
 
 
     
