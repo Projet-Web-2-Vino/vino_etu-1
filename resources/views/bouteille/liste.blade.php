@@ -408,18 +408,18 @@
                 trigger.addEventListener("click", function(event) {
                     event.preventDefault();
                     let form = event.target.parentElement.parentElement
-                    console.log(trigger.dataset.modal)
+                   // console.log(trigger.dataset.modal)
                     const modal = document.getElementById(trigger.dataset.modal);
-                    console.log(modal);
+                   // console.log(modal);
                     modal.classList.add("open");
                     const exits = modal.querySelectorAll(".modal-exit");
                     exits.forEach(function(exit) {
                         exit.addEventListener("click", function(event) {
                             event.preventDefault();
-                            console.log(form)
-                            console.log(event.target.dataset.action)
+                           // console.log(form)
+                            //console.log(event.target.dataset.action)
                             if (event.target.dataset.action == "supprimer") {
-                                console.log(form)
+                                //console.log(form)
                                 form.submit();
                             }
                             modal.classList.remove("open");
@@ -495,7 +495,7 @@
 
                      fetch(url, options)
                         .then((data) => {
-                            console.log(data)
+                            //console.log(data)
                             /*Injecter la quantite dans le HTML*/
                     //console.log(typeof newQuantite)
                     // console.log(valueQuantite);
@@ -504,7 +504,7 @@
                       })
 
                         .catch(function(error){
-                            console.log(error);
+                           // console.log(error);
                         })
 
 

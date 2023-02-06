@@ -12,18 +12,34 @@
 
       
         
-            <div class="relative">
-                <img class="w-full object-cover"  src="https://aboutmurals.ca/wp-content/uploads/2022/03/Cellar-Wallpaper-Stock-Room-About-murals.jpg" />
-                <h1 class="absolute  rounded-md bg-opacity-50 bg-white p-2  text-7xl text-black top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-bold">Espace Cellier</h1>
-            </div>
            
             
       
 
-
+        @if (!$celliers)
         <div class='mb-20 max-w-full p-5 flex flex-wrap justify-evenly'>
 
+            <section class="mx-auto mt-[50px]  aut xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  justify-items-center min-w-fit">
 
+                {{-- Section header --}}
+                <article class=" transition-all relative h-[350px] w-[350px]  overflow-auto rounded-3xl bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5 pt-10">
+                  <h1 class=" mt-8 text-6xl font-bold leading-10 text-white p-2">
+                    L'atelier <br /> à <br />
+                    vin
+                  </h1>
+                    <p class="mt-5 text-sm font-normal text-white">Veuillez cree votre espace cellier personaliser</p>
+                </article>
+
+                {{-- Section créé cellier --}}
+                <a href="cellier/nouveau">
+                <button type="button" class="text-white mt-4/8 bg-slate-800 hover:bg-slate-800/80 focus:ring-4  font-medium rounded-full text-sm px-20 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                    Créé votre cellier !
+                    <img class="ml-5 h-8 w-7"  src="https://static.vecteezy.com/system/resources/previews/009/399/560/original/wine-barrel-clipart-design-illustration-free-png.png" alt="">
+                </button>
+                </a>
+
+            </section>
+            @endif
 
             {{-- Section Carte Cellier --}}
             @if ($celliers)
@@ -36,26 +52,7 @@
                     </div>
                 </div> --}}
 
-                <section class="mx-auto mt-[50px]  aut xl:w-8/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10  justify-items-center min-w-fit">
-
-                    {{-- Section header --}}
-                    <article class=" transition-all relative h-[350px] w-[350px]  overflow-auto rounded-3xl bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5 pt-10">
-                      <h1 class=" mt-8 text-6xl font-bold leading-10 text-white p-2">
-                        L'atelier <br /> à <br />
-                        vin
-                      </h1>
-                        <p class="mt-5 text-sm font-normal text-white">Veuillez cree votre espace cellier personaliser</p>
-                    </article>
-
-                    {{-- Section créé cellier --}}
-                    <a href="cellier/nouveau">
-                    <button type="button" class="text-white mt-4/8 bg-slate-800 hover:bg-slate-800/80 focus:ring-4  font-medium rounded-full text-sm px-20 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
-                        Créé votre cellier !
-                        <img class="ml-5 h-8 w-7"  src="https://static.vecteezy.com/system/resources/previews/009/399/560/original/wine-barrel-clipart-design-illustration-free-png.png" alt="">
-                    </button>
-                    </a>
-
-                </section>
+              
 
 
 

@@ -336,4 +336,25 @@ form *:not(label){
 
 
 
+/*Nav correction final*/
+nav i{
+  font-size:1.5em;
+}
+
+nav svg{
+  width:1.5em;
+  height:1.5em;
+}
+
+nav a span{
+  display:inline;
+}
+
+/*Mediaqueries*/
+/* Si écran < 300px  */
+@media screen and (max-width: 300px) {
+  nav a span{
+    display:none;
+  }
+}
 
