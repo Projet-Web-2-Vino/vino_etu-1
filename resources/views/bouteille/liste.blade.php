@@ -19,7 +19,7 @@
         @if (session()->has('success'))
         <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
         @endif
-    
+
 
 
 
@@ -76,11 +76,32 @@
           <div class="flex items-center justify-between">
             {{-- Section pour inserer le nom de la bouteille --}}
             <h1 class="text-gray-600 font-medium">{{$info->nom}}</h1>
-            <button class="text-gray-500 hover:text-gray-900">
+
+            {{-- Boutton pour gerer la description --}}
+            {{-- <button class="text-gray-500 hover:text-gray-900">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
               </svg>
-            </button>
+            </button> --}}
+
+            {{-- Click pour Info description sur la bouteille ALPINEJS--}}
+            <div x-data="{showContextMenu:false}">
+                <div class="relative" @click.away="showContextMenu=false">
+                    <button class="bg-white h-10 w-10 leading-10 text-center text-gray-800 text-xl shadow-md border border-gray-200 hover:border-gray-300 focus:border-gray-300 rounded-lg transition-all font-semibold outline-none focus:outline-none" x-on:contextmenu="$event.preventDefault();showContextMenu=true" @click.prevent="showContextMenu=false">
+                        <i class="fas fa-info"></i>
+                    </button>
+                    <div class="absolute mt-12 top-0 left-1 min-w-full w-48 z-30" style="display:none;" x-show="showContextMenu" x-transition:enter="transition ease duration-100 transform" x-transition:enter-start="opacity-0 scale-90 translate-y-1" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="transition ease duration-100 transform" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-90 translate-y-1">
+                        <span class="absolute top-0 left-0 w-2 h-2 bg-white transform rotate-45 -mt-1 ml-3 border-gray-300 border-l border-t z-20"></span>
+                        <div class="bg-white overflow-auto rounded-lg shadow-md w-full relative z-10 py-2 border border-gray-300 text-gray-800 text-xs">
+                            <div class="p-1">
+                                <small><p>description</p></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
           </div>
 
           <div class="py-1 text-m font- justify-start">
@@ -98,7 +119,7 @@
                         Vin Rosé
                         @break
                 @endswitch
-                | {{$info->format}} | {{$info->pays}}  
+                | {{$info->format}} | {{$info->pays}}
             </small>
         </div>
 
@@ -124,7 +145,7 @@
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
             </div>
         </div>
-          
+
            {{-- Section AJOUTER au BOIRE --}}
            @csrf
            <div class="options py-2  text-sm" data-id="{{$info->vino__cellier_id}}" data-id-vin="{{$info->vino__bouteille_id}}">
@@ -136,13 +157,15 @@
                     <button data-id="{{ $info->vino__cellier_id }}" data-id-vin="{{ $info->vino__bouteille_id }}" data-action="moins" class='btnModif  bg-gray-200 rounded px-3 py-1 text-md font-semibold text-gray-700'>
                         <i class="fa-solid fa-minus"></i></button>
                    </div>
-                
-           </div>  
+
+           </div>
         </div>
-     
+
     {{-- Section Fin Carte Bouteil  --}}
 
 </div>
+
+
 
 
 
