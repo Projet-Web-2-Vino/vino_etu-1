@@ -90,7 +90,7 @@ class BouteilleController extends Controller
     {
         
         if(Auth::check()){
-            $id_usager = Auth::id();
+            
 
             $quantite = Request::get('quantite');
             $id_cellier = Request::get('id_cellier');
