@@ -11,6 +11,12 @@
       </div>
     </div>
 </div>
+
+  <!-- Feedback success -->
+@if (session()->has('success'))
+  <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
+@endif
+
 <!-- Gestion des cellier -->
 <div class="container  my-12 mx-auto px-4 md:px-12">
 	<div class="flex flex-wrap -mx-1 lg:-mx-4 cursor-pointer mx-auto">
@@ -74,10 +80,8 @@
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
             <div>
-               <!-- <h2 class="text-2xl font-semibold leading-tight">{{ __('Admin Tableau') }}</h2> -->
-               <h2 class="text-xl font-semibold leading-tight">Liste des usagers</h2>
+               <h2 class="text-xl font-semibold leading-tight">Liste des Usagers</h2>
             </div>
-           
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     <table class="min-w-full leading-normal">
@@ -86,8 +90,6 @@
                                 @if (session()->has('success'))
                                 <span style="color:green">{{ session('success') }}</span>
                                 @endif
-
-                               
                                 <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Usager
@@ -147,7 +149,7 @@
                                 </th>
                             </tr>
                     </table>
-                    <div
+                    <!--<div
                         class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                         <span class="text-xs xs:text-sm text-gray-900">
                             Showing 1 to 4 of 50 Entries
@@ -161,7 +163,8 @@
                                 class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
                                 Next
                             </button>
-                        </div>
+                            </div>
+                    </div>-->
 
                          <!-- Modal copy dans admin-->
                         <div class="modal" id="modal-{{$info->id}}">
