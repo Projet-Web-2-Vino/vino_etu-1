@@ -383,6 +383,7 @@ nav a span{
   flex-direction: column;
   width: 250px;
   justify-content:space-between;
+  overflow-wrap: break-word;
 }
 
 .vinoCarte .zoneImg{
@@ -407,7 +408,9 @@ a{
   width: 20px;
 }
 
-
+.cellierTitre{
+  line-height: 1em;
+}
 
 
 /*Mediaqueries*/

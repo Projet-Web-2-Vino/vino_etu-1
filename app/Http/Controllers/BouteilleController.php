@@ -25,6 +25,12 @@ class BouteilleController extends Controller
         if(Auth::check()){
             $id_usager = Auth::id();
 
+            $type = Request::get('type');
+            $pays = Request::get('pays');
+            
+           // dd($type);
+
+           
             $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                 ->select('*')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
@@ -33,7 +39,38 @@ class BouteilleController extends Controller
                 ->orderBy('vino__bouteille_id', 'DESC')
                 ->get();
 
+                if($type){
+                    $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                    ->select('*')
+                    ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                    ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                    ->where('vino__cellier_id', $id)
+                    ->where('type', $type)
+                    ->orderBy('vino__bouteille_id', 'DESC')
+                    ->get();
+                }
+
+                if($pays){
+                    $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                    ->select('*')
+                    ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                    ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                    ->where('vino__cellier_id', $id)
+                    ->where('pays', $pays)
+                    ->orderBy('vino__bouteille_id', 'DESC')
+                    ->get();
+                }
             //dd($bouteilles);
+
+
+            $pays = DB::table('vino__cellier_has_vino__bouteille')
+                ->select('pays')
+                ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                ->where('vino__cellier_id', $id)
+                ->groupBy('pays')
+                ->get();
+            //dd($pays);
 
         $cellier = Cellier::find($id);
         $titre = 'bouteille' ; 
@@ -44,7 +81,8 @@ class BouteilleController extends Controller
             'id_cellier' => $id,
             'cellier' => $cellier,
             'msg'=> NULL,
-            'titre' => $titre
+            'titre' => $titre,
+            'pays' => $pays
 
         ]);
 
