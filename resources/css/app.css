@@ -162,7 +162,6 @@
 /*page liste bouteille*/
 .titleBouteille {
   font-size: 6vw;
-  transition: all ease-in-out 0.3s
 }
 
 /*titre carte nom bouteille*/
@@ -254,7 +253,6 @@ form[name="recherche"] {
   height: 100vh;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
   top: 0;
   left: 0;
   display: flex;
@@ -379,15 +377,31 @@ nav a span{
   align-items:stretch; 
 }
 
-.cellierCarte{
+.vinoCarte{
   display: flex;
   flex-direction: column;
   max-width: 250px;
   justify-content:space-between;
 }
 
+.vinoCarte .zoneImg{
+  max-height: 180px;
+  text-align: center;
+}
+
+.vinoCarte .zoneImg img{
+  height: 100%;
+  margin: 0 auto
+}
 
 
+a{
+  cursor:pointer;
+}
+
+.logoSAQ{
+  width: 20px;
+}
 
 /*Mediaqueries*/
 /* Si écran < 300px  */

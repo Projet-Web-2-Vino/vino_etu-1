@@ -51,7 +51,7 @@
             @if ($celliers)
                 @foreach ($celliers as $info)
 
-                    <div class="cellierCarte m-2 border border-gray-200 rounded-lg shadow">   
+                    <div class="vinoCarte m-2 border border-gray-200 rounded-lg shadow">   
                         
 
 
@@ -88,9 +88,9 @@
                         <div class="flexboutonCellier flex gap-y-px">
 
                             @if ($info->bouteilles_count != 0)
-                            <a class="rounded-b-lg w-full text-center bg-slate-800 text-white  py-2 px-4   border-white" href='{{ route('bouteille.liste', ['id' => $info->id]) }}'>Bouteille</a>
+                            <a class="w-full text-center bg-slate-800 text-white  py-2 px-4   border-white" href='{{ route('bouteille.liste', ['id' => $info->id]) }}'>Voir bouteille</a>
                             @endif
-                            <a class="rounded-b-lg w-full text-center bg-slate-800 text-white  py-2 px-4  " href='{{ route('bouteille.nouveau', ['id' => $info->id]) }}'>Ajouter bouteille</a>
+                            <a class="w-full text-center bg-slate-700 text-white  py-2 px-4  " href='{{ route('bouteille.nouveau', ['id' => $info->id]) }}'>Ajouter bouteille</a>
                         </div>
                     </div>
 
