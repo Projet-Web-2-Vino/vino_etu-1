@@ -15,6 +15,12 @@
             <p class="text-sm font-normal text-white">Bienvenue dans votre cellier : {{$cellier->nom_cellier}}</p>
         </article>
 
+
+        
+
+
+
+
         <!-- Feedback success -->
         @if (session()->has('success'))
         <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
@@ -22,11 +28,27 @@
 
 
 
+    
+        @if (count($bouteilles) == 0)
+        <h3 class="titreSecondaire font-semibold">Bienvenue!</h3>
+        <p class="mb-2">Veuillez ajouter votre première bouteille</p>
+
+
+        {{-- Section créé cellier --}}
+        <a class="block text-center w-full max-w-sm border border-gray-200 rounded-lg shadow" href="{{ route('bouteille.nouveau', ['id' => $cellier->id]) }}">
+            <svg class="mx-auto my-10" height="150px" width="150px"  viewBox="0 0 50 50"><rect fill="none" height="50" width="50"/><line fill="none" stroke="#bfbfbf" stroke-miterlimit="10" stroke-width="2" x1="9" x2="41" y1="25" y2="25"/><line fill="none" stroke="#bfbfbf" stroke-miterlimit="10" stroke-width="2" x1="25" x2="25" y1="9" y2="41"/></svg>
+                <h5 class="mb-1 text-l font-medium text-gray-900 uppercase">Ajouter une bouteille</h5>
+        </a>
+
+    @endif
+
 
     {{-- Section Carte Bouteille  --}}
     <div class="flexPerso">
     @foreach ($bouteilles as  $info)
       <div class="vinoCarte m-2 bg-white shadow  border rounded-lg">
+
+
 
         {{-- Section Action  --}}
         <div class="flex justify-between relative rounded-3xl  p-3 text-right">
@@ -56,7 +78,7 @@
         {{-- FIN Section Action  --}}
 
         {{-- Section img  --}}
-        <div class='zoneImg'>
+        <div class='zoneImg '>
                 @switch($info->type)
                 @case(1)
                     <img src="https://www.saq.com/media/catalog/product/1/5/15085107-1_1661793344.png">
@@ -71,7 +93,9 @@
         </div>
         {{-- FIN Section img  --}}
 
-        <div class="p-4">
+        <div class="p-4 grow">
+        
+        
 
           <div class="flex items-center justify-between">
             {{-- Section pour inserer le nom de la bouteille --}}
@@ -205,142 +229,3 @@
     {{-- Section pour le navbar du bas --}}
     @include('layouts.bottomNav')
 @endsection
-
-
-<!--
-    /**
-    * Script qui gere l'ajout et la suppression d'une bouteille dans la carte
-    */
-
--->
-<script>
-    window.addEventListener("load", function() {
-
-
-        //Détecter si url =  vue liste bouteille
-        if (window.location.href.indexOf("bouteille") > -1) {
-            //console.log('oui')
-
-
-            //Gestionnaire d'evenement du bouton delete
-
-            const modals = document.querySelectorAll("[data-modal]");
-
-            modals.forEach(function(trigger) {
-                trigger.addEventListener("click", function(event) {
-                    event.preventDefault();
-                    let form = event.target.parentElement.parentElement
-                   // console.log(trigger.dataset.modal)
-                    const modal = document.getElementById(trigger.dataset.modal);
-                   // console.log(modal);
-                    modal.classList.add("open");
-                    const exits = modal.querySelectorAll(".modal-exit");
-                    exits.forEach(function(exit) {
-                        exit.addEventListener("click", function(event) {
-                            event.preventDefault();
-                           // console.log(form)
-                            //console.log(event.target.dataset.action)
-                            if (event.target.dataset.action == "supprimer") {
-                                //console.log(form)
-                                form.submit();
-                            }
-                            modal.classList.remove("open");
-                        });
-                    });
-                });
-            });
-
-
-
-            // ajouter un gestionnaire d'évènement au bouton ajouter/enlever
-            let elBoutonAjout = this.document.querySelectorAll('.btnModif')
-
-            elBoutonAjout.forEach(element => {
-
-                //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
-                element.addEventListener('click', function(evt) {
-                    evt.preventDefault();
-                    let idCellier = element.dataset.id
-                   // console.log(evt.target)
-                     //console.log(idCellier);
-
-                    let idVin = element.dataset.idVin;
-                     //console.log(idVin);
-
-                    let elemBouteille = evt.target.parentElement.parentElement;
-                    // console.log(elemBouteille);
-
-                    let valueQuantite = elemBouteille.querySelector('.quantite').innerText;
-                    let elemQuantite = elemBouteille.querySelector('.quantite')
-                   // console.log(valueQuantite);
-
-
-                    let action = evt.target.parentElement.dataset.action
-                    //console.log(action)
-                    let newQuantite = valueQuantite
-                    if (action == 'plus') {
-                        newQuantite = parseInt(valueQuantite) + 1
-                    } else {
-                        //console.log(valueQuantite)
-
-                        if (valueQuantite != 0) {
-                            newQuantite = parseInt(valueQuantite) - 1
-                        } else {
-                            newQuantite = 0;
-
-                        }
-                    }
-
-                    // console.log(newQuantite);
-
-                    //recherche Url
-                    const url = window.location.href
-                    //console.log(url);
-
-                    const options = {
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Accept": "application/json",
-                            "X-Requested-With": "XMLHttpRequest",
-                            "X-CSRF-Token": document.querySelector('input[name="_token"]')
-                                .value
-                        },
-                        method: "post",
-                        credentials: "same-origin",
-                        body: JSON.stringify({
-                            idCellier: idCellier,
-                            idVin: idVin,
-                            quantite: newQuantite
-                        })
-                    }
-
-
-                     fetch(url, options)
-                        .then((data) => {
-                            //console.log(data)
-                            /*Injecter la quantite dans le HTML*/
-                    //console.log(typeof newQuantite)
-                    // console.log(valueQuantite);
-                    elemQuantite.innerText = newQuantite.toString();
-
-                      })
-
-                        .catch(function(error){
-                           // console.log(error);
-                        })
-
-
-
-
-
-
-
-
-                });
-            })
-
-        }
-
-    });
-</script>
-

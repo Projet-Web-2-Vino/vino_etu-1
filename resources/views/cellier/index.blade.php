@@ -1,22 +1,7 @@
 @extends('layouts.master')
 @section('content')
 
-
-
-    <!-- Feedback success -->
-        @if (session()->has('success'))
-            <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
-        @endif
-
-
-
-      
         
-           
-            
-    
-
-        @if (count($celliers) == 0)
         <div class='container mb-20 max-w-full'>
 
             
@@ -24,12 +9,17 @@
                 {{-- Section header --}}
                 <article class="zoneRouge mb-5 rounded-md bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5 sm:py-8">
                   <h1 class="titreZoneRouge  text-6xl font-bold text-white ">
-                    L'atelier  à  vin
+                    Vos celliers
                   </h1>
                     <p class="text-sm font-normal text-white">Votre espace cellier personnalisé</p>
                 </article>
 
+                  <!-- Feedback success -->
+                @if (session()->has('success'))
+                    <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
+                @endif
 
+            @if (count($celliers) == 0)
                 <h3 class="titreSecondaire font-semibold">Bienvenue!</h3>
                 <p class="mb-2">Veuillez créer votre premier cellier</p>
 
@@ -39,9 +29,6 @@
                         <h5 class="mb-1 text-l font-medium text-gray-900 uppercase">Ajouter un cellier</h5>
                 </a>
 
-                
-
-           
             @endif
 
 
