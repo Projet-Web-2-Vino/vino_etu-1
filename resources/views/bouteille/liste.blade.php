@@ -47,7 +47,8 @@
               <span class="inline-block text-xl  text-gray-700">
                   <form action="{{ route('bouteille.supprime', ['idVin' => $info->vino__bouteille_id, 'idCellier' => $info->vino__cellier_id ]) }}" method="POST">
                       @csrf
-                      <button data-modal="modal-{{$info->id}}"><i class="fa-solid fa-trash"></i></button>
+                      <button data-modal="modal-{{ $info->vino__bouteille_id }}" class="delete">
+                        <i class="fa-sharp fa-solid fa-trash  space-y-2"></i></button>
                   </form>
               </span>
           </div>
@@ -146,17 +147,36 @@
 
 
 
-     <!-- Modal -->
-     <div class="modal" id="modal-{{$info->vino__bouteille_id}}">
+    <!-- Modal -->
+    <div class="modalBouteille modal" id="modal-{{ $info->vino__bouteille_id }}">
         <div class="modal-bg modal-exit"></div>
         <div class="modal-container">
-          <button data-action="no-supprimer" class="modal-close modal-exit">X</button>
-          <h1>Êtes-vous certain de vouloir supprimer</h1>
-          <h2>{{$info->nom}}</h2>
-          <button data-action="supprimer" class="modal-exit">Oui</button>
-          <button data-action="no-supprimer" class="modal-exit">Non</button>
+            <button data-action="no-supprimer" class="modal-close modal-exit"><i class="fa fa-window-close"
+                    aria-hidden="true"></i></button>
+            <div><i class="block text-amber-600 mx-auto fa-solid fa-triangle-exclamation text-5xl"></i>
+            </div>
+            <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
+            <h2 class="font-semibold uppercase text-2xl text-amber-800">{{ $info->nom }}</h2>
+
+            <p class="mb-3">
+                @if ($info->quantite != 0)
+                    @if ($info->quantite == 1)
+                        {{ $info->quantite }} bouteille sera supprimée
+                    @else
+                        {{ $info->quantite }} bouteilles seront supprimées
+                    @endif
+                @endif
+            </p>
+            <div class="flex justify-end space-x-1">
+                <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit"
+                    data-action="supprimer" class="modal-exit">Supprimer</button>
+                <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit"
+                    data-action="no-supprimer" class="modal-exit">Non</button>
+
+
+            </div>
         </div>
-      </div>
+    </div> <!-- Modal Fin -->
   @endforeach
 </div>
     {{-- Section pour le navbar du bas --}}
