@@ -378,22 +378,26 @@ nav a span{
 }
 
 .vinoCarte{
+  position:relative;
   display: flex;
   flex-direction: column;
-  max-width: 250px;
+  width: 250px;
   justify-content:space-between;
 }
 
 .vinoCarte .zoneImg{
-  max-height: 180px;
   text-align: center;
 }
 
 .vinoCarte .zoneImg img{
+  max-height: 180px;
   height: 100%;
   margin: 0 auto
 }
 
+.vinoCarte h1{
+  line-height: 1em;
+}
 
 a{
   cursor:pointer;
@@ -402,6 +406,9 @@ a{
 .logoSAQ{
   width: 20px;
 }
+
+
+
 
 /*Mediaqueries*/
 /* Si écran < 300px  */
