@@ -66,7 +66,7 @@
                                     <img src="https://images.assetsdelivery.com/compings_v2/yupiramos/yupiramos1901/yupiramos190109446.jpg" alt="">
                                     {{-- <img class=" justify-center"  src="https://cdn-icons-png.flaticon.com/512/2727/2727964.png" alt=""> --}}
                                     <div class="text-center justify-center">
-                                        <h2 class="mb-2  text-xl uppercase font-semibold"> {{ $info->nom_cellier }}</h2>
+                                        <h2 class="cellierTitre mb-2  text-xl uppercase font-semibold"> {{ $info->nom_cellier }}</h2>
                                             {{-- Section pour le nombre de bouteille --}}
                                             <i class=" text-stone-600 fa-solid fa-wine-bottle  text-3xl"></i> <strong>({{ $info->bouteilles_count }}) </strong>
 

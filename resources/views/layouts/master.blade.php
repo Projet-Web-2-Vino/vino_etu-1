@@ -23,7 +23,7 @@
       @if(auth()->check() && auth()->user()->is_admin == 1)
       <div class="w-full bg-red-900 ">
         <div class="flex justify-between p-4">
-          <a href="/cellier" class="text-lg font-semibold uppercase  text-white">L'atelier a vin </a>
+          <a href="/admin" class="text-lg font-semibold uppercase  text-white">L'atelier a vin </a>
           
           <a href="/logout" class="text-white">Déconnexion </a>
           
