@@ -3,6 +3,16 @@
 
 <!-- component -->
 
+ <!-- Authentication -->
+ <form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <a href="route('logout')"
+            onclick="event.preventDefault();
+                        this.closest('form').submit();">
+        {{ __('Log Out') }}
+    </a>
+</form>
+
   <!-- Gestion des cellier -->
   <div class="container  max-w-3xl mx-auto">
     <div class="mb-4">
@@ -51,7 +61,7 @@
                         </thead>
                                 
                                     @foreach ($users as  $info)
-                                    @if ($info->id >1)
+                                    @if ($info->id > 1)
                                     <tbody class="bg-white">
                                         <tr>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -113,17 +123,17 @@
                             <button data-action="no-supprimer" class="modal-close modal-exit"><i class="fa fa-window-close" aria-hidden="true"></i></button>
                             <div><i class="block text-amber-600 mx-auto fa-solid fa-triangle-exclamation text-5xl"></i></div>
                             <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
-                            <h2 class="font-semibold uppercase text-2xl text-amber-800">{{$info->nom_cellier}}</h2>
+                            <h2 class="font-semibold uppercase text-2xl text-amber-800">{{$info->name}}</h2>
 
                              <p class="mb-3">
-                            @if ($info->bouteilles_count != 0)
+                           {{--  @if ($info->bouteilles_count != 0)
                                 @if ($info->bouteilles_count == 1)
-                                    {{ $info->bouteilles_count }} bouteille
+                                    {{ $info->bouteilles_count }} 
                                 @else
-                                    {{ $info->bouteilles_count }} bouteilles
+                                    {{ $info->bouteilles_count }} 
                             @endif
                             seront  supprimées
-                            @endif
+                            @endif--}}
                         </p>
                         <div class="flex justify-end space-x-1">
                             <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="supprimer" class="modal-exit">Supprimer</button>
@@ -145,7 +155,7 @@
 
 
     {{-- Section pour le navbar du bas --}}
-   
+  
     
 
 @endsection
