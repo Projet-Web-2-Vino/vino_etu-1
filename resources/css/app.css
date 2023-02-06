@@ -162,7 +162,6 @@
 /*page liste bouteille*/
 .titleBouteille {
   font-size: 6vw;
-  transition: all ease-in-out 0.3s
 }
 
 /*titre carte nom bouteille*/
@@ -254,7 +253,6 @@ form[name="recherche"] {
   height: 100vh;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
   top: 0;
   left: 0;
   display: flex;
@@ -335,5 +333,114 @@ form *:not(label){
 }
 
 
+
+/*Nav correction final*/
+nav i{
+  font-size:1.5em;
+}
+
+nav svg{
+  width:1.75em;
+  height:1.75em;
+}
+
+nav a span{
+  display:block;
+}
+
+
+
+/*Titre zone rouge*/
+.titreZoneRouge{
+  line-height: 1em;
+  margin-bottom:5px;
+}
+
+.zoneRouge p{
+  line-height: 1em;
+}
+
+/*commun  app*/
+
+.container{
+  padding:20px;
+}
+
+.titreSecondaire{
+  font-size:4vw;
+  
+}
+
+.flexPerso{
+  display: flex;
+  flex-wrap: wrap;
+  align-items:stretch; 
+}
+
+.vinoCarte{
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  justify-content:space-between;
+}
+
+.vinoCarte .zoneImg{
+  text-align: center;
+}
+
+.vinoCarte .zoneImg img{
+  max-height: 180px;
+  height: 100%;
+  margin: 0 auto
+}
+
+.vinoCarte h1{
+  line-height: 1em;
+}
+
+a{
+  cursor:pointer;
+}
+
+.logoSAQ{
+  width: 20px;
+}
+
+
+
+
+/*Mediaqueries*/
+/* Si écran < 300px  */
+@media screen and (max-width: 300px) {
+  nav a span{
+    display:none!important;
+  }
+  .titreSecondaire{
+    font-size:15vw
+  }
+ 
+}
+
+
+@media screen and (max-width: 500px) {
+  .container{
+    padding:5px;
+  }
+  
+  .titreZoneRouge{
+    font-size: 12vw;
+  }
+
+  .titreSecondaire{
+    font-size:8vw;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .flexPerso{
+    justify-content: center;
+  }
+}
 
 

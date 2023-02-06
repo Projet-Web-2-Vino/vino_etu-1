@@ -16,9 +16,10 @@
   <!-- Gestion des cellier -->
   <div class="container  max-w-3xl mx-auto">
     <div class="mb-4">
-        <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Gestion SAQ</h1>
-      <div class="flex justify-end">
-        <a class="px-4 py-2 rounded-md bg-red-900 text-sky-100 hover:bg-red-500"  href='{{ route('bouteille.updateSAQ') }}'>Importation de la SAQ</a>
+        
+      <div class="flex justify-between">
+        <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Zone adminitrative</h1>
+        <a class="px-4 py-2 rounded-md bg-red-900 text-sky-100 hover:bg-red-500"  href='{{ route('bouteille.updateSAQ') }}'>Mise à jour du catalogue</a>
       </div>
     </div>
 </div>
@@ -28,7 +29,8 @@
     <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
             <div>
-                <h2 class="text-2xl font-semibold leading-tight">{{ __('Admin Tableau') }}</h2>
+               <!-- <h2 class="text-2xl font-semibold leading-tight">{{ __('Admin Tableau') }}</h2> -->
+               <h2 class="text-xl font-semibold leading-tight">Liste des usagers</h2>
             </div>
            
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
