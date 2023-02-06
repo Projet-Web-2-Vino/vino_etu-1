@@ -18,11 +18,27 @@
 
 </head>
 <body>
+      
+
+      @if(auth()->check() && auth()->user()->is_admin == 1)
       <div class="w-full bg-red-900 ">
-            <div class="text-center py-4">
-              <a href="/cellier" class="text-lg font-semibold uppercase  text-white">L'atelier a vin </a>
-            </div>
-      </div>
+        <div class="flex justify-between p-4">
+          <a href="/cellier" class="text-lg font-semibold uppercase  text-white">L'atelier a vin </a>
+          
+          <a href="/logout" class="text-white">Déconnexion </a>
+          
+        </div>
+  </div>
+  @else
+  <div class="w-full bg-red-900 ">
+    <div class="text-center py-4">
+      <a href="/cellier" class="text-lg font-semibold uppercase  text-white">L'atelier a vin </a>
+      
+    </div>
+</div>
+
+@endif
+
 </body>
   @yield('content')
 
