@@ -342,19 +342,84 @@ nav i{
 }
 
 nav svg{
-  width:1.5em;
-  height:1.5em;
+  width:1.75em;
+  height:1.75em;
 }
 
 nav a span{
-  display:inline;
+  display:block;
 }
+
+
+
+/*Titre zone rouge*/
+.titreZoneRouge{
+  line-height: 1em;
+  margin-bottom:5px;
+}
+
+.zoneRouge p{
+  line-height: 1em;
+}
+
+/*commun  app*/
+
+.container{
+  padding:20px;
+}
+
+.titreSecondaire{
+  font-size:4vw;
+  
+}
+
+.flexPerso{
+  display: flex;
+  flex-wrap: wrap;
+  align-items:stretch; 
+}
+
+.cellierCarte{
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  justify-content:space-between;
+}
+
+
+
 
 /*Mediaqueries*/
 /* Si écran < 300px  */
 @media screen and (max-width: 300px) {
   nav a span{
-    display:none;
+    display:none!important;
+  }
+  .titreSecondaire{
+    font-size:15vw
+  }
+ 
+}
+
+
+@media screen and (max-width: 500px) {
+  .container{
+    padding:5px;
+  }
+  
+  .titreZoneRouge{
+    font-size: 12vw;
+  }
+
+  .titreSecondaire{
+    font-size:8vw;
   }
 }
+
+@media screen and (max-width: 530px) {
+  .flexPerso{
+    justify-content: center;
+  }
+}
+
 

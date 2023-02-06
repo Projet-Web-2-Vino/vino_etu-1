@@ -61,7 +61,7 @@
     </a>
 
 	@if($titre == 'cellier')
-    <a href="/cellier/nouveaur" class="w-full block py-5 px-3 text-center">
+    <a href="/cellier/nouveau" class="w-full block py-5 px-3 text-center">
         <i class="fa-solid fa-plus mb-2 mx-auto"></i>
 				<span class="tab tab-explore block text-xs">Ajouter</span>
      
@@ -88,7 +88,7 @@
 					@endisset
 			@endif
 
-    <a href="#" class="w-full block py-5 px-3 text-center">
+    <a href="/logout" class="w-full block py-5 px-3 text-center">
 		<i class="fa-solid fa-right-from-bracket mb-2 mx-auto"></i>
 		<span class="tab tab-explore block text-xs">Déconnexion</span>
     </a>
