@@ -41,7 +41,7 @@
                                 </th>
                                 <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                Detail
+                                Courriel
                                 </th>
                                 <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -71,10 +71,7 @@
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                                 <div class="flex items-center">
                                                  <!-- zone detail usager-->
-                                                <form action="{{ route('cellier.index', ['id' => $info->id]) }}" method="POST">
-                                                    @csrf
-                                                    <button>Detail</button>
-                                                </form>
+                                                 {{$info->email}}
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
