@@ -2,26 +2,71 @@
 @section('content')
 
 <!-- component -->
-
- <!-- Authentication -->
- <form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <a href="route('logout')"
-            onclick="event.preventDefault();
-                        this.closest('form').submit();">
-        {{ __('Log Out') }}
-    </a>
-</form>
-
   <!-- Gestion des cellier -->
-  <div class="container  max-w-3xl mx-auto">
+  <div class="container max-w-3xl mx-auto my-12">
     <div class="mb-4">
-        
-      <div class="flex justify-between">
-        <h1 class="font-serif text-3xl font-bold underline decoration-gray-400">Zone adminitrative</h1>
+      <div class="flex justify-between my-px">
+        <h1 class="font-serif text-3xl font-bold underline decoration-gray-400 ">Zone adminitrative</h1>
         <a class="px-4 py-2 rounded-md bg-red-900 text-sky-100 hover:bg-red-500"  href='{{ route('bouteille.updateSAQ') }}'>Mise à jour du catalogue</a>
       </div>
     </div>
+</div>
+<!-- Gestion des cellier -->
+<div class="container  my-12 mx-auto px-4 md:px-12">
+	<div class="flex flex-wrap -mx-1 lg:-mx-4 cursor-pointer mx-auto">
+		<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+			<div class="max-w-sm rounded overflow-hidden shadow-lg border-4 border-transparent hover:border-indigo-900  transition duration-300 ease-in-out">
+				<div class="px-6 py-4">
+					<h3 class="font-bold text-black mt-2 mb-2">Total usagers</h3>
+                    @if ($users) 
+					<p class="text-gray-700 text-base">
+						{{count($users)-1}}
+					</p>
+                    @endif
+
+					<!--<div class="mt-5 pt-5">
+						<a href="#!" class=" bg-red-900 hover:bg-red-500 text-white font-bold py-2 px-4 rounded text-sm w-full">Detail</a>
+					</div>-->
+				</div>
+				<div class="px-6 py-4">
+				</div>
+			</div>
+		</div>
+		<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+			<div class="max-w-sm rounded overflow-hidden shadow-lg border-4 border-transparent hover:border-indigo-900  transition duration-300 ease-in-out">
+				<div class="px-6 py-4">
+					<h3 class="font-bold text-black mt-2 mb-2">Total Cellier</h3>
+                    @if ($celliers) 
+                    <p class="text-gray-700 text-base">
+						{{count($celliers)}}
+					</p>
+                    @endif
+					<!--<div class="mt-5 pt-5">
+						<a href="#!" class=" bg-red-900 hover:bg-red-500 text-white font-bold py-2 px-4 rounded text-sm w-full">Detail</a>
+					</div>-->
+				</div>
+				<div class="px-6 py-4">
+				</div>
+			</div>
+		</div>
+		<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+			<div class="max-w-sm rounded overflow-hidden shadow-lg border-4 border-transparent hover:border-indigo-900  transition duration-300 ease-in-out">
+				<div class="px-6 py-4">
+					<h3 class="font-bold text-black mt-2 mb-2">Total Bouteil Vin</h3>
+                    @if ($bouteilles) 
+					<p class="text-gray-700 text-base">
+						{{count($bouteilles)}}
+					</p>
+                    @endif
+					<!--<div class="mt-5 pt-5">
+						<a href="#!" class=" bg-red-900 hover:bg-red-500 text-white font-bold py-2 px-4 rounded text-sm w-full">Detail</a>
+					</div>-->
+				</div>
+				<div class="px-6 py-4">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Gestion des usagers -->
@@ -42,7 +87,7 @@
                                 <span style="color:green">{{ session('success') }}</span>
                                 @endif
 
-                                @if ($users)
+                               
                                 <th
                                 class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                 Usager
@@ -61,7 +106,7 @@
                                 </th>
                                 </tr>
                         </thead>
-                                
+                                @if ($users)
                                     @foreach ($users as  $info)
                                     @if ($info->id > 1)
                                     <tbody class="bg-white">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Ceiller;
+use App\Models\Bouteille;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -13,9 +15,13 @@ class AdminController extends Controller
     {
      
         $users = User::get();
+        $celliers = User::get();
+        $bouteilles = Bouteille::get();
       
         return view('admin.index', [
-            'users' => $users
+            'users' => $users,
+            'celliers' => $celliers,
+            'bouteilles' => $bouteilles,
         ]);
         return view('admin.index');
     }
