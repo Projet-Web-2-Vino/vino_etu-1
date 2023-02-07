@@ -6,6 +6,10 @@
     SECTION PAGE ACCUEIL
 */
 
+body{
+  padding-bottom:120px;
+}
+
 .background {
   background-position: center;
   background-size: cover;
@@ -365,7 +369,7 @@ nav a span{
 /*commun  app*/
 
 .container{
-  padding:20px;
+  padding:5px;
 }
 
 .titreSecondaire{
@@ -377,13 +381,27 @@ nav a span{
   display: flex;
   flex-wrap: wrap;
   align-items:stretch; 
+  justify-content: center;
+}
+
+.cellierCarte{
+  /*min-width: 400px;*/
+}
+
+.cellierCarte img{
+  max-width:70%;
+  margin:0 auto;
+}
+
+.cellierCarte form{
+  margin:0;
 }
 
 .vinoCarte{
   position:relative;
   display: flex;
   flex-direction: column;
-  width: 250px;
+  max-width: 400px;
   justify-content:space-between;
   overflow-wrap: break-word;
   z-index:0;
@@ -483,10 +501,6 @@ a{
 
 
 @media screen and (max-width: 500px) {
-  .container{
-    padding:5px;
-  }
-  
   .titreZoneRouge{
     font-size: 12vw;
   }
@@ -502,4 +516,11 @@ a{
   }
 }
 
+
+@media screen and (min-width: 500px) {
+  .container{
+    padding:20px;
+  }
+  
+}
 
