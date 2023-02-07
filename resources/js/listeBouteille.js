@@ -38,7 +38,7 @@ window.addEventListener("load", function() {
 
 
 
-        // ajouter un gestionnaire d'évènement au bouton ajouter/enlever
+        // Gestionnaire d'évènement au bouton ajouter/enlever
         let elBoutonAjout = this.document.querySelectorAll('.btnModif')
 
         elBoutonAjout.forEach(element => {
@@ -124,6 +124,85 @@ window.addEventListener("load", function() {
 
             });
         })
+
+
+
+
+        /*Gestion sytem de note*/
+
+
+        let elEtoiles = this.document.querySelectorAll("input[type='radio']")
+
+        elEtoiles.forEach(element => {
+
+            //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
+            element.addEventListener('click', function(evt) {
+                evt.preventDefault();
+
+                let idCellier = element.parentElement.dataset.id
+               // console.log(evt.target)
+                 console.log(idCellier);
+
+                let idVin = element.parentElement.dataset.idVin;
+                 console.log(idVin);
+
+                
+
+                let note = element.value;
+                //console.log(inputRadio)
+                
+                //recherche Url
+                const url = window.location.href
+                //console.log(url);
+
+                const options = {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRF-Token": document.querySelector('input[name="_token"]')
+                            .value
+                    },
+                    method: "post",
+                    credentials: "same-origin",
+                    body: JSON.stringify({
+                        idCellier: idCellier,
+                        idVin: idVin,
+                        note: note
+                    })
+                }
+
+
+                 fetch(url, options)
+                    .then((data) => {
+                        console.log(data)
+                        /*Injecter la note dans le HTML*/
+                       // console.log(element)
+                        element.checked = true
+               
+
+                  })
+
+                    .catch(function(error){
+                        console.log(error);
+                    })
+
+
+
+
+
+
+
+
+            });
+        })
+
+
+
+
+
+
+
 
     }
 
