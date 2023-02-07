@@ -257,16 +257,22 @@
   
         <div class="feedback">
           <div class="note" data-id="{{ $info->vino__cellier_id }}" data-id-vin="{{ $info->vino__bouteille_id }}">
+
             <input type="radio" name="note-{{$info->vino__bouteille_id}}" id="note-{{$info->vino__bouteille_id}}-5" value="5" @if($info->note == "5") checked @endif>
             <label for="note-{{$info->vino__bouteille_id}}-5"></label>
-            <input type="radio" note-{{$info->vino__bouteille_id}} id="note-{{ $info->vino__bouteille_id}}-4" value="4" @if($info->note == "4") checked @endif>
-            <label for="{{ $info->vino__bouteille_id}}-4"></label>
-            <input type="radio" note-{{$info->vino__bouteille_id}} id="{{ $info->vino__bouteille_id }}-3" value="3" @if($info->note == "3") checked @endif>
-            <label for="{{ $info->vino__bouteille_id }}-3"></label>
-            <input type="radio" note-{{$info->vino__bouteille_id}} id="note-{{ $info->vino__bouteille_id}}-2" value="2" @if($info->note == "2") checked @endif>
-            <label for="note-{{ $info->vino__bouteille_id}}-2"></label>
-            <input type="radio" note-{{$info->vino__bouteille_id}} id="{{ $info->vino__bouteille_id }}-1" value="1" @if($info->note == "1") checked @endif>
-            <label for="{{ $info->vino__bouteille_id }}-1"></label>
+
+            <input type="radio" name="note-{{$info->vino__bouteille_id}}" id="note-{{$info->vino__bouteille_id}}-4" value="4" @if($info->note == "4") checked @endif>
+            <label for="note-{{$info->vino__bouteille_id}}-4"></label>
+
+            <input type="radio" name="note-{{$info->vino__bouteille_id}}" id="note-{{$info->vino__bouteille_id}}-3" value="3" @if($info->note == "3") checked @endif>
+            <label for="note-{{$info->vino__bouteille_id}}-3"></label>
+
+            <input type="radio" name="note-{{$info->vino__bouteille_id}}" id="note-{{$info->vino__bouteille_id}}-2" value="2" @if($info->note == "2") checked @endif>
+            <label for="note-{{$info->vino__bouteille_id}}-2"></label>
+
+            <input type="radio" name="note-{{$info->vino__bouteille_id}}" id="note-{{$info->vino__bouteille_id}}-1" value="1" @if($info->note == "1") checked @endif>
+            <label for="note-{{$info->vino__bouteille_id}}-1"></label>
+            
           </div>
         </div>
       

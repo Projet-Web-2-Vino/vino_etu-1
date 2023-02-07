@@ -135,9 +135,10 @@ window.addEventListener("load", function() {
 
         elEtoiles.forEach(element => {
 
-            //Fontion qui ajoute  une bouteille lorsque l'usager click sur le bouton ajouter
+            
             element.addEventListener('click', function(evt) {
                 evt.preventDefault();
+                console.log('clicketoile')
 
                 let idCellier = element.parentElement.dataset.id
                // console.log(evt.target)
