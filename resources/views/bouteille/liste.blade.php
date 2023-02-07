@@ -214,6 +214,15 @@
     @endif
 
 
+    
+
+
+
+
+
+
+
+
 
 
         {{-- Section pour inserer les notes --}}
@@ -241,6 +250,36 @@
                    </div>
 
            </div>
+
+             {{-- Section pour inserer les notes --}}
+
+    <div class="container">
+        <div class="feedback">
+          <div class="note">
+            <input type="radio" name="note" id="note-5" value="5">
+            <label for="note-5"></label>
+            <input type="radio" name="note" id="note-4" value="5">
+            <label for="note-4"></label>
+            <input type="radio" name="note" id="note-3" value="5">
+            <label for="note-3"></label>
+            <input type="radio" name="note" id="note-2" value="5">
+            <label for="note-2"></label>
+            <input type="radio" name="note" id="note-1" value="5">
+            <label for="note-1"></label>
+           
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
         </div>
 
     {{-- Section Fin Carte Bouteil  --}}
