@@ -28,6 +28,7 @@ class BouteilleController extends Controller
 
             $type = Request::get('type');
             $pays = Request::get('pays');
+            $note = Request::get('note');
             
            // dd($type);
 
@@ -46,9 +47,9 @@ class BouteilleController extends Controller
                 if($type){
                     $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                     ->select('*')
+                    ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
                     ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                     ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                    ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                     ->where('vino__cellier_id', $id)
                     ->where('type', $type)
                     ->orderBy('vino__bouteille_id', 'DESC')
@@ -58,11 +59,24 @@ class BouteilleController extends Controller
                 if($pays){
                     $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                     ->select('*')
+                    ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
                     ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                     ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                    ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                     ->where('vino__cellier_id', $id)
                     ->where('pays', $pays)
+                    ->orderBy('vino__bouteille_id', 'DESC')
+                    ->get();
+                }
+
+
+                if($note){
+                    $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                    ->select('*')
+                    ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
+                    ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                    ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                    ->where('vino__cellier_id', $id)
+                    ->where('note', $note)
                     ->orderBy('vino__bouteille_id', 'DESC')
                     ->get();
                 }
@@ -71,9 +85,9 @@ class BouteilleController extends Controller
 
             $pays = DB::table('vino__cellier_has_vino__bouteille')
                 ->select('pays')
+                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                 ->where('vino__cellier_id', $id)
                 ->groupBy('pays')
                 ->get();
@@ -176,9 +190,9 @@ class BouteilleController extends Controller
             $titre = 'bouteille';
 
             $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                 ->where('vino__cellier_id', $id_cellier)
                 ->get();
         
@@ -399,33 +413,6 @@ class BouteilleController extends Controller
 
          
     }
-
-    
-     /**
-     * Fonction pour le rating des bouteilles
-     */
-
-    //  public function rating(Request $request)
-    //  {
-    //      $review = new ReviewRating();
-    //      $review->note = $request->input('note');
-
-    //      // Validate the data
-    //      $validatedData = $request->validate([
-    //          'note' => 'required|integer|between:1,5'
-    //      ]);
-
-    //      // Attempt to save the rating to the database
-    //      try {
-    //          $review->save();
-    //          return response()->json(['message' => 'Rating saved successfully'], 201);
-    //      } catch (\Exception $e) {
-    //          // Handle the exception and return an error response
-    //          return response()->json(['message' => 'Error saving the rating'], 500);
-    //      }
-    //  }
-
-
 
     
 }
