@@ -373,7 +373,7 @@ class BouteilleController extends Controller
                                         ->update(['note' =>$note]); 
 
         
-        dd($updated);
+        //dd($updated);
 
 
        // return json_encode($quantite);
