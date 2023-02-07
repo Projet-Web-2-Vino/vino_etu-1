@@ -13,6 +13,7 @@
             Vos bouteilles
         </h1>
             <p class="text-sm font-normal text-white">Bienvenue dans votre cellier : {{$cellier->nom_cellier}}</p>
+            <p class="mt-1 text-sm font-normal text-white">Nombre de bouteilles : {{count($bouteilles) }}</p>
         </article>
 
 
@@ -26,6 +27,10 @@
         <div class="text-emerald-600 text-center font-semibold my-10">{{ session('success') }}</div>
         @endif
 
+        <!-- Feedback success -->
+        @if ($msg)
+        <div class="text-emerald-600 text-center font-semibold my-10">{{ $msg }}</div>
+        @endif
 
 
     
