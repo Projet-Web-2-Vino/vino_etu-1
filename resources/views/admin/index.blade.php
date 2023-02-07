@@ -160,16 +160,6 @@
                             <h1 class="text-2xl font-bold">Voulez-vous supprimer</h1>
                             <h2 class="font-semibold uppercase text-2xl text-amber-800">{{$info->name}}</h2>
 
-                             <p class="mb-3">
-                           {{--  @if ($info->bouteilles_count != 0)
-                                @if ($info->bouteilles_count == 1)
-                                    {{ $info->bouteilles_count }} 
-                                @else
-                                    {{ $info->bouteilles_count }} 
-                            @endif
-                            seront  supprimées
-                            @endif--}}
-                        </p>
                         <div class="flex justify-end space-x-1">
                             <button class="bg-red-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="supprimer" class="modal-exit">Supprimer</button>
                             <button class="bg-slate-900 text-white font-bold py-2 px-4 rounded modal-exit" data-action="no-supprimer" class="modal-exit">Non</button>
@@ -188,7 +178,7 @@
 </body>
 
 
-    {{-- Section pour le navbar du bas --}}
+    
   
     
 

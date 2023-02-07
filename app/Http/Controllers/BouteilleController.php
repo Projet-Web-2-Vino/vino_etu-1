@@ -2,88 +2,92 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Bouteille;
+/*import*/
 use App\Models\BouteillePersonalize;
 use App\Models\Cellier;
 use App\Models\CelliersBouteilles;
 use App\Models\Note;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-//use Illuminate\Http\Request;
-//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
 
 class BouteilleController extends Controller
 {
-    //
-    public function index(Request $request, $id)
+    /** 
+     * Gestion des variables et vues de bouteille.liste
+     * @param $id // le id du cellier
+    */
+    public function index($id)
     {
 
         if(Auth::check()){
             $id_usager = Auth::id();
 
+            /* récupération des parametres */
             $type = Request::get('type');
             $pays = Request::get('pays');
             $note = Request::get('note');
             $msg = NULL;
             
-           //dd($id_usager, $note);
+            /* Condition si parametre filtre */
 
-                //dd($bouteilles);
-
-                if($type){
-                    $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
-                    ->select('*')
-                    ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
-                    ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
-                    ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                    ->where('vino__cellier_id', $id)
-                    ->where('type', $type)
-                    ->orderBy('vino__bouteille_id', 'DESC')
-                    ->get();
-                   // dd(count($bouteilles));
-                    if(!count($bouteilles)){
-                        $msg = "Vous n'avez pas de bouteille de ce type dans ce cellier";
-                        $bouteilles = $this->getBouteilles($id);
-                    }
-                }elseif($pays){
-                    $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
-                    ->select('*')
-                    ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
-                    ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
-                    ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                    ->where('vino__cellier_id', $id)
-                    ->where('pays', $pays)
-                    ->orderBy('vino__bouteille_id', 'DESC')
-                    ->get();
-                    if(!count($bouteilles)){
-                        $msg = "Vous n'avez pas de bouteille de ce pays dans ce cellier";
-                        $bouteilles = $this->getBouteilles($id);
-                    }
-                }elseif($note){
-                    $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
-                    ->select('*')
-                    ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
-                    ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
-                    ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                    ->where('vino__cellier_id', $id)
-                    ->where('note', $note)
-                    ->orderBy('vino__bouteille_id', 'DESC')
-                    ->get();
-                    if(!count($bouteilles)){
-                        $msg = "Vous n'avez pas de bouteille avec cette note dans ce cellier";
-                        $bouteilles = $this->getBouteilles($id);
-                    }
-                }else{
-                    $bouteilles = $this->getBouteilles($id);
+            /* Type de vin*/
+            if($type){
+                $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                ->select('*')
+                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
+                ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                ->where('vino__cellier_id', $id)
+                ->where('type', $type)
+                ->orderBy('vino__bouteille_id', 'DESC')
+                ->get();
+            
+                if(!count($bouteilles)){
+                    $msg = "Vous n'avez pas de bouteille de ce type dans ce cellier";
+                    $bouteilles = $this->listeBouteilles($id);
                 }
-           //dd($bouteilles);
+            /* Pays/Provenance*/    
+            }elseif($pays){
+                $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                ->select('*')
+                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
+                ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                ->where('vino__cellier_id', $id)
+                ->where('pays', $pays)
+                ->orderBy('vino__bouteille_id', 'DESC')
+                ->get();
 
+                if(!count($bouteilles)){
+                    $msg = "Vous n'avez pas de bouteille de ce pays dans ce cellier";
+                    $bouteilles = $this->listeBouteilles($id);
+                }
+             /* Note */    
+            }elseif($note){
+                $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                ->select('*')
+                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
+                ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                ->where('vino__cellier_id', $id)
+                ->where('note', $note)
+                ->orderBy('vino__bouteille_id', 'DESC')
+                ->get();
 
+                if(!count($bouteilles)){
+                    $msg = "Vous n'avez pas de bouteille avec cette note dans ce cellier";
+                    $bouteilles = $this->listeBouteilles($id);
+                }
+
+            }else{
+                $bouteilles = $this->listeBouteilles($id);
+            }
+          
+
+           /* récupérer le pays des vin du cellier pour l'ajouter au dropdown du filtre pays */
             $pays = DB::table('vino__cellier_has_vino__bouteille')
                 ->select('pays')
                 ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
@@ -92,7 +96,11 @@ class BouteilleController extends Controller
                 ->where('vino__cellier_id', $id)
                 ->groupBy('pays')
                 ->get();
-            //dd($pays);
+
+            if(!count($pays)){
+                    $pays = "N/A";
+                    $bouteilles = $this->listeBouteilles($id);
+            }
 
         $cellier = Cellier::find($id);
         $titre = 'bouteille' ; 
@@ -114,8 +122,11 @@ class BouteilleController extends Controller
         }
     }
 
-
-    public function getBouteilles($id)
+    /** 
+     * Récupère la liste des bouteilles du cellier
+     * @param $id // le id du cellier
+    */
+    public function listeBouteilles($id)
     {
        return $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                     ->select('*')
@@ -127,8 +138,9 @@ class BouteilleController extends Controller
                     ->get();
     }
 
-    /*
-     Retourne pour ajouter une bouteille au cellier
+    /** 
+     * Ajout une bouteille au cellier
+     * @param $id // le id du cellier
     */
     public function nouveau(Request $request, $id)
     {
@@ -156,8 +168,9 @@ class BouteilleController extends Controller
         }
     }
 
-    /*
-     Création d'une bouteille dans la BD
+    /** 
+     * Insertion d'une bouteille au cellier
+     * @param $request // les parametres POST de la requête
     */
     public function creer(Request $request)
     {
@@ -169,14 +182,9 @@ class BouteilleController extends Controller
             $id_cellier = Request::get('id_cellier');
             $note = 0;
 
-            
-            
-            //TODO validate data
+            //validation du data
             $this->validateBouteille($request);
             
-
-            //dd($quantite);
-
             //Ajout de la bouteille dans vin personalize
             //TODO check duplication//
             $bouteille = BouteillePersonalize::create(Request::except(['quantite', 'id_cellier', 'millesime2' ]));
@@ -191,7 +199,6 @@ class BouteilleController extends Controller
 
             CelliersBouteilles::create($request2);
 
-
             //Ajout note 0 par défaut
             $request3 = [
                 'id_usager'   => $id_usager,
@@ -201,15 +208,8 @@ class BouteilleController extends Controller
 
             Note::create($request3);
 
-            $titre = 'bouteille';
+            $titre = 'bouteille'; // var qui sert à la gestion du bouton milieu du menu du bas
 
-            $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
-                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
-                ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
-                ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                ->where('vino__cellier_id', $id_cellier)
-                ->get();
-        
             //Redirect vers la liste des bouteille du cellier avec un message de succès
             return redirect()
             ->route('bouteille.liste', [ 'id' => $id_cellier, 'titre' => $titre] )
@@ -222,63 +222,49 @@ class BouteilleController extends Controller
     }
 
 
-    /**
-     * Edit bouteille
+    /** 
+     * Gestion vue de modification d'une bouteille au cellier
+     * @param $idVin, $idCellier
     */
-    public function edit(Request $request, $idVin, $idCellier)
+    public function edit($idVin, $idCellier)
     {
-      
-        
         if(Auth::check()){
-
             $bouteille = BouteillePersonalize::findOrFail($idVin)
                                                 ->select('*')
                                                 ->join('vino__cellier_has_vino__bouteille', 'vino__bouteille_personalize.id', '=', 'vino__cellier_has_vino__bouteille.vino__bouteille_id')
                                                 ->where('id', $idVin)
                                                 ->first();
     
-
             $cellier = Cellier::find($idCellier);
             $titre = 'formBouteille';
-            //dd($bouteille);
 
             return view('bouteille.edit', [
                 'bouteille' => $bouteille,
                 'cellier' => $cellier,
                 'titre' => $titre,
-                'id_cellier' => $idCellier
-                
+                'id_cellier' => $idCellier 
             ]);
         }else{
-
             return redirect('/login');
         }
     }
 
-    /**
-     * Update
-     */
+    /** 
+     * Modification dans la bd d'une bouteille au cellier
+     * @param $request // les parametres POST de la requête / $idVin, $idCellier
+    */
     public function update(Request $request, $idVin, $idCellier)
     {
-        
-        
         if(Auth::check()){
-            
             $this->validateBouteille($request);
-
             $quantite = Request::get('quantite');
-          
 
             $request = Request::except(['quantite', 'id_cellier', 'millesime2' ]);
-
-            
-            
-           
-            //dd($request);
 
             $bouteille = BouteillePersonalize::findOrFail($idVin)->update($request);
             //dd($bouteille);
 
+            //TODO si ça n'a pas fonctionner
 
             $request2 = [
                 'idCellier'   => $idCellier,
@@ -302,17 +288,15 @@ class BouteilleController extends Controller
     }
 
 
-    /**
-     * Supprime
-     */
+    /** 
+     * Suppression dans la bd d'une bouteille au cellier
+     * @param $request // les parametres POST de la requête / $idVin, $idCellier
+    */
     public function supprime(Request $request, $idVin, $idCellier)
     {
         if(Auth::check()){
             $id =(int)$idVin;
-            
             $bouteille = BouteillePersonalize::findOrFail($id);
-            
-            
             $bouteille->delete();
 
 
@@ -329,16 +313,17 @@ class BouteilleController extends Controller
 
     }
 
-   /**
-    * Fonction qui recherche des bouteilles du catalogue
+   /** 
+     * Recherche d'une bouteille du catalogue SAQ
+     * 
     */
-    public function recherche(Request $request)
+    public function recherche()
     {
             
             $data = '';
             $recherche = Request::get('recherche');
-           // dd($recherche);
-         //Requete sur la recherche , limit de 10
+            // dd($recherche);
+            //Requete sur la recherche , limit de 10
             if($recherche != '')
             {
                 $data = DB::table('vino__bouteille')
@@ -346,22 +331,19 @@ class BouteilleController extends Controller
                 ->take(10)
                 ->get();
             }
-
-            //dd('routerecherche');
             return json_encode($data);
     }
 
 
 
-    /**
-     * Fonction qui modifie la quantité de bouteille
-     */
-    public function quantite(Request $request)
+    /** 
+     * Modifie la quantité de bouteille
+     * 
+    */
+    public function quantite()
     {
-        //dd($request);
        
         $idVin = intval(Request::get('idVin'));
-       //dd($idVin);
         $idCellier = Request::get('idCellier');
         $quantite = Request::get('quantite');
         //dd($idCellier, $idVin, $quantite);
@@ -372,9 +354,7 @@ class BouteilleController extends Controller
 
         
         //dd($updated);
-
-
-       // return json_encode($quantite);
+        //TODO si ça n'a pas fonctionner
 
         // Redirect
         return redirect()
@@ -385,14 +365,12 @@ class BouteilleController extends Controller
     /**
      * Fonction qui modifie la note de la  bouteille
      */
-    public function note(Request $request)
+    public function note()
     {
-        //dd($request);
+       
        
         $idVin = intval(Request::get('idVin'));
-       //dd($idVin);
         $idCellier = Request::get('idCellier');
-        //dd($idCellier);
         $note = Request::get('note');
         //dd($idCellier, $idVin, $note);
 
@@ -402,9 +380,7 @@ class BouteilleController extends Controller
 
         
         //dd($updated);
-
-
-       // return json_encode($quantite);
+        //TODO si ça n'a pas fonctionner
 
         // Redirect
         return redirect()

@@ -128,7 +128,7 @@ window.addEventListener("load", function() {
 
 
 
-        /*Gestion sytem de note*/
+        /*Gestion syteme de note*/
 
 
         let elEtoiles = this.document.querySelectorAll("input[type='radio']")
@@ -138,7 +138,7 @@ window.addEventListener("load", function() {
             
             element.addEventListener('click', function(evt) {
                 evt.preventDefault();
-                console.log('clicketoile')
+                //console.log('clicketoile')
 
                 let idCellier = element.parentElement.dataset.id
                // console.log(evt.target)
@@ -150,6 +150,7 @@ window.addEventListener("load", function() {
                 
 
                 let note = element.value;
+                element.checked = true;
                 //console.log(inputRadio)
                 
                 //recherche Url
@@ -179,7 +180,7 @@ window.addEventListener("load", function() {
                         console.log(data)
                         /*Injecter la note dans le HTML*/
                        // console.log(element)
-                        element.checked = true
+                        
                
 
                   })
