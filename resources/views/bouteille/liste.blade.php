@@ -4,9 +4,9 @@
 
 
  <!-- Scripts Modal et Ajout Quantiter Bouteille-->
- @vite(['resources/js/listeBouteille.js'])
+ {{-- @vite(['resources/js/listeBouteille.js']) --}}
 
-    <div class='container mb-20 max-w-full'>
+    <div class='container mb-30 max-w-full'>
     {{-- Section header --}}
         <article class="zoneRouge mb-5 rounded-md bg-gradient-to-r from-red-900 via-red-800 to-red-600 p-5 sm:py-8">
         <h1 class="titreZoneRouge  text-6xl font-bold text-white ">
