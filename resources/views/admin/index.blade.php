@@ -3,12 +3,12 @@
 
 <!-- component -->
   <!-- Gestion des cellier -->
-  <div class="container max-w-3xl mx-auto my-12">
+  <div class="container ">
     <div class="mb-4">
-      <div class="flex justify-between my-px">
-        <h1 class="font-serif text-3xl font-bold underline decoration-gray-400 ">Zone adminitrative</h1>
-        <a class="px-4 py-2 rounded-md bg-red-900 text-sky-100 hover:bg-red-500"  href='{{ route('bouteille.updateSAQ') }}'>Mise à jour du catalogue</a>
-      </div>
+        <h1 class="mb-4 font-serif text-2xl font-bold">Zone adminitrative</h1>
+        <p class="mb-3">Cliquer ici pour mettre à jour le catalogue des bouteilles de vin provenant de la SAQ</p>
+        <a class="px-4 py-2 rounded-md bg-red-900 text-white"  href='{{ route('bouteille.updateSAQ') }}'>Mise à jour du catalogue</a>
+        
     </div>
 </div>
 
@@ -18,57 +18,43 @@
 @endif
 
 <!-- Gestion des cellier -->
-<div class="container  my-12 mx-auto px-4 md:px-12">
-	<div class="flex flex-wrap -mx-1 lg:-mx-4 cursor-pointer mx-auto">
-		<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-			<div class="max-w-sm rounded overflow-hidden shadow-lg border-4 border-transparent hover:border-indigo-900  transition duration-300 ease-in-out">
-				<div class="px-6 py-4">
-					<h3 class="font-bold text-black mt-2 mb-2">Total usagers</h3>
+<div class="container mb-3 mx-4">
+    <h2 class="mb-4 font-serif text-xl font-bold">Statistiques</h3>
+	<div class="flex flex-wrap">
+		<div class="my-1 px-1">
+			<div class="rounded overflow-hidden shadow-lg border-4 bg-white border-transparent ">
+				<div class="p-3">
+					<h3 class="font-bold text-black m-1">Nombre d'usagers</h3>
                     @if ($users) 
-					<p class="text-gray-700 text-base">
+					<p class="text-5xl text-gray-700 text-base text-right p-2">
 						{{count($users)-1}}
 					</p>
                     @endif
-
-					<!--<div class="mt-5 pt-5">
-						<a href="#!" class=" bg-red-900 hover:bg-red-500 text-white font-bold py-2 px-4 rounded text-sm w-full">Detail</a>
-					</div>-->
 				</div>
-				<div class="px-6 py-4">
-				</div>
+				
 			</div>
 		</div>
-		<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-			<div class="max-w-sm rounded overflow-hidden shadow-lg border-4 border-transparent hover:border-indigo-900  transition duration-300 ease-in-out">
-				<div class="px-6 py-4">
-					<h3 class="font-bold text-black mt-2 mb-2">Total Cellier</h3>
+	    <div class="my-1 px-1">
+            <div class="rounded overflow-hidden shadow-lg border-4 bg-white border-transparent ">
+                <div class="p-3">
+                    <h3 class="font-bold text-black m-1">Nombre de celliers</h3>
                     @if ($celliers) 
-                    <p class="text-gray-700 text-base">
+                    <p class="text-5xl text-gray-700 text-base text-right p-2">
 						{{count($celliers)}}
 					</p>
                     @endif
-					<!--<div class="mt-5 pt-5">
-						<a href="#!" class=" bg-red-900 hover:bg-red-500 text-white font-bold py-2 px-4 rounded text-sm w-full">Detail</a>
-					</div>-->
-				</div>
-				<div class="px-6 py-4">
 				</div>
 			</div>
 		</div>
-		<div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-			<div class="max-w-sm rounded overflow-hidden shadow-lg border-4 border-transparent hover:border-indigo-900  transition duration-300 ease-in-out">
-				<div class="px-6 py-4">
-					<h3 class="font-bold text-black mt-2 mb-2">Total Bouteil Vin</h3>
+		<div class="my-1 px-1">
+            <div class="rounded overflow-hidden shadow-lg border-4 bg-white border-transparent ">
+                <div class="p-3">
+                    <h3 class="font-bold text-black m-1">Nombres de bouteilles de vin</h3>
                     @if ($bouteilles) 
-					<p class="text-gray-700 text-base">
+					<p class="text-5xl text-gray-700 text-base text-right p-2">
 						{{count($bouteilles)}}
 					</p>
                     @endif
-					<!--<div class="mt-5 pt-5">
-						<a href="#!" class=" bg-red-900 hover:bg-red-500 text-white font-bold py-2 px-4 rounded text-sm w-full">Detail</a>
-					</div>-->
-				</div>
-				<div class="px-6 py-4">
 				</div>
 			</div>
 		</div>
@@ -78,9 +64,8 @@
 <!-- Gestion des usagers -->
 <body class="antialiased font-sans bg-gray-200">
     <div class="container mx-auto px-4 sm:px-8">
-        <div class="py-8">
             <div>
-               <h2 class="text-xl font-semibold leading-tight">Liste des Usagers</h2>
+               <h2 class="text-xl font-semibold leading-tight">Liste des usagers</h2>
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -195,7 +180,6 @@
                     </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
