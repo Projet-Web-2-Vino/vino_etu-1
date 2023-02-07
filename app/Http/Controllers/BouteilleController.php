@@ -29,18 +29,9 @@ class BouteilleController extends Controller
             $type = Request::get('type');
             $pays = Request::get('pays');
             $note = Request::get('note');
+            $msg = NULL;
             
-           // dd($type);
-
-           
-            $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
-                ->select('*')
-                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
-                ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
-                ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
-                ->where('vino__cellier_id', $id)
-                ->orderBy('vino__bouteille_id', 'DESC')
-                ->get();
+           //dd($id_usager, $note);
 
                 //dd($bouteilles);
 
@@ -54,9 +45,12 @@ class BouteilleController extends Controller
                     ->where('type', $type)
                     ->orderBy('vino__bouteille_id', 'DESC')
                     ->get();
-                }
-
-                if($pays){
+                   // dd(count($bouteilles));
+                    if(!count($bouteilles)){
+                        $msg = "Vous n'avez pas de bouteille de ce type dans ce cellier";
+                        $bouteilles = $this->getBouteilles($id);
+                    }
+                }elseif($pays){
                     $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                     ->select('*')
                     ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
@@ -66,10 +60,11 @@ class BouteilleController extends Controller
                     ->where('pays', $pays)
                     ->orderBy('vino__bouteille_id', 'DESC')
                     ->get();
-                }
-
-
-                if($note){
+                    if(!count($bouteilles)){
+                        $msg = "Vous n'avez pas de bouteille de ce pays dans ce cellier";
+                        $bouteilles = $this->getBouteilles($id);
+                    }
+                }elseif($note){
                     $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                     ->select('*')
                     ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
@@ -79,8 +74,14 @@ class BouteilleController extends Controller
                     ->where('note', $note)
                     ->orderBy('vino__bouteille_id', 'DESC')
                     ->get();
+                    if(!count($bouteilles)){
+                        $msg = "Vous n'avez pas de bouteille avec cette note dans ce cellier";
+                        $bouteilles = $this->getBouteilles($id);
+                    }
+                }else{
+                    $bouteilles = $this->getBouteilles($id);
                 }
-            //dd($bouteilles);
+           //dd($bouteilles);
 
 
             $pays = DB::table('vino__cellier_has_vino__bouteille')
@@ -101,7 +102,7 @@ class BouteilleController extends Controller
             'id_usager' => $id_usager,
             'id_cellier' => $id,
             'cellier' => $cellier,
-            'msg'=> NULL,
+            'msg'=> $msg,
             'titre' => $titre,
             'pays' => $pays
 
@@ -111,6 +112,19 @@ class BouteilleController extends Controller
 
             return redirect('/login');
         }
+    }
+
+
+    public function getBouteilles($id)
+    {
+       return $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
+                    ->select('*')
+                    ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
+                    ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
+                    ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                    ->where('vino__cellier_id', $id)
+                    ->orderBy('vino__bouteille_id', 'DESC')
+                    ->get();
     }
 
     /*
