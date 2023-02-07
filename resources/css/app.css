@@ -295,7 +295,9 @@ form[name="recherche"] {
   cursor: pointer;
 }
 
-
+.description{
+  z-index:1000;
+}
 
 /* SECTION CARD POUR BOUTEILLE DE VIN */
 
@@ -378,10 +380,13 @@ nav a span{
 }
 
 .flexPerso{
+  position:relative;
   display: flex;
   flex-wrap: wrap;
   align-items:stretch; 
   justify-content: center;
+  z-index:0;
+
 }
 
 .cellierCarte{
@@ -401,7 +406,7 @@ nav a span{
   position:relative;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
+  max-width: 310px;
   justify-content:space-between;
   overflow-wrap: break-word;
   z-index:0;

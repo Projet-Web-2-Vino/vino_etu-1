@@ -179,14 +179,16 @@
 
             {{-- Click pour Info description sur la bouteille ALPINEJS--}}
             <div x-data="{showContextMenu:false}">
-                <div class="relative" @click.away="showContextMenu=false">
-                  <button class="bg-white h-10 w-10 leading-10 text-center text-gray-800 text-xl shadow-md border border-gray-200 hover:border-gray-300 focus:border-gray-300 rounded-lg transition-all font-semibold outline-none focus:outline-none" @click="showContextMenu=true">
-                    <i class="fas fa-info"></i>
+                <div class="z-50 relative" @click.away="showContextMenu=false">
+                  <button class="bg-white h-10 w-10 leading-10 text-center text-gray-800 text-xl  rounded-lg  font-semibold outline-none" @click="showContextMenu=true">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                      </svg>
                   </button>
-                  <div class="absolute mt-12 top-0 left-1 min-w-full w-25 " style="display:none;" x-show="showContextMenu" >
-                    <div class="bg-white overflow-auto rounded-lg shadow-md w-full relative z-10 py-2 border border-gray-300 text-gray-800 text-xs">
-
-                        <small><p>{{ $info->description}}</p></small>
+                  <div class="z-50 absolute mt-12 bottom-0 right-0 min-w-full w-25 " style="display:none;" x-show="showContextMenu" >
+                    <div class="description z-50 p-5 bg-white overflow-auto rounded-lg shadow-md w-full relative z-10 py-2 border border-gray-300 text-gray-800 text-2xl">
+                        
+                        <p>{{ $info->description}}</p>
                     </div>
                   </div>
                 </div>
