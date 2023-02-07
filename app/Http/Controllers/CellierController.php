@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\CelliersBouteillesController;
-use App\Models\BouteillePersonalize;
+/* Import */
 use App\Models\Cellier;
-use App\Models\CelliersBouteilles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +12,10 @@ use App\Models\User;
 class CellierController extends Controller
 {
 
-    /**
-     * Show
-     */
+    /** 
+     * Gestion des variables et vues de cellier.index
+     * 
+    */
     public function index(Request $request)
     {
        $titre = 'cellier' ;
@@ -51,33 +50,31 @@ class CellierController extends Controller
                 Auth::check();
             $id_usager = Auth::id();
             
-                //Liste des cellier au besoins ... 
-                // TODO selon le id de l'usager pas encore implementer
-                $celliers = DB::table('vino__cellier')->where('id_usager', $id_usager)
-                ->get();
+            $celliers = DB::table('vino__cellier')->where('id_usager', $id_usager)
+            ->get();
 
-                //vue creation ceillier 
-                return view('cellier.nouveau', [
-                    'celliers' => $celliers,
-                    'titre' => $titre
-                ]);
+            //vue creation ceillier 
+            return view('cellier.nouveau', [
+                'celliers' => $celliers,
+                'titre' => $titre
+            ]);
+
         }else{
             return redirect('/login');
         }
     }
 
-    /*
-     Création d'un ceillier dansla BD
+     /** 
+     * Gestion vue de modification d'une bouteille au cellier
+     * @param $request // les parametres POST de la requête
     */
     public function creer(Request $request)
     {
         if(Auth::check()){ 
             $this->validateCellier($request);
 
-            // On assume que la requête
             $cellier = Cellier::create($request->all());
 
-        
             //Redirect avec message de succès
             return redirect()
             ->route('cellier.index')
@@ -88,10 +85,11 @@ class CellierController extends Controller
     }
 
 
-    /**
-     * Edit
+     /** 
+     * Gestion vue de modification d'une bouteille au cellier
+     * @param $id, l'identifiant du cellier
     */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         if(Auth::check()){
             //dd($id);
@@ -108,33 +106,33 @@ class CellierController extends Controller
 
 
 
-     /**
-     * Update
-     */
+    /** 
+     * Modification dans la bd d'un cellier
+     * @param $request // les parametres POST de la requête 
+     *        $id, l'identifiant du cellier 
+    */
     public function update(Request $request, $id)
     {
         if(Auth::check()){ 
-            //dd($id);
+           
             $this->validateCellier($request);
-
-            // On assume que la requête
             $cellier = Cellier::findOrFail($id)->update($request->all());
 
-
-            // Retourne au formulaire
-            return redirect()
-                ->route('cellier.index')
-                ->withSuccess('La modification a réussi!');
+        // Retourne au formulaire
+        return redirect()
+            ->route('cellier.index')
+            ->withSuccess('La modification a réussi!');
         }else{
             return redirect('/login');
         }
     }
 
 
-    /**
-     * Supprime
-     */
-    public function supprime(Request $request, $id)
+    /** 
+     * Suppression dans la bd d'un cellier
+     * @param  $id, l'identifiant du cellier 
+    */
+    public function supprime($id)
     {
         if(Auth::check()){ 
             $cellier = Cellier::find($id);

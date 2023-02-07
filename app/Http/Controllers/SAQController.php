@@ -9,7 +9,10 @@ use App\Models\Bouteille;
 
 class SAQController extends Controller
 {
-    //
+    /** 
+     * Importation des données de la SAQ dans la bd
+     *
+    */
     public function import()
     {
         $saq = new SAQ;
@@ -21,12 +24,7 @@ class SAQController extends Controller
         $saq -> getProduits($nombreProduit,$page);//import les produits
         $msg = 'Importation réussie !';
         $data = Bouteille::get();
-       
-       /* return view('bouteille.liste', [
-            'msg' => $msg,
-            'data' => Bouteille::get()
-        ]);*/
-
+      
         return redirect()
         ->route('admin.index')
         ->withSuccess('Importation réussi!');
