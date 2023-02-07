@@ -151,6 +151,7 @@ window.addEventListener("load", function() {
 
                 let note = element.value;
                 element.checked = true;
+                
                 //console.log(inputRadio)
                 
                 //recherche Url
@@ -179,8 +180,8 @@ window.addEventListener("load", function() {
                     .then((data) => {
                         console.log(data)
                         /*Injecter la note dans le HTML*/
-                       // console.log(element)
-                        
+                        console.log(element)
+                        element.checked = true;
                
 
                   })

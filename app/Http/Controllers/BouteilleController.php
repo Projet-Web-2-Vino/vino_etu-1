@@ -365,12 +365,14 @@ class BouteilleController extends Controller
     /**
      * Fonction qui modifie la note de la  bouteille
      */
-    public function note()
+    public function note(Request $request)
     {
-       
+        //dd($request);
        
         $idVin = intval(Request::get('idVin'));
+       //dd($idVin);
         $idCellier = Request::get('idCellier');
+        //dd($idCellier);
         $note = Request::get('note');
         //dd($idCellier, $idVin, $note);
 
@@ -380,7 +382,9 @@ class BouteilleController extends Controller
 
         
         //dd($updated);
-        //TODO si ça n'a pas fonctionner
+
+
+       // return json_encode($quantite);
 
         // Redirect
         return redirect()
