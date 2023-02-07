@@ -28,7 +28,7 @@ class SAQController extends Controller
         ]);*/
 
         return redirect()
-        ->route('cellier.index')
+        ->route('admin.index')
         ->withSuccess('Importation réussi!');
     }
 }

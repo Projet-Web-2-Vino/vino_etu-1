@@ -81,7 +81,7 @@
                         </div>
                     </div>
 
-                    <!-- Modal copy dans admin-->
+                    <!-- Modal -->
                     <div class="modal" id="modal-{{$info->id}}">
                         <div class="modal-bg modal-exit"></div>
                         <div class="modal-container">
