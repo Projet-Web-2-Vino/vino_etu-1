@@ -34,5 +34,11 @@ class BouteillePersonalize extends Model
       return $this->belongsTo(Type::class);
    }
 
+   /* relation avec Note */
+   public function note()
+   {
+      $this->belongsTo(Note::class, 'id_bouteille');
+   }
+
 
 }

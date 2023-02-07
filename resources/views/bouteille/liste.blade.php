@@ -165,7 +165,7 @@
         </div>
         {{-- FIN Section img  --}}
 
-        <div class="p-4 grow">
+        <div class="p-4 grow flex flex-col">
         
         
 
@@ -214,9 +214,18 @@
     @endif
 
 
+    
 
 
-        {{-- Section pour inserer les notes --}}
+
+
+
+
+
+
+
+
+        {{-- Section pour inserer les notes 
         <div>
             <p class="text-sm font-medium">Note</p>
             <div class="flex">
@@ -226,8 +235,9 @@
                 <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
             </div>
-        </div>
+        </div> --}}
 
+        <div class="grow flex flex-col justify-end justify-items-stretch content-end">
            {{-- Section AJOUTER au BOIRE --}}
            @csrf
            <div class="options py-2  text-sm" data-id="{{$info->vino__cellier_id}}" data-id-vin="{{$info->vino__bouteille_id}}">
@@ -241,6 +251,31 @@
                    </div>
 
            </div>
+
+             {{-- Section pour inserer les notes --}}
+
+  
+        <div class="feedback">
+          <div class="note" data-id="{{ $info->vino__cellier_id }}" data-id-vin="{{ $info->vino__bouteille_id }}">
+            <input type="radio" name="note-{{$info->vino__bouteille_id}}" id="note-{{$info->vino__bouteille_id}}-5" value="5" @if($info->note == "5") checked @endif>
+            <label for="note-{{$info->vino__bouteille_id}}-5"></label>
+            <input type="radio" note-{{$info->vino__bouteille_id}} id="note-{{ $info->vino__bouteille_id}}-4" value="4" @if($info->note == "4") checked @endif>
+            <label for="{{ $info->vino__bouteille_id}}-4"></label>
+            <input type="radio" note-{{$info->vino__bouteille_id}} id="{{ $info->vino__bouteille_id }}-3" value="3" @if($info->note == "3") checked @endif>
+            <label for="{{ $info->vino__bouteille_id }}-3"></label>
+            <input type="radio" note-{{$info->vino__bouteille_id}} id="note-{{ $info->vino__bouteille_id}}-2" value="2" @if($info->note == "2") checked @endif>
+            <label for="note-{{ $info->vino__bouteille_id}}-2"></label>
+            <input type="radio" note-{{$info->vino__bouteille_id}} id="{{ $info->vino__bouteille_id }}-1" value="1" @if($info->note == "1") checked @endif>
+            <label for="{{ $info->vino__bouteille_id }}-1"></label>
+          </div>
+        </div>
+      
+    </div>
+
+
+
+
+
         </div>
 
     {{-- Section Fin Carte Bouteil  --}}

@@ -89,6 +89,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
     Route::post('/bouteille/{id}', [BouteilleController::class, 'quantite'])
     ->name('bouteille.quantite');
+    Route::post('/bouteille/{id}', [BouteilleController::class, 'note'])
+    ->name('bouteille.note');
 
     // Ajout d'une bouteille
     Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])

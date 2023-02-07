@@ -7,6 +7,7 @@ use App\Models\Bouteille;
 use App\Models\BouteillePersonalize;
 use App\Models\Cellier;
 use App\Models\CelliersBouteilles;
+use App\Models\Note;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
@@ -33,17 +34,21 @@ class BouteilleController extends Controller
            
             $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                 ->select('*')
+                ->leftjoin('vino__note', 'vino__bouteille_id', '=', 'vino__note.id_bouteille')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
                 ->where('vino__cellier_id', $id)
                 ->orderBy('vino__bouteille_id', 'DESC')
                 ->get();
 
+                //dd($bouteilles);
+
                 if($type){
                     $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                     ->select('*')
                     ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                     ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                    ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                     ->where('vino__cellier_id', $id)
                     ->where('type', $type)
                     ->orderBy('vino__bouteille_id', 'DESC')
@@ -55,6 +60,7 @@ class BouteilleController extends Controller
                     ->select('*')
                     ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                     ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                    ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                     ->where('vino__cellier_id', $id)
                     ->where('pays', $pays)
                     ->orderBy('vino__bouteille_id', 'DESC')
@@ -67,6 +73,7 @@ class BouteilleController extends Controller
                 ->select('pays')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                 ->where('vino__cellier_id', $id)
                 ->groupBy('pays')
                 ->get();
@@ -129,9 +136,10 @@ class BouteilleController extends Controller
         
         if(Auth::check()){
             
-
+            $id_usager = Auth::id();
             $quantite = Request::get('quantite');
             $id_cellier = Request::get('id_cellier');
+            $note = 0;
 
             
             
@@ -155,11 +163,22 @@ class BouteilleController extends Controller
 
             CelliersBouteilles::create($request2);
 
+
+            //Ajout note 0 par défaut
+            $request3 = [
+                'id_usager'   => $id_usager,
+                'note' => $note,
+                'id_bouteille' => $idBouteille
+            ];
+
+            Note::create($request3);
+
             $titre = 'bouteille';
 
             $bouteilles = DB::table('vino__cellier_has_vino__bouteille')
                 ->join('vino__bouteille_personalize', 'vino__bouteille_id', '=', 'vino__bouteille_personalize.id')
                 ->join('vino__cellier', 'vino__cellier_id', '=', 'vino__cellier.id')
+                ->join('vino__note', 'vino__bouteille_id', '=', 'vino__note.id')
                 ->where('vino__cellier_id', $id_cellier)
                 ->get();
         
@@ -325,6 +344,36 @@ class BouteilleController extends Controller
 
         
         //dd($updated);
+
+
+       // return json_encode($quantite);
+
+        // Redirect
+        return redirect()
+            ->route('bouteille.liste', [ 'id' => $idCellier] );
+          
+    }
+
+    /**
+     * Fonction qui modifie la note de la  bouteille
+     */
+    public function note(Request $request)
+    {
+        //dd($request);
+       
+        $idVin = intval(Request::get('idVin'));
+       //dd($idVin);
+        $idCellier = Request::get('idCellier');
+        //dd($idCellier);
+        $note = Request::get('note');
+        //dd($idCellier, $idVin, $note);
+
+        $updated = Note::where('id_bouteille', $idVin)
+                                        ->limit(1)
+                                        ->update(['note' =>$note]); 
+
+        
+        dd($updated);
 
 
        // return json_encode($quantite);
