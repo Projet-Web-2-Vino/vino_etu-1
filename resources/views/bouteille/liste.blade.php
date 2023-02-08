@@ -185,7 +185,8 @@
                     </button>
                   <div class="z-50 absolute mt-12 bottom-0 right-0 min-w-full w-25 " style="display:none;" x-show="showContextMenu" >
                     <div class="description z-50 p-5 bg-white overflow-auto rounded-lg shadow-md w-full relative py-2 border border-gray-300 text-gray-800 text-2xl">
-                        <p>{{ $info->description}}</p>
+                        <p class="text-xs"><small><strong>Pays: </strong>{{ $info->pays}}</small></p>
+                        {{ $info->prix_saq}}$
                     </div>
                   </div>
                 </div>
