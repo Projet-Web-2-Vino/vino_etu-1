@@ -151,7 +151,7 @@
         </div>
         {{-- FIN Section Action  --}}
 
-        {{-- Section img  --}}
+        {{-- Section img selon bouteille selectionner  --}}
         <div class='zoneImg '>
                 @switch($info->type)
                 @case(1)
@@ -177,21 +177,24 @@
 
 
             {{-- Click pour Info description sur la bouteille ALPINEJS--}}
+            <div class="mt-4">
             <div x-data="{showContextMenu:false}">
                 {{-- ContextMenu False / Modale ferme quand on click away --}}
                 <div class=" relative" @click.away="showContextMenu=false">
-                    <button class="bg-white h-10 w-10 leading-10 text-center text-gray-800 text-xl  rounded-lg  font-semibold outline-none" @click="showContextMenu=true" " >
+                    <button class=" h-10 w-10 text-center text-gray-800 text-xl  rounded-lg  font-semibold outline-none" @click="showContextMenu=true" " >
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
                   <div class="z-50 absolute mt-12 bottom-0 right-0 min-w-full w-25 " style="display:none;" x-show="showContextMenu" >
                     <div class="description z-50 p-5 bg-white overflow-auto rounded-lg shadow-md w-full relative py-2 border border-gray-300 text-gray-800 text-2xl">
-                        <p class="text-xs"><small><strong>Pays: </strong>{{ $info->pays}}</small></p>
-                        {{ $info->prix_saq}}$
+
+                        <p class="text-xs"><small><strong>Pays </strong>{{ $info->pays}}</small></p>
+                        <p class="flex  text-xs"><small><strong>Prix: </strong>{{ $info->prix_saq}} $</small></p>
+                        <p class="flex  text-xs"><small><strong>Code Saq: </strong>{{ $info->code_saq}}</small></p>
                     </div>
                   </div>
                 </div>
               </div>
-
+            </div>
 
             {{-- FIN Click pour Info description sur la bouteille ALPINEJS--}}
 
